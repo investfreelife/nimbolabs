@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nimbo — digital-агентство полного цикла · сайты, видео, 3D, бренд, AI</title>
+<meta name="description" content="Nimbo — digital-агентство полного цикла. Сайты и веб-платформы с 3D/WebGL, брендинг, кино-видео и моушн, AI-генерация фото/видео/3D, Telegram-боты и автоматизация, парсинг данных, SEO и рост. Дизайн мирового уровня и измеримый результат.">
+<meta name="theme-color" content="#05060a">
+<link rel="canonical" href="https://nimbolabs.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nimbo — digital-агентство полного цикла">
+<meta property="og:description" content="Сайты с 3D, кино-видео, AI-контент, боты, автоматизация. Мировой уровень.">
+<meta property="og:image" content="https://nimbolabs.io/assets/hero.jpg">
+<meta property="og:url" content="https://nimbolabs.io/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/hero.jpg">
+
+<style>
+:root{
+  --bg:#05060a; --bg2:#090b12; --ink:#f3f5fb; --soft:#aeb6cc; --mut:#6f7794;
+  --line:rgba(255,255,255,.09);
+  --a1:#7aa2ff; --a2:#b78bff; --a3:#ffb877; --chrome:linear-gradient(120deg,#9fb4ff,#c8a8ff,#ffd0a0);
+  --max:1240px;
+}
+*{margin:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;cursor:none}
+@media(hover:none){body{cursor:auto}}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 26px}
+.gro{font-family:'Space Grotesk',sans-serif}
+.serif{font-family:'Instrument Serif',serif;font-weight:400}
+::selection{background:var(--a2);color:#05060a}
+:focus-visible{outline:2px solid var(--a1);outline-offset:4px}
+
+/* cursor */
+.cursor{position:fixed;top:0;left:0;width:9px;height:9px;border-radius:50%;background:#fff;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .25s,height .25s,background .25s}
+.cursor.big{width:54px;height:54px;background:rgba(255,255,255,.18)}
+@media(hover:none){.cursor{display:none}}
+
+/* preloader */
+#pre{position:fixed;inset:0;z-index:10000;background:var(--bg);display:grid;place-items:center;transition:opacity .8s ease,visibility .8s}
+#pre.done{opacity:0;visibility:hidden}
+#pre .n{font-family:'Space Grotesk';font-weight:700;font-size:clamp(40px,9vw,120px);letter-spacing:-.03em;text-transform:uppercase;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+#pre .bar{position:absolute;bottom:0;left:0;height:2px;background:linear-gradient(90deg,var(--a1),var(--a2),var(--a3));width:0;animation:load 1.6s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes load{to{width:100%}}
+
+/* nav */
+header{position:fixed;top:0;left:0;right:0;z-index:200;transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent}
+header.solid{background:rgba(5,6,10,.6);backdrop-filter:blur(16px);border-color:var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-family:'Space Grotesk';font-weight:700;font-size:23px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
+.brand .dot{width:11px;height:11px;border-radius:50%;background:var(--chrome);box-shadow:0 0 18px var(--a2)}
+.navlinks{display:flex;gap:30px;font-size:14.5px;color:var(--soft)}
+.navlinks a{position:relative}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--a1);transition:width .3s}
+.navlinks a:hover::after{width:100%}
+.navlinks a:hover{color:#fff}
+.nbtn{border:1px solid var(--line);border-radius:100px;padding:10px 20px;font-size:14px;font-weight:600;transition:.3s;background:rgba(255,255,255,.02)}
+.nbtn:hover{background:#fff;color:#05060a;border-color:#fff}
+@media(max-width:820px){.navlinks{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero video,.hero .heroimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .veil{position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 70% 10%,transparent,rgba(5,6,10,.55) 70%),
+  linear-gradient(180deg,rgba(5,6,10,.45),rgba(5,6,10,.15) 35%,rgba(5,6,10,.92))}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.7}
+.hero .in{position:relative;z-index:5;padding:0 0 7vh;width:100%}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);margin-bottom:22px}
+.eyebrow .ln{width:40px;height:1px;background:linear-gradient(90deg,var(--a1),transparent)}
+h1{font-family:'Space Grotesk';font-weight:700;font-size:clamp(48px,11vw,168px);line-height:.92;letter-spacing:-.04em;text-transform:uppercase}
+h1 .l{display:block;overflow:hidden}
+h1 .l span{display:block;transform:translateY(110%)}
+h1 em{font-family:'Instrument Serif';font-style:italic;font-weight:400;text-transform:none;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.01em}
+.hero .sub{max-width:46ch;color:var(--soft);font-size:clamp(15px,1.8vw,20px);margin:26px 0 0;opacity:0}
+.hero .row{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:30px;opacity:0}
+.scrollcue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:6;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:8px}
+.scrollcue .m{width:1px;height:38px;background:linear-gradient(var(--a1),transparent);animation:cue 2s infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.1%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15.5px;padding:15px 28px;border-radius:100px;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.btn-p{background:#fff;color:#05060a;box-shadow:0 10px 40px -10px rgba(183,139,255,.6)}
+.btn-p:hover{transform:translateY(-3px)}
+.btn-g{border:1px solid var(--line);color:#fff}
+.btn-g:hover{background:rgba(255,255,255,.06);transform:translateY(-3px)}
+
+/* marquee */
+.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden;white-space:nowrap;background:var(--bg2)}
+.marq .t{display:inline-block;font-family:'Space Grotesk';font-size:clamp(20px,3vw,34px);font-weight:600;letter-spacing:-.01em;animation:scroll 28s linear infinite}
+.marq .t span{margin:0 26px;color:var(--soft)}
+.marq .t span.hi{color:transparent;background:var(--chrome);-webkit-background-clip:text;background-clip:text}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+section{position:relative;padding:clamp(80px,12vw,160px) 0}
+.kick{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--a1);margin-bottom:20px}
+.kick .num{color:var(--mut)}
+.h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(32px,6vw,76px);line-height:1;letter-spacing:-.03em}
+.h2 em{font-family:'Instrument Serif';font-style:italic;font-weight:400;color:transparent;background:var(--chrome);-webkit-background-clip:text;background-clip:text}
+.lead{color:var(--soft);font-size:clamp(16px,2vw,21px);max-width:60ch;margin-top:22px}
+
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:56px}
+.svc{position:relative;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--bg2);min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s}
+.svc:hover{transform:translateY(-6px);border-color:rgba(183,139,255,.5)}
+.svc .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.34;transition:opacity .5s,transform .8s}
+.svc:hover .bgimg{opacity:.5;transform:scale(1.06)}
+.svc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(5,6,10,.88))}
+.svc .c{position:relative;z-index:2}
+.svc .ix{font-family:'Space Grotesk';font-size:13px;color:var(--a1);margin-bottom:12px}
+.svc h3{font-family:'Space Grotesk';font-size:23px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+.svc p{color:var(--soft);font-size:14.5px}
+.col-6{grid-column:span 6}.col-4{grid-column:span 4}.col-12{grid-column:span 12}
+@media(max-width:900px){.col-6,.col-4{grid-column:span 12}}
+
+/* 3D showcase */
+.show3d{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:56px}
+@media(max-width:900px){.show3d{grid-template-columns:1fr}}
+.viewer{position:relative;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:radial-gradient(circle at 50% 38%,rgba(150,170,255,.38),rgba(120,90,200,.14) 45%,transparent 70%),linear-gradient(160deg,#161a26,#0b0e16);aspect-ratio:1/1}
+model-viewer{width:100%;height:100%;--poster-color:transparent;background:transparent}
+.viewer .hint{position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);pointer-events:none}
+
+/* portfolio */
+.work{display:block;border-top:1px solid var(--line);padding:34px 0;position:relative;transition:padding .4s}
+.work:hover{padding-left:18px}
+.work .row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.work h3{font-family:'Space Grotesk';font-size:clamp(26px,4.6vw,58px);font-weight:600;letter-spacing:-.02em;transition:color .3s}
+.work:hover h3{color:transparent;background:var(--chrome);-webkit-background-clip:text;background-clip:text}
+.work .meta{display:flex;gap:14px;align-items:center;color:var(--mut);font-size:13.5px;flex:none}
+.work .tag{border:1px solid var(--line);border-radius:100px;padding:6px 14px}
+.work .arr{font-size:26px;transition:transform .35s}
+.work:hover .arr{transform:translate(6px,-6px)}
+.work .prev{position:absolute;right:8%;top:50%;width:300px;aspect-ratio:16/10;border-radius:14px;overflow:hidden;transform:translateY(-50%) scale(.7);opacity:0;pointer-events:none;transition:opacity .35s,transform .45s;border:1px solid var(--line);z-index:5}
+.work:hover .prev{opacity:1;transform:translateY(-50%) scale(1)}
+.work .prev img{width:100%;height:100%;object-fit:cover}
+@media(max-width:760px){.work .prev{display:none}.work .meta .tag{display:none}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat .n{font-family:'Space Grotesk';font-size:clamp(40px,6vw,72px);font-weight:700;letter-spacing:-.03em;line-height:1;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--mut);font-size:14px;margin-top:8px}
+
+/* process */
+.steps{margin-top:56px;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:90px 1fr 2fr;gap:24px;padding:34px 0;border-bottom:1px solid var(--line);align-items:start}
+.step .nn{font-family:'Space Grotesk';font-size:22px;color:var(--a1)}
+.step h3{font-family:'Space Grotesk';font-size:clamp(22px,3vw,34px);font-weight:600;letter-spacing:-.02em}
+.step p{color:var(--soft);font-size:15.5px}
+@media(max-width:760px){.step{grid-template-columns:1fr;gap:8px}}
+
+/* CTA */
+.cta{position:relative;text-align:center;overflow:hidden;border-radius:30px;margin:0 26px;padding:clamp(70px,11vw,150px) 26px;background:radial-gradient(120% 130% at 50% 0,rgba(122,162,255,.22),transparent 55%),var(--bg2);border:1px solid var(--line)}
+.cta img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18}
+.cta .in{position:relative;z-index:2}
+.cta h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(34px,7vw,92px);line-height:.96;letter-spacing:-.03em}
+.cta h2 em{font-family:'Instrument Serif';font-style:italic;font-weight:400;color:transparent;background:var(--chrome);-webkit-background-clip:text;background-clip:text}
+.cta p{color:var(--soft);max-width:48ch;margin:22px auto 34px;font-size:clamp(16px,2vw,20px)}
+
+footer{padding:64px 0 40px;border-top:1px solid var(--line);margin-top:clamp(80px,12vw,160px)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px}
+.foot .big{font-family:'Space Grotesk';font-weight:700;font-size:clamp(40px,8vw,110px);letter-spacing:-.04em;line-height:.9;text-transform:uppercase}
+.foot .col h4{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:14px}
+.foot .col a{display:block;color:var(--soft);font-size:15px;margin-bottom:9px}
+.foot .col a:hover{color:#fff}
+.copy{margin-top:50px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;color:var(--mut);font-size:13px}
+
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}h1 .l span{transform:none}body{cursor:auto}.cursor{display:none}}
+</style>
+</head>
+<body>
+
+<div id="pre"><div class="n">NIMBO</div><div class="bar"></div></div>
+<div class="cursor" id="cursor"></div>
+
+<header id="hdr"><div class="wrap"><nav>
+  <a class="brand" href="#top"><span class="dot"></span>Nimbo</a>
+  <div class="navlinks">
+    <a href="#services">Услуги</a><a href="#work">Работы</a><a href="#lab">3D-лаб</a><a href="#process">Процесс</a>
+  </div>
+  <a class="nbtn" href="#contact" data-cursor>Обсудить проект</a>
+</nav></div></header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <video class="herovid" autoplay muted loop playsinline poster="assets/hero.jpg" id="hvid">
+    <source src="assets/hero.mp4" type="video/mp4">
+  </video>
+  <img class="heroimg" src="assets/hero.jpg" alt="" id="himg" style="display:none">
+  <canvas id="hero-canvas"></canvas>
+  <div class="veil"></div>
+  <div class="hero in"><div class="wrap">
+    <div class="eyebrow"><span class="ln"></span>Digital-агентство полного цикла · Москва</div>
+    <h1>
+      <span class="l"><span>Идея</span></span>
+      <span class="l"><span>в <em>цифровую магию</em></span></span>
+    </h1>
+    <p class="sub" id="hsub">Сайты с 3D и WebGL, кино-видео и моушн, AI-генерация контента, боты и автоматизация. Мы закрываем весь digital — от первого пикселя до измеримого результата.</p>
+    <div class="row" id="hrow">
+      <a class="btn btn-p" href="#contact" data-cursor>Начать проект →</a>
+      <a class="btn btn-g" href="#work" data-cursor>Смотреть работы</a>
+    </div>
+  </div></div>
+  <div class="scrollcue"><span>Scroll</span><span class="m"></span></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marq"><div class="t">
+  <span>Сайты &amp; WebGL</span><span class="hi">✦</span><span>Брендинг</span><span class="hi">✦</span><span>Кино-видео</span><span class="hi">✦</span><span>AI-контент</span><span class="hi">✦</span><span>3D</span><span class="hi">✦</span><span>Боты &amp; автоматизация</span><span class="hi">✦</span><span>Парсинг данных</span><span class="hi">✦</span><span>SEO &amp; рост</span><span class="hi">✦</span>
+  <span>Сайты &amp; WebGL</span><span class="hi">✦</span><span>Брендинг</span><span class="hi">✦</span><span>Кино-видео</span><span class="hi">✦</span><span>AI-контент</span><span class="hi">✦</span><span>3D</span><span class="hi">✦</span><span>Боты &amp; автоматизация</span><span class="hi">✦</span><span>Парсинг данных</span><span class="hi">✦</span><span>SEO &amp; рост</span><span class="hi">✦</span>
+</div></div>
+
+<!-- SERVICES -->
+<section id="services"><div class="wrap">
+  <div class="kick reveal"><span class="num">01</span> · Что мы делаем</div>
+  <h2 class="h2 reveal">Полный цикл <em>digital</em> —<br>под одной крышей</h2>
+  <p class="lead reveal">Не «только сайты». Мы берём задачу целиком: стратегия, дизайн, продакшн, код, контент и рост. Один подрядчик вместо пяти.</p>
+  <div class="svc-grid">
+    <div class="svc col-6 reveal"><img class="bgimg" src="assets/art1.jpg" alt="" loading="lazy"><div class="c"><div class="ix">01</div><h3>Сайты &amp; веб-платформы</h3><p>Лендинги, многостраничники и продукты с 3D/WebGL-эффектами. Core Web Vitals в зелёной зоне, SEO из коробки.</p></div></div>
+    <div class="svc col-6 reveal"><img class="bgimg" src="assets/art4.jpg" alt="" loading="lazy"><div class="c"><div class="ix">02</div><h3>Кино-видео &amp; моушн</h3><p>Рекламные ролики, промо, моушн-дизайн и анимация — выглядит как кадр из фильма, работает на продажи.</p></div></div>
+    <div class="svc col-4 reveal"><img class="bgimg" src="assets/n3.jpg" alt="" loading="lazy"><div class="c"><div class="ix">03</div><h3>AI-генерация</h3><p>Фото, видео и 3D-ассеты под бренд на топовом AI-стеке. Без стоков и заглушек.</p></div></div>
+    <div class="svc col-4 reveal"><img class="bgimg" src="assets/art3.jpg" alt="" loading="lazy"><div class="c"><div class="ix">04</div><h3>Бренд &amp; дизайн</h3><p>Фирстиль, айдентика, UI/UX. Система, которая держит уровень на всех носителях.</p></div></div>
+    <div class="svc col-4 reveal"><img class="bgimg" src="assets/n2.jpg" alt="" loading="lazy"><div class="c"><div class="ix">05</div><h3>Боты &amp; автоматизация</h3><p>Telegram-боты, CRM-интеграции, AI-ассистенты и пайплайны, которые работают за вас.</p></div></div>
+    <div class="svc col-6 reveal"><img class="bgimg" src="assets/n1.jpg" alt="" loading="lazy"><div class="c"><div class="ix">06</div><h3>Парсинг &amp; данные</h3><p>Сбор, обогащение и структурирование данных под маркетинг и продукт в любом масштабе.</p></div></div>
+    <div class="svc col-6 reveal"><img class="bgimg" src="assets/n4.jpg" alt="" loading="lazy"><div class="c"><div class="ix">07</div><h3>SEO &amp; рост</h3><p>Техническое SEO, контент и аналитика. Не «трафик ради трафика», а заявки и выручка.</p></div></div>
+  </div>
+</div></section>
+
+<!-- 3D LAB -->
+<section id="lab" style="background:var(--bg2)"><div class="wrap">
+  <div class="kick reveal"><span class="num">02</span> · 3D-лаборатория</div>
+  <h2 class="h2 reveal">Объёмы, которые <em>оживают</em></h2>
+  <p class="lead reveal">Реальный 3D-объект — покрутите его. Мы вшиваем интерактивные модели прямо в сайт: продукт, награду, символ бренда.</p>
+  <div class="show3d">
+    <div class="viewer reveal" data-cursor>
+      <model-viewer src="assets/object.glb" alt="3D-объект Nimbo" camera-controls auto-rotate rotation-per-second="22deg" interaction-prompt="none" environment-image="neutral" tone-mapping="aces" exposure="1.5" shadow-intensity="0.4" shadow-softness="1" camera-orbit="0deg 75deg 105%" disable-tap></model-viewer>
+      <div class="hint">тяните, чтобы вращать</div>
+    </div>
+    <div class="reveal">
+      <h3 class="gro" style="font-size:clamp(24px,3vw,40px);letter-spacing:-.02em;margin-bottom:16px">От картинки до объёма за минуты</h3>
+      <p style="color:var(--soft);font-size:17px;margin-bottom:18px">Мы генерируем визуал нейросетями, превращаем его в 3D-меш и встраиваем в сайт интерактивным элементом. Всё, что на этой странице — фон, видео, объект — сделано нашим AI-конвейером, без стоков.</p>
+      <p style="color:var(--mut);font-size:15px">WebGL · glTF/GLB · real-time рендер · &lt;model-viewer&gt;</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- WORK -->
+<section id="work"><div class="wrap">
+  <div class="kick reveal"><span class="num">03</span> · Избранные работы</div>
+  <h2 class="h2 reveal">Сайты, которые мы <em>отгрузили</em></h2>
+  <div style="margin-top:48px">
+    <a class="work reveal" href="https://investfreelife.github.io/avtoklimatcom-192/modern-v2/" target="_blank" rel="noopener" data-cursor>
+      <div class="row"><h3>Автоклимат.com</h3><div class="meta"><span class="tag">Cold Precision</span><span>Авто-климат</span><span class="arr">↗</span></div></div>
+      <div class="prev"><img src="assets/art1.jpg" alt=""></div>
+    </a>
+    <a class="work reveal" href="https://investfreelife.github.io/avtoclean/liquid-chrome/" target="_blank" rel="noopener" data-cursor>
+      <div class="row"><h3>Avtoclean</h3><div class="meta"><span class="tag">Liquid Chrome</span><span>Детейлинг</span><span class="arr">↗</span></div></div>
+      <div class="prev"><img src="assets/art4.jpg" alt=""></div>
+    </a>
+    <a class="work reveal" href="https://investfreelife.github.io/ayron-dyuk-304/heritage-garage/" target="_blank" rel="noopener" data-cursor>
+      <div class="row"><h3>Айрон Дьюк</h3><div class="meta"><span class="tag">Heritage Garage</span><span>Реставрация классики</span><span class="arr">↗</span></div></div>
+      <div class="prev"><img src="assets/art3.jpg" alt=""></div>
+    </a>
+    <a class="work reveal" href="https://investfreelife.github.io/avto-kd-303/technical-precision/" target="_blank" rel="noopener" data-cursor>
+      <div class="row"><h3>Авто КД</h3><div class="meta"><span class="tag">Technical Precision</span><span>Автосервис</span><span class="arr">↗</span></div></div>
+      <div class="prev"><img src="assets/n3.jpg" alt=""></div>
+    </a>
+    <a class="work reveal" href="https://investfreelife.github.io/delars-36/neo-brutalist/" target="_blank" rel="noopener" data-cursor>
+      <div class="row"><h3>DeLars</h3><div class="meta"><span class="tag">Neo-Brutalist</span><span>Автосервис</span><span class="arr">↗</span></div></div>
+      <div class="prev"><img src="assets/n1.jpg" alt=""></div>
+    </a>
+  </div>
+</div></section>
+
+<!-- STATS -->
+<section style="padding-top:0"><div class="wrap">
+  <div class="stats">
+    <div class="stat reveal"><div class="n" data-count="6">6</div><div class="l">сайтов мирового уровня за день</div></div>
+    <div class="stat reveal"><div class="n" data-count="100">100%</div><div class="l">контента сгенерировано AI, без стоков</div></div>
+    <div class="stat reveal"><div class="n" data-count="7">7</div><div class="l">направлений под одной крышей</div></div>
+    <div class="stat reveal"><div class="n">24/7</div><div class="l">агентов-исполнителей в работе</div></div>
+  </div>
+</div></section>
+
+<!-- PROCESS -->
+<section id="process" style="background:var(--bg2)"><div class="wrap">
+  <div class="kick reveal"><span class="num">04</span> · Как мы работаем</div>
+  <h2 class="h2 reveal">От брифа до <em>запуска</em></h2>
+  <div class="steps">
+    <div class="step reveal"><div class="nn">01</div><h3>Погружение</h3><p>Разбираемся в бизнесе и цели. Не «сделать красиво», а решить задачу: заявки, продажи, имидж.</p></div>
+    <div class="step reveal"><div class="nn">02</div><h3>Дизайн &amp; контент</h3><p>Визуальное направление, прототип, AI-генерация фото/видео/3D под бренд. Каждый проект — свой почерк.</p></div>
+    <div class="step reveal"><div class="nn">03</div><h3>Продакшн</h3><p>Чистый код, перформанс, SEO, анимация. Собираем и тестируем на реальных устройствах.</p></div>
+    <div class="step reveal"><div class="nn">04</div><h3>Запуск &amp; рост</h3><p>Деплой, аналитика, итерации. Поддерживаем и развиваем — результат важнее сдачи.</p></div>
+  </div>
+</div></section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-bottom:0"><div class="cta reveal">
+  <img class="bg" src="assets/art3.jpg" alt="">
+  <div class="in">
+    <h2>Расскажите<br>о вашей <em>идее</em></h2>
+    <p>Опишите задачу — вернёмся с концепцией и сметой. Делаем быстро, на мировом уровне, без воды.</p>
+    <a class="btn btn-p" href="mailto:hello@nimbo.studio?subject=Проект%20для%20Nimbo" data-cursor>Написать нам →</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="foot">
+    <div><div class="big">Nimbo</div><p style="color:var(--mut);margin-top:14px;max-width:34ch">Digital-агентство полного цикла. Идея → цифровая магия.</p></div>
+    <div class="col"><h4>Услуги</h4><a href="#services">Сайты &amp; WebGL</a><a href="#services">Кино-видео</a><a href="#services">AI-контент</a><a href="#services">Боты &amp; автоматизация</a><a href="#services">SEO &amp; рост</a></div>
+    <div class="col"><h4>Студия</h4><a href="#work">Работы</a><a href="#lab">3D-лаб</a><a href="#process">Процесс</a><a href="#contact">Контакты</a></div>
+    <div class="col"><h4>Связь</h4><a href="mailto:hello@nimbo.studio">hello@nimbo.studio</a><a href="#top">Москва</a></div>
+  </div>
+  <div class="copy"><span>© 2026 Nimbo Studio · Digital полного цикла</span><span>Сделано Nimbo — фото/видео/3D сгенерированы AI</span></div>
+</div></footer>
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+/* preloader */
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('pre').classList.add('done'),1500);});
+/* hero headline reveal + sub */
+setTimeout(()=>{
+  document.querySelectorAll('h1 .l span').forEach((s,i)=>{s.style.transition='transform 1s cubic-bezier(.2,.9,.2,1)';s.style.transitionDelay=(1.6+i*.12)+'s';s.style.transform='translateY(0)';});
+  ['hsub','hrow'].forEach((id,i)=>{const e=document.getElementById(id);e.style.transition='opacity 1s ease '+(2+i*.15)+'s';e.style.opacity='1';});
+},50);
+/* video fallback */
+(function(){const v=document.getElementById('hvid');v.addEventListener('error',()=>{v.style.display='none';document.getElementById('himg').style.display='block';});
+  // if no mp4 source loads in 3.5s, show image
+  setTimeout(()=>{if(v.readyState<2){v.style.display='none';document.getElementById('himg').style.display='block';}},3500);})();
+/* header solidify */
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>{hdr.classList.toggle('solid',scrollY>40);},{passive:true});
+/* cursor */
+const cur=document.getElementById('cursor');let cx=0,cy=0,tx=0,ty=0;
+addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;});
+(function loop(){cx+=(tx-cx)*.2;cy+=(ty-cy)*.2;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,[data-cursor],button,model-viewer').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('big'));el.addEventListener('mouseleave',()=>cur.classList.remove('big'));});
+/* reveal */
+const io=new IntersectionObserver(en=>en.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+/* counters */
+const cio=new IntersectionObserver(en=>en.forEach(x=>{if(x.isIntersecting){const el=x.target,to=+el.dataset.count,suf=el.textContent.includes('%')?'%':'';let n=0;const step=()=>{n+=Math.ceil(to/30);if(n>=to){n=to;el.textContent=to+suf;}else{el.textContent=n+suf;requestAnimationFrame(step);}};step();cio.unobserve(el);}}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(e=>cio.observe(e));
+/* hero particle field (Three.js) */
+(function(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches||!window.THREE)return;
+  const cv=document.getElementById('hero-canvas');
+  const rnd=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
+  rnd.setPixelRatio(Math.min(devicePixelRatio,2));
+  const sc=new THREE.Scene();const cam=new THREE.PerspectiveCamera(60,1,.1,100);cam.position.z=14;
+  const N=900,g=new THREE.BufferGeometry(),pos=new Float32Array(N*3);
+  for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*36;pos[i*3+1]=(Math.random()-.5)*22;pos[i*3+2]=(Math.random()-.5)*22;}
+  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  const m=new THREE.PointsMaterial({size:.045,color:0xb9a8ff,transparent:true,opacity:.8});
+  const pts=new THREE.Points(g,m);sc.add(pts);
+  let mx=0,my=0;addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5);});
+  function rs(){const w=cv.clientWidth,h=cv.clientHeight;rnd.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
+  addEventListener('resize',rs);rs();
+  (function an(){pts.rotation.y+=.0008;pts.rotation.x+=.0004;cam.position.x+=(mx*3-cam.position.x)*.04;cam.position.y+=(-my*2-cam.position.y)*.04;cam.lookAt(0,0,0);rnd.render(sc,cam);requestAnimationFrame(an);})();
+})();
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Nimbo","description":"Digital-агентство полного цикла: сайты с 3D/WebGL, брендинг, видео и моушн, AI-генерация фото/видео/3D, Telegram-боты и автоматизация, парсинг данных, SEO и рост.","url":"https://nimbolabs.io/","image":"https://nimbolabs.io/assets/hero.jpg","areaServed":{"@type":"City","name":"Москва"},"email":"hello@nimbo.studio","makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Сайты и веб-платформы (3D/WebGL)"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Кино-видео и моушн"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"AI-генерация фото/видео/3D"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Брендинг и дизайн"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Telegram-боты и автоматизация"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Парсинг и данные"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"SEO и рост"}}]}
+</script>
+</body>
+</html>
