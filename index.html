@@ -203,7 +203,7 @@ ym(109998862,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <video class="herovid" autoplay muted loop playsinline poster="assets/hero.jpg" id="hvid">
+  <video class="herovid" autoplay muted loop playsinline preload="none" poster="assets/hero.jpg" id="hvid">
     <source src="assets/hero.mp4" type="video/mp4">
   </video>
   <img class="heroimg" src="assets/hero.jpg" alt="" id="himg" style="display:none">
@@ -395,7 +395,7 @@ ym(109998862,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 <div style="text-align:center;padding:14px 16px;font:13px/1.5 system-ui,sans-serif;color:#8a8f9c;border-top:1px solid rgba(128,128,128,.18)"><a href="/privacy/" style="color:#8a8f9c">Политика конфиденциальности</a> · © 2026 Nimbo</div>
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script>
 /* preloader */
 window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('pre').classList.add('done'),1500);});
@@ -422,8 +422,8 @@ document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
 /* counters */
 const cio=new IntersectionObserver(en=>en.forEach(x=>{if(x.isIntersecting){const el=x.target,to=+el.dataset.count,suf=el.textContent.includes('%')?'%':'';let n=0;const step=()=>{n+=Math.ceil(to/30);if(n>=to){n=to;el.textContent=to+suf;}else{el.textContent=n+suf;requestAnimationFrame(step);}};step();cio.unobserve(el);}}),{threshold:.5});
 document.querySelectorAll('[data-count]').forEach(e=>cio.observe(e));
-/* hero particle field (Three.js) */
-(function(){
+/* hero particle field (Three.js) — отложенно после load, не блокирует первый рендер */
+window.addEventListener('load',function(){
   if(matchMedia('(prefers-reduced-motion:reduce)').matches||!window.THREE)return;
   const cv=document.getElementById('hero-canvas');
   const rnd=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
@@ -438,7 +438,7 @@ document.querySelectorAll('[data-count]').forEach(e=>cio.observe(e));
   function rs(){const w=cv.clientWidth,h=cv.clientHeight;rnd.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
   addEventListener('resize',rs);rs();
   (function an(){pts.rotation.y+=.0008;pts.rotation.x+=.0004;cam.position.x+=(mx*3-cam.position.x)*.04;cam.position.y+=(-my*2-cam.position.y)*.04;cam.lookAt(0,0,0);rnd.render(sc,cam);requestAnimationFrame(an);})();
-})();
+});
 </script>
 
 <script type="application/ld+json">
