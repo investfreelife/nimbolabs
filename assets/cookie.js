@@ -65,3 +65,40 @@
     }
   });
 })();
+
+/* ===== Nimbo: калькулятор стоимости (на /sites/* и /bots/*) ===== */
+(function(){
+  var path=location.pathname, cfg=null;
+  if(/\/sites\//.test(path)) cfg={title:'Рассчитайте стоимость сайта',
+    base:[['Лендинг',25000],['Сайт компании',45000],['Интернет-магазин',90000],['Премиум 3D/WebGL',120000]],
+    add:[['CRM-интеграция',15000],['Копирайтинг',10000],['SEO-настройка',15000],['Анимация / 3D',20000]]};
+  else if(/\/bots\//.test(path)) cfg={title:'Рассчитайте бота под задачу',
+    base:[['Бот заявок / FAQ',20000],['Бот продаж',50000],['AI-нейроконсультант',60000]],
+    add:[['Интеграция CRM (amo/Bitrix)',15000],['Несколько каналов (TG/WA/VK)',10000],['Онлайн-оплата',10000],['Обучение на ваших данных',15000]]};
+  if(!cfg) return;
+  function ready(fn){if(document.readyState!=='loading')fn();else document.addEventListener('DOMContentLoaded',fn);}
+  ready(function(){
+    if(document.querySelector('.calc-section')) return;
+    var anchor=document.getElementById('zayavka')||document.querySelector('.nfooter'); if(!anchor) return;
+    var fmt=function(n){return n.toLocaleString('ru-RU')+' ₽';};
+    var baseH=cfg.base.map(function(b,i){return '<label class="calc-opt'+(i===0?' on':'')+'"><input type="radio" name="cbase" value="'+b[1]+'"'+(i===0?' checked':'')+'><span>'+b[0]+'</span></label>';}).join('');
+    var addH=cfg.add.map(function(a){return '<label class="calc-opt"><input type="checkbox" class="cadd" value="'+a[1]+'"><span>'+a[0]+' +'+fmt(a[1])+'</span></label>';}).join('');
+    var sec=document.createElement('section'); sec.className='calc-section alt';
+    sec.innerHTML='<div class="wrap"><div class="kick reveal"><span class="num">≈</span> · Калькулятор</div>'
+      +'<h2 class="h2 reveal">'+cfg.title+'</h2>'
+      +'<p class="lead reveal">Соберите конфигурацию — ориентир по цене покажем сразу, без формы. Точную смету посчитаем бесплатно после короткого брифа.</p>'
+      +'<div class="calc-wrap reveal"><div class="calc-col">'
+      +'<div class="calc-field"><label>Что нужно</label><div class="calc-opts">'+baseH+'</div></div>'
+      +'<div class="calc-field"><label>Дополнительно</label><div class="calc-opts">'+addH+'</div></div></div>'
+      +'<div class="calc-out"><div class="lbl">Ориентир стоимости</div><div class="amt" id="cAmt">от '+fmt(cfg.base[0][1])+'</div>'
+      +'<div class="note">Точная смета — бесплатно после брифа</div>'
+      +'<a class="btn btn-a" href="#zayavka" onclick="try{ym(109998862,\'reachGoal\',\'calc_use\')}catch(e){}">Получить точную смету</a></div></div></div>';
+    anchor.parentNode.insertBefore(sec,anchor);
+    function recalc(){var b=+((sec.querySelector('input[name=cbase]:checked')||{}).value||0),a=0;
+      sec.querySelectorAll('.cadd:checked').forEach(function(c){a+=+c.value;});
+      sec.querySelectorAll('.calc-opt').forEach(function(o){var i=o.querySelector('input');o.classList.toggle('on',i.checked);});
+      var el=document.getElementById('cAmt'); if(el) el.textContent='от '+fmt(b+a);}
+    sec.querySelectorAll('input').forEach(function(i){i.addEventListener('change',recalc);}); recalc();
+    if(window.IntersectionObserver){var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io2.unobserve(e.target);}})},{threshold:.1});sec.querySelectorAll('.reveal').forEach(function(el){io2.observe(el);});}
+  });
+})();
