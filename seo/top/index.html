@@ -7,9 +7,11 @@
 <meta name="description" content="Выводим целевые коммерческие запросы в топ Яндекса: прозрачные позиции и поток заявок из поиска. Разбор семантики бесплатно. Без гарантий «100% топ» — честно про SEO. Москва.">
 <link rel="canonical" href="https://nimbolabs.io/seo/top/">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#05060a">
 <meta name="geo.region" content="RU-MOW">
 <meta name="geo.placename" content="Москва">
+
+<link rel="stylesheet" href="/assets/nimbo.css">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -99,515 +101,289 @@
 }
 </script>
 
+<!-- мини-стиль уникального блока (таблица позиций) — только токены nimbo.css -->
 <style>
-:root{
-  --ink:#000000;
-  --paper:#ffffff;
-  --acc:#ff2e2e;            /* резкий акцент — сигнальный красный */
-  --acc-ink:#ffffff;
-  --gray-1:#7a7a7a;
-  --line:#000000;
-  --soft:#f2f2f2;
-  --border-w:2px;
-  --grid: 1100px;
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:"Helvetica Neue",Arial,"Segoe UI",system-ui,-apple-system,sans-serif;
-  font-size:17px;
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-a{color:inherit}
-img{max-width:100%}
-h1,h2,h3{margin:0;line-height:.98;letter-spacing:-.02em;font-weight:800;text-transform:uppercase}
-h1{font-size:clamp(38px,9vw,86px)}
-h2{font-size:clamp(28px,5.5vw,52px)}
-h3{font-size:clamp(18px,3.4vw,24px);letter-spacing:-.01em}
-p{margin:0}
-.wrap{max-width:var(--grid);margin:0 auto;padding:0 18px}
-.mono{font-family:"SFMono-Regular",ui-monospace,"Roboto Mono","Courier New",monospace}
-
-/* skip link */
-.skip{position:absolute;left:-999px}
-.skip:focus{left:12px;top:12px;z-index:100;background:var(--ink);color:#fff;padding:10px 14px}
-
-/* ===== HEADER ===== */
-header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:var(--border-w) solid var(--ink)}
-.hd{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-weight:900;font-size:24px;letter-spacing:-.04em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.logo .dot{width:12px;height:12px;background:var(--acc);display:inline-block}
-.hd .cta-top{display:inline-flex;align-items:center;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.02em;text-decoration:none;background:var(--ink);color:#fff;padding:11px 16px;border:var(--border-w) solid var(--ink)}
-.hd .cta-top:hover{background:var(--acc);border-color:var(--acc)}
-
-/* breadcrumbs */
-.crumbs{border-bottom:var(--border-w) solid var(--ink);background:var(--paper)}
-.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:9px 0;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
-.crumbs a{text-decoration:none}
-.crumbs a:hover{color:var(--acc)}
-.crumbs li[aria-current]{color:var(--acc)}
-.crumbs .sep{color:var(--gray-1)}
-
-/* ===== HERO ===== */
-.hero{border-bottom:var(--border-w) solid var(--ink);padding:48px 0 40px;position:relative}
-.chip{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.08em;border:var(--border-w) solid var(--ink);padding:7px 12px;margin-bottom:24px}
-.chip .pip{width:8px;height:8px;background:var(--acc);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.hero h1{margin-bottom:18px}
-.hero h1 .hl{background:var(--acc);color:var(--acc-ink);padding:0 .08em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.hero .sub{font-size:clamp(16px,2.4vw,20px);max-width:640px;color:#1a1a1a;line-height:1.45;font-weight:500}
-.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:10px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;text-decoration:none;font-size:16px;padding:16px 26px;border:var(--border-w) solid var(--ink);cursor:pointer;transition:transform .12s ease}
-.btn-primary{background:var(--ink);color:#fff}
-.btn-primary:hover{background:var(--acc);border-color:var(--acc);transform:translate(-2px,-2px)}
-.btn-arrow{transition:transform .12s ease}
-.btn-primary:hover .btn-arrow{transform:translateX(3px)}
-.hero-note{font-size:13px;font-weight:600;color:var(--gray-1);text-transform:uppercase;letter-spacing:.03em}
-
-/* hero ranking strip */
-.rankstrip{margin-top:40px;border:var(--border-w) solid var(--ink);overflow:hidden}
-.rankstrip .row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:13px 16px;border-bottom:var(--border-w) solid var(--ink);font-weight:700}
-.rankstrip .row:last-child{border-bottom:0}
-.rankstrip .row.head{background:var(--ink);color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.1em}
-.rankstrip .q{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rankstrip .pos{font-variant-numeric:tabular-nums;font-weight:900;font-size:20px;min-width:48px;text-align:right}
-.rankstrip .pos.top{color:var(--acc)}
-.rankstrip .mv{font-size:12px;font-weight:800;font-variant-numeric:tabular-nums;color:#0a8f2e}
-
-/* ===== SECTIONS ===== */
-section{border-bottom:var(--border-w) solid var(--ink)}
-.pad{padding:56px 0}
-.eyebrow{font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--acc);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.eyebrow::before{content:"";width:28px;height:var(--border-w);background:var(--acc)}
-.lead{font-size:clamp(16px,2.2vw,19px);max-width:620px;margin-top:16px;color:#222;font-weight:500}
-
-/* PAIN -> SOLUTION grid */
-.pains{display:grid;grid-template-columns:1fr;gap:0;margin-top:34px;border:var(--border-w) solid var(--ink)}
-.pain{padding:26px 22px;border-bottom:var(--border-w) solid var(--ink)}
-.pain:last-child{border-bottom:0}
-.pain .num{font-weight:900;font-size:13px;letter-spacing:.1em;color:var(--gray-1);text-transform:uppercase}
-.pain h3{margin:10px 0 8px}
-.pain .p-bad{color:#1a1a1a;font-weight:600;font-size:15px}
-.pain .p-fix{margin-top:14px;padding-top:14px;border-top:var(--border-w) dashed var(--ink);display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:15px}
-.pain .p-fix .tag{flex:0 0 auto;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;background:var(--acc);color:#fff;padding:3px 8px;margin-top:1px}
-
-/* STEPS */
-.steps{display:grid;grid-template-columns:1fr;gap:0;margin-top:34px;border:var(--border-w) solid var(--ink)}
-.step{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;padding:24px 22px;border-bottom:var(--border-w) solid var(--ink)}
-.step:last-child{border-bottom:0}
-.step .idx{font-weight:900;font-size:clamp(34px,7vw,54px);line-height:.85;letter-spacing:-.04em;color:var(--paper);-webkit-text-stroke:2px var(--ink);font-variant-numeric:tabular-nums}
-.step h3{margin-bottom:6px}
-.step p{font-size:15px;color:#222;font-weight:500}
-
-/* REPORT illustration */
-.report{margin-top:34px;border:var(--border-w) solid var(--ink)}
-.report .cap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;background:var(--ink);color:#fff;padding:14px 18px}
-.report .cap .ttl{font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:14px}
-.report .cap .stamp{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;border:var(--border-w) solid #fff;padding:4px 9px;color:#fff}
+.report{margin-top:40px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card)}
+.report .cap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;background:var(--panel);border-bottom:1px solid var(--line);padding:16px 20px}
+.report .cap .ttl{font-family:'Space Grotesk';font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:13px;color:var(--ink)}
+.report .cap .stamp{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;border:1px solid var(--line);border-radius:100px;padding:5px 11px;color:var(--soft)}
 .rtable{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-.rtable th,.rtable td{text-align:left;padding:13px 16px;border-bottom:var(--border-w) solid var(--ink);font-size:14px}
-.rtable th{font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--gray-1)}
-.rtable td.q{font-weight:600}
-.rtable td.pos{font-weight:900;font-size:18px;text-align:right;width:74px}
-.rtable td.pos.top{color:var(--acc)}
+.rtable th,.rtable td{text-align:left;padding:14px 20px;border-bottom:1px solid var(--line2);font-size:14.5px}
+.rtable th{font-family:'Space Grotesk';font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--mut)}
+.rtable td.q{font-weight:500;color:var(--ink)}
+.rtable td.pos{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-align:right;width:74px;color:var(--soft)}
+.rtable td.pos.top{color:transparent;background:var(--chrome);-webkit-background-clip:text;background-clip:text}
 .rtable td.bar{width:42%}
 .rtable tr:last-child td{border-bottom:0}
-.barwrap{height:12px;background:var(--soft);border:var(--border-w) solid var(--ink);position:relative;overflow:hidden}
-.barwrap i{position:absolute;left:0;top:0;bottom:0;background:var(--ink);display:block}
-.barwrap i.t{background:var(--acc)}
-.report .foot{padding:12px 16px;font-size:12px;color:var(--gray-1);font-weight:600;border-top:var(--border-w) solid var(--ink)}
-
-/* GET / risk reversal */
-.get-grid{display:grid;grid-template-columns:1fr;gap:0;margin-top:34px;border:var(--border-w) solid var(--ink)}
-.get{padding:22px;border-bottom:var(--border-w) solid var(--ink);display:flex;gap:14px;align-items:flex-start}
-.get:last-child{border-bottom:0}
-.get .mk{flex:0 0 auto;width:28px;height:28px;border:var(--border-w) solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;background:var(--acc);color:#fff}
-.get h3{margin-bottom:5px}
-.get p{font-size:14px;color:#222;font-weight:500}
-.rr{margin-top:26px;border:var(--border-w) solid var(--ink);background:var(--ink);color:#fff;padding:26px 22px}
-.rr .lab{font-weight:900;text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--acc);margin-bottom:10px}
-.rr p{font-size:16px;font-weight:600;line-height:1.5}
-.rr .hon{margin-top:12px;font-size:13px;color:#c9c9c9;font-weight:500}
-
-/* FAQ */
-.faq{margin-top:34px;border:var(--border-w) solid var(--ink)}
-details{border-bottom:var(--border-w) solid var(--ink)}
-details:last-child{border-bottom:0}
-summary{cursor:pointer;list-style:none;padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:800;font-size:clamp(15px,2.4vw,19px);text-transform:none}
-summary::-webkit-details-marker{display:none}
-summary .ic{flex:0 0 auto;width:26px;height:26px;border:var(--border-w) solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;transition:transform .15s ease}
-details[open] summary .ic{transform:rotate(45deg);background:var(--acc);color:#fff;border-color:var(--acc)}
-details .ans{padding:0 22px 22px;font-size:15px;color:#222;font-weight:500;line-height:1.55;max-width:720px}
-
-/* FINAL CTA + FORM */
-.final{padding:56px 0}
-.final-grid{display:grid;grid-template-columns:1fr;gap:30px}
-.final h2 .hl{background:var(--acc);color:#fff;padding:0 .08em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.contacts{margin-top:22px;display:flex;flex-direction:column;gap:12px}
-.contacts a{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;font-size:clamp(18px,4vw,26px);letter-spacing:-.01em}
-.contacts a:hover{color:var(--acc)}
-.contacts a .k{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-1);border:var(--border-w) solid var(--ink);padding:4px 8px}
-form{border:var(--border-w) solid var(--ink);padding:22px}
-form .ft{font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:14px;margin-bottom:6px}
-form .fd{font-size:13px;color:var(--gray-1);font-weight:600;margin-bottom:18px}
-.field{margin-bottom:14px}
-.field label{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-.field input{width:100%;font:inherit;font-size:16px;padding:13px 14px;border:var(--border-w) solid var(--ink);background:var(--paper);color:var(--ink);border-radius:0}
-.field input:focus{outline:3px solid var(--acc);outline-offset:1px}
-form button{width:100%;margin-top:6px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;font-size:16px;padding:16px;border:var(--border-w) solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
-form button:hover{background:var(--acc);border-color:var(--acc)}
-form .priv{margin-top:12px;font-size:11px;color:var(--gray-1);font-weight:500;line-height:1.5}
-form .priv a{color:var(--ink);text-decoration:underline}
-
-/* FOOTER hub */
-footer{background:var(--ink);color:#fff;border-top:var(--border-w) solid var(--ink)}
-.foot-top{display:grid;grid-template-columns:1fr;gap:30px;padding:46px 0 30px}
-.foot-brand .logo{color:#fff}
-.foot-brand .logo .dot{background:var(--acc)}
-.foot-brand p{margin-top:14px;font-size:14px;color:#bdbdbd;font-weight:500;max-width:360px}
-.foot-col h4{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--acc);margin:0 0 14px}
-.foot-col a{display:block;text-decoration:none;color:#e6e6e6;font-weight:700;padding:7px 0;font-size:15px}
-.foot-col a:hover{color:#fff;text-decoration:underline}
-.cross{border:var(--border-w) solid #333;padding:18px;margin-top:4px}
-.cross a{display:flex;justify-content:space-between;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:800;padding:12px 0;border-bottom:var(--border-w) solid #333;font-size:15px}
-.cross a:last-child{border-bottom:0}
-.cross a:hover{color:var(--acc)}
-.cross a .arr{color:var(--acc)}
-.foot-bottom{border-top:var(--border-w) solid #333;padding:20px 0;display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:space-between;align-items:center;font-size:12px;color:#9a9a9a;font-weight:600}
-.foot-bottom a{color:#cfcfcf}
-.foot-bottom .made{font-weight:800;color:#fff}
-
-/* ===== responsive up ===== */
-@media(min-width:760px){
-  .wrap{padding:0 28px}
-  .pains{grid-template-columns:1fr 1fr 1fr}
-  .pain{border-bottom:0;border-right:var(--border-w) solid var(--ink)}
-  .pain:last-child{border-right:0}
-  .get-grid{grid-template-columns:1fr 1fr}
-  .get{border-right:var(--border-w) solid var(--ink)}
-  .get:nth-child(2n){border-right:0}
-  .final-grid{grid-template-columns:1.05fr .95fr;align-items:start}
-  .foot-top{grid-template-columns:1.4fr 1fr 1fr}
-}
-@media(min-width:1000px){
-  .rankstrip{max-width:620px}
-}
-
-@media (prefers-reduced-motion: reduce){
-  *{animation:none !important;transition:none !important}
-}
+.barwrap{height:10px;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid var(--line2);position:relative;overflow:hidden}
+.barwrap i{position:absolute;left:0;top:0;bottom:0;border-radius:100px;background:var(--soft);display:block}
+.barwrap i.t{background:var(--chrome)}
+.report .foot{padding:14px 20px;font-size:12.5px;color:var(--mut);border-top:1px solid var(--line2)}
+/* hero ranking strip — мини-таблица в герое */
+.rankstrip{margin-top:34px;max-width:560px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card)}
+.rankstrip .row{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:13px 18px;border-bottom:1px solid var(--line2);font-weight:500}
+.rankstrip .row:last-child{border-bottom:0}
+.rankstrip .row.head{background:var(--panel);font-family:'Space Grotesk';font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mut);font-weight:700}
+.rankstrip .q{font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rankstrip .pos{font-family:'Space Grotesk';font-variant-numeric:tabular-nums;font-weight:700;font-size:18px;min-width:40px;text-align:right;color:var(--soft)}
+.rankstrip .pos.top{color:transparent;background:var(--chrome);-webkit-background-clip:text;background-clip:text}
+.rankstrip .mv{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ok)}
+/* боль → решение */
+.p-fix{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--soft)}
+.p-fix .tag{flex:0 0 auto;font-family:'Space Grotesk';font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--chrome);color:#05060a;border-radius:100px;padding:4px 10px;margin-top:1px}
+.p-bad{color:var(--soft);font-size:14.5px}
+/* что получаете — маркер */
+.ncard .mk{font-family:'Space Grotesk';color:var(--a1);font-weight:700;font-size:15px;letter-spacing:.12em}
+/* risk reversal */
+.rr{margin-top:34px;border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:30px}
+.rr .lab{font-family:'Space Grotesk';font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--a1);margin-bottom:12px}
+.rr p{font-size:16px;color:var(--ink);line-height:1.55}
+.rr .hon{margin-top:14px;font-size:13.5px;color:var(--mut);line-height:1.55}
+.contacts{margin-top:24px;display:flex;flex-direction:column;gap:14px}
+.contacts a{display:inline-flex;align-items:center;gap:14px;font-family:'Space Grotesk';font-weight:700;font-size:clamp(18px,3.5vw,24px);letter-spacing:-.01em;color:var(--ink)}
+.contacts a:hover{color:var(--soft)}
+.contacts a .k{font-family:'Inter';font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--mut);border:1px solid var(--line);border-radius:100px;padding:5px 11px}
+.lead-grid{display:grid;grid-template-columns:1fr;gap:36px}
+@media(min-width:860px){.lead-grid{grid-template-columns:1.05fr .95fr;align-items:start}}
 </style>
 </head>
 <body>
-<a class="skip" href="#main">К содержанию</a>
 
-<header>
-  <div class="wrap hd">
-    <a class="logo" href="https://nimbolabs.io/" aria-label="Nimbo — на главную">Nimbo<span class="dot" aria-hidden="true"></span></a>
-    <a class="cta-top" href="#lead">Обсудить продвижение</a>
-  </div>
-</header>
-
-<nav class="crumbs" aria-label="Хлебные крошки">
-  <div class="wrap">
-    <ol>
-      <li><a href="https://nimbolabs.io/">Nimbo</a></li>
-      <li class="sep" aria-hidden="true">→</li>
-      <li><a href="https://nimbolabs.io/seo/promotion/">SEO</a></li>
-      <li class="sep" aria-hidden="true">→</li>
-      <li aria-current="page">Топ Яндекса</li>
-    </ol>
-  </div>
-</nav>
+<header class="nheader"><div class="wrap"><nav>
+  <a class="nbrand" href="/"><span class="dot"></span>Nimbo</a>
+  <div class="ncrumbs"><a href="/">Главная</a><span class="sep">/</span><a href="/#napravleniya">Направления</a><span class="sep">/</span><span>Топ Яндекса</span></div>
+  <a class="nphone" href="tel:+79011479079">+7&nbsp;901&nbsp;147‑90‑79</a>
+  <a class="btn btn-a" href="#zayavka">Обсудить продвижение</a>
+</nav></div></header>
 
 <main id="main">
 
 <!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="wrap">
-    <span class="chip"><span class="pip" aria-hidden="true"></span>Прозрачные позиции</span>
-    <h1>Топ Яндекса по вашим <span class="hl">коммерческим</span> запросам</h1>
-    <p class="sub">Выводим целевые коммерческие запросы в топ — прозрачные позиции и поток заявок из поиска.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#lead">Обсудить продвижение <span class="btn-arrow" aria-hidden="true">→</span></a>
-      <span class="hero-note">Разбор семантики — бесплатно</span>
-    </div>
+<section class="nhero"><div class="wrap">
+  <div class="eyebrow">SEO · Топ Яндекса</div>
+  <h1>Топ Яндекса по вашим <em>коммерческим</em> запросам</h1>
+  <p class="sub">Выводим целевые коммерческие запросы в топ — прозрачные позиции и поток заявок из поиска.</p>
+  <div class="cta"><a class="btn btn-a" href="#zayavka">Обсудить продвижение</a><a class="btn btn-g" href="tel:+79011479079">Позвонить</a></div>
+  <div class="chips"><span class="chip">Прозрачные позиции</span><span class="chip">Разбор семантики — бесплатно</span><span class="chip">Честно про SEO</span></div>
 
-    <div class="rankstrip" role="img" aria-label="Иллюстрация роста позиций по коммерческим запросам">
-      <div class="row head"><span>Запрос</span><span>Поз.</span><span>Δ</span></div>
-      <div class="row"><span class="q">купить ⟨услугу⟩ в москве</span><span class="pos top">2</span><span class="mv">▲</span></div>
-      <div class="row"><span class="q">⟨услуга⟩ цена</span><span class="pos top">3</span><span class="mv">▲</span></div>
-      <div class="row"><span class="q">⟨услуга⟩ рядом</span><span class="pos">7</span><span class="mv">▲</span></div>
-    </div>
+  <div class="rankstrip" role="img" aria-label="Иллюстрация роста позиций по коммерческим запросам">
+    <div class="row head"><span>Запрос</span><span>Поз.</span><span>Δ</span></div>
+    <div class="row"><span class="q">купить ⟨услугу⟩ в москве</span><span class="pos top">2</span><span class="mv">▲</span></div>
+    <div class="row"><span class="q">⟨услуга⟩ цена</span><span class="pos top">3</span><span class="mv">▲</span></div>
+    <div class="row"><span class="q">⟨услуга⟩ рядом</span><span class="pos">7</span><span class="mv">▲</span></div>
   </div>
-</section>
+</div></section>
 
 <!-- ===== PAIN -> SOLUTION ===== -->
-<section class="pad">
-  <div class="wrap">
-    <div class="eyebrow">Знакомо?</div>
-    <h2>Поиск приводит клиентов — но не вам</h2>
-    <p class="lead">Когда вас нет в топе по коммерческим запросам, заявки уходят к тем, кто выше. Разбираем три типичные ситуации — и что с ними делаем.</p>
+<section><div class="wrap">
+  <div class="kick reveal"><span class="num">01</span> · Знакомо?</div>
+  <h2 class="h2 reveal">Поиск приводит клиентов — <em>но не вам</em></h2>
+  <p class="lead reveal">Когда вас нет в топе по коммерческим запросам, заявки уходят к тем, кто выше. Разбираем три типичные ситуации — и что с ними делаем.</p>
 
-    <div class="pains">
-      <div class="pain">
-        <span class="num">01 / Боль</span>
-        <h3>Конкуренты выше в выдаче</h3>
-        <p class="p-bad">По вашим запросам сверху — другие компании. Клиент кликает по первым результатам и до вас не доходит.</p>
-        <div class="p-fix"><span class="tag">Решение</span><span>Собираем семантику и системно поднимаем позиции по тем запросам, где решаются заявки.</span></div>
-      </div>
-      <div class="pain">
-        <span class="num">02 / Боль</span>
-        <h3>Нет трафика из поиска</h3>
-        <p class="p-bad">Сайт есть, но людей с Яндекса почти нет: техника, структура и контент не дают сайту ранжироваться.</p>
-        <div class="p-fix"><span class="tag">Решение</span><span>Техоптимизация + контент под намерение запроса — сайт становится понятен и поиску, и человеку.</span></div>
-      </div>
-      <div class="pain">
-        <span class="num">03 / Боль</span>
-        <h3>Реклама дорожает, органики нет</h3>
-        <p class="p-bad">Платный трафик растёт в цене, а как только бюджет кончается — заявки обрываются. Своего органического потока нет.</p>
-        <div class="p-fix"><span class="tag">Решение</span><span>Строим органический канал: он продолжает приводить заявки и тогда, когда реклама на паузе.</span></div>
-      </div>
+  <div class="grid g3 reveal" style="margin-top:40px">
+    <div class="ncard">
+      <div class="ix">01 / БОЛЬ</div>
+      <h3>Конкуренты выше в выдаче</h3>
+      <p class="p-bad">По вашим запросам сверху — другие компании. Клиент кликает по первым результатам и до вас не доходит.</p>
+      <div class="p-fix"><span class="tag">Решение</span><span>Собираем семантику и системно поднимаем позиции по тем запросам, где решаются заявки.</span></div>
+    </div>
+    <div class="ncard">
+      <div class="ix">02 / БОЛЬ</div>
+      <h3>Нет трафика из поиска</h3>
+      <p class="p-bad">Сайт есть, но людей с Яндекса почти нет: техника, структура и контент не дают сайту ранжироваться.</p>
+      <div class="p-fix"><span class="tag">Решение</span><span>Техоптимизация + контент под намерение запроса — сайт становится понятен и поиску, и человеку.</span></div>
+    </div>
+    <div class="ncard">
+      <div class="ix">03 / БОЛЬ</div>
+      <h3>Реклама дорожает, органики нет</h3>
+      <p class="p-bad">Платный трафик растёт в цене, а как только бюджет кончается — заявки обрываются. Своего органического потока нет.</p>
+      <div class="p-fix"><span class="tag">Решение</span><span>Строим органический канал: он продолжает приводить заявки и тогда, когда реклама на паузе.</span></div>
     </div>
   </div>
-</section>
+</div></section>
 
 <!-- ===== HOW IT WORKS ===== -->
-<section class="pad">
-  <div class="wrap">
-    <div class="eyebrow">Как работает</div>
-    <h2>Четыре шага до позиций и заявок</h2>
-    <p class="lead">Прозрачный процесс: на каждом этапе вы видите, что делается и как это отражается на позициях.</p>
+<section class="alt"><div class="wrap">
+  <div class="kick reveal"><span class="num">02</span> · Как работает</div>
+  <h2 class="h2 reveal">Четыре шага до <em>позиций и заявок</em></h2>
+  <p class="lead reveal">Прозрачный процесс: на каждом этапе вы видите, что делается и как это отражается на позициях.</p>
 
-    <div class="steps">
-      <div class="step">
-        <span class="idx" aria-hidden="true">1</span>
-        <div>
-          <h3>Сбор семантики</h3>
-          <p>Собираем коммерческие запросы, по которым вас реально ищут с намерением заказать. Отсекаем нерелевантное — фокус на запросах, что приносят заявки.</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="idx" aria-hidden="true">2</span>
-        <div>
-          <h3>Техническая оптимизация</h3>
-          <p>Приводим в порядок скорость, индексацию, структуру и мобильную версию — убираем то, что мешает сайту ранжироваться в Яндексе.</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="idx" aria-hidden="true">3</span>
-        <div>
-          <h3>Контент и ссылки</h3>
-          <p>Создаём страницы под намерение запросов и наращиваем ссылочный профиль так, чтобы поиск считал сайт авторитетным по вашей теме.</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="idx" aria-hidden="true">4</span>
-        <div>
-          <h3>Рост позиций и заявок</h3>
-          <p>Позиции растут, появляется органический трафик и заявки. Динамику отслеживаем по согласованному списку запросов — прозрачный трекинг.</p>
-        </div>
-      </div>
+  <div class="steps reveal">
+    <div class="step">
+      <h3>Сбор семантики</h3>
+      <p>Собираем коммерческие запросы, по которым вас реально ищут с намерением заказать. Отсекаем нерелевантное — фокус на запросах, что приносят заявки.</p>
+    </div>
+    <div class="step">
+      <h3>Техническая оптимизация</h3>
+      <p>Приводим в порядок скорость, индексацию, структуру и мобильную версию — убираем то, что мешает сайту ранжироваться в Яндексе.</p>
+    </div>
+    <div class="step">
+      <h3>Контент и ссылки</h3>
+      <p>Создаём страницы под намерение запросов и наращиваем ссылочный профиль так, чтобы поиск считал сайт авторитетным по вашей теме.</p>
+    </div>
+    <div class="step">
+      <h3>Рост позиций и заявок</h3>
+      <p>Позиции растут, появляется органический трафик и заявки. Динамику отслеживаем по согласованному списку запросов — прозрачный трекинг.</p>
     </div>
   </div>
-</section>
+</div></section>
 
 <!-- ===== REPORT ILLUSTRATION ===== -->
-<section class="pad">
-  <div class="wrap">
-    <div class="eyebrow">Прозрачность</div>
-    <h2>Вы видите позиции, а не обещания</h2>
-    <p class="lead">Ниже — иллюстрация формата отчёта по позициям: запрос → текущая позиция → динамика. Это пример вёрстки, а не данные конкретного проекта.</p>
+<section><div class="wrap">
+  <div class="kick reveal"><span class="num">03</span> · Прозрачность</div>
+  <h2 class="h2 reveal">Вы видите позиции, <em>а не обещания</em></h2>
+  <p class="lead reveal">Ниже — иллюстрация формата отчёта по позициям: запрос → текущая позиция → динамика. Это пример вёрстки, а не данные конкретного проекта.</p>
 
-    <div class="report">
-      <div class="cap">
-        <span class="ttl">Позиции по запросам</span>
-        <span class="stamp">Пример формата отчёта</span>
-      </div>
-      <table class="rtable" aria-label="Пример формата отчёта по позициям">
-        <thead>
-          <tr><th scope="col">Коммерческий запрос</th><th scope="col">Позиция</th><th scope="col" style="width:42%">Динамика</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="q">купить ⟨услугу⟩ в москве</td>
-            <td class="pos top">2</td>
-            <td class="bar"><span class="barwrap"><i class="t" style="width:92%"></i></span></td>
-          </tr>
-          <tr>
-            <td class="q">⟨услуга⟩ недорого</td>
-            <td class="pos top">3</td>
-            <td class="bar"><span class="barwrap"><i class="t" style="width:86%"></i></span></td>
-          </tr>
-          <tr>
-            <td class="q">заказать ⟨услугу⟩ онлайн</td>
-            <td class="pos">5</td>
-            <td class="bar"><span class="barwrap"><i style="width:74%"></i></span></td>
-          </tr>
-          <tr>
-            <td class="q">⟨услуга⟩ рядом со мной</td>
-            <td class="pos">8</td>
-            <td class="bar"><span class="barwrap"><i style="width:58%"></i></span></td>
-          </tr>
-          <tr>
-            <td class="q">⟨услуга⟩ ⟨район⟩ москвы</td>
-            <td class="pos">11</td>
-            <td class="bar"><span class="barwrap"><i style="width:44%"></i></span></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="foot">⟨услуга⟩ и ⟨район⟩ — плейсхолдеры под вашу нишу. Реальный список запросов и позиции формируются после разбора семантики.</div>
+  <div class="report reveal">
+    <div class="cap">
+      <span class="ttl">Позиции по запросам</span>
+      <span class="stamp">Пример формата отчёта</span>
     </div>
+    <table class="rtable" aria-label="Пример формата отчёта по позициям">
+      <thead>
+        <tr><th scope="col">Коммерческий запрос</th><th scope="col">Позиция</th><th scope="col" style="width:42%">Динамика</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="q">купить ⟨услугу⟩ в москве</td>
+          <td class="pos top">2</td>
+          <td class="bar"><span class="barwrap"><i class="t" style="width:92%"></i></span></td>
+        </tr>
+        <tr>
+          <td class="q">⟨услуга⟩ недорого</td>
+          <td class="pos top">3</td>
+          <td class="bar"><span class="barwrap"><i class="t" style="width:86%"></i></span></td>
+        </tr>
+        <tr>
+          <td class="q">заказать ⟨услугу⟩ онлайн</td>
+          <td class="pos">5</td>
+          <td class="bar"><span class="barwrap"><i style="width:74%"></i></span></td>
+        </tr>
+        <tr>
+          <td class="q">⟨услуга⟩ рядом со мной</td>
+          <td class="pos">8</td>
+          <td class="bar"><span class="barwrap"><i style="width:58%"></i></span></td>
+        </tr>
+        <tr>
+          <td class="q">⟨услуга⟩ ⟨район⟩ москвы</td>
+          <td class="pos">11</td>
+          <td class="bar"><span class="barwrap"><i style="width:44%"></i></span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="foot">⟨услуга⟩ и ⟨район⟩ — плейсхолдеры под вашу нишу. Реальный список запросов и позиции формируются после разбора семантики.</div>
   </div>
-</section>
+</div></section>
 
 <!-- ===== WHAT YOU GET + RISK REVERSAL ===== -->
-<section class="pad">
-  <div class="wrap">
-    <div class="eyebrow">Что получаете</div>
-    <h2>Не «трафик вообще», а заявки из поиска</h2>
+<section class="alt"><div class="wrap">
+  <div class="kick reveal"><span class="num">04</span> · Что получаете</div>
+  <h2 class="h2 reveal">Не «трафик вообще», <em>а заявки из поиска</em></h2>
 
-    <div class="get-grid">
-      <div class="get">
-        <span class="mk" aria-hidden="true">→</span>
-        <div><h3>Топ по целевым запросам</h3><p>Работаем над позициями по коммерческим запросам, по которым к вам приходят с намерением заказать.</p></div>
-      </div>
-      <div class="get">
-        <span class="mk" aria-hidden="true">→</span>
-        <div><h3>Поток заявок из органики</h3><p>Свой канал из поиска, который продолжает приводить клиентов и без постоянных рекламных бюджетов.</p></div>
-      </div>
-      <div class="get">
-        <span class="mk" aria-hidden="true">→</span>
-        <div><h3>Прозрачные позиции</h3><p>Понятный отчёт по согласованным запросам: где вы сейчас и как движетесь. Без «верьте на слово».</p></div>
-      </div>
-      <div class="get">
-        <span class="mk" aria-hidden="true">→</span>
-        <div><h3>Честные условия</h3><p>Объём, сроки и ответственность фиксируем заранее. Никаких обещаний «100% топ» — так SEO не работает.</p></div>
-      </div>
+  <div class="grid g2 reveal" style="margin-top:40px">
+    <div class="ncard">
+      <div class="mk">→</div>
+      <h3>Топ по целевым запросам</h3>
+      <p>Работаем над позициями по коммерческим запросам, по которым к вам приходят с намерением заказать.</p>
     </div>
-
-    <div class="rr">
-      <div class="lab">Бесплатный первый шаг</div>
-      <p>Разбор семантики — бесплатно. Покажем, по каким коммерческим запросам вас ищут, где вы сейчас и куда реально можно вырасти. После этого — понятный объём работ и цена.</p>
-      <p class="hon">Честно: гарантировать «100% топ» в SEO нельзя — позиции зависят в том числе от алгоритмов Яндекса. Мы отвечаем за прозрачность процесса и системную работу над ростом.</p>
+    <div class="ncard">
+      <div class="mk">→</div>
+      <h3>Поток заявок из органики</h3>
+      <p>Свой канал из поиска, который продолжает приводить клиентов и без постоянных рекламных бюджетов.</p>
+    </div>
+    <div class="ncard">
+      <div class="mk">→</div>
+      <h3>Прозрачные позиции</h3>
+      <p>Понятный отчёт по согласованным запросам: где вы сейчас и как движетесь. Без «верьте на слово».</p>
+    </div>
+    <div class="ncard">
+      <div class="mk">→</div>
+      <h3>Честные условия</h3>
+      <p>Объём, сроки и ответственность фиксируем заранее. Никаких обещаний «100% топ» — так SEO не работает.</p>
     </div>
   </div>
-</section>
+
+  <div class="rr reveal">
+    <div class="lab">Бесплатный первый шаг</div>
+    <p>Разбор семантики — бесплатно. Покажем, по каким коммерческим запросам вас ищут, где вы сейчас и куда реально можно вырасти. После этого — понятный объём работ и цена.</p>
+    <p class="hon">Честно: гарантировать «100% топ» в SEO нельзя — позиции зависят в том числе от алгоритмов Яндекса. Мы отвечаем за прозрачность процесса и системную работу над ростом.</p>
+  </div>
+</div></section>
 
 <!-- ===== FAQ ===== -->
-<section class="pad">
-  <div class="wrap">
-    <div class="eyebrow">Вопросы</div>
-    <h2>Коротко и честно</h2>
+<section><div class="wrap">
+  <div class="kick reveal"><span class="num">05</span> · Вопросы</div>
+  <h2 class="h2 reveal">Коротко <em>и честно</em></h2>
 
-    <div class="faq">
-      <details>
-        <summary>За сколько вы выводите в топ?<span class="ic" aria-hidden="true">+</span></summary>
-        <div class="ans">Честно: зависит от конкуренции в нише и текущего состояния сайта. По низко- и среднеконкурентным запросам первые сдвиги обычно видны за несколько месяцев, по высококонкурентным — дольше. Точный прогноз дадим после разбора семантики и сайта.</div>
-      </details>
-      <details>
-        <summary>По каким запросам продвигаете?<span class="ic" aria-hidden="true">+</span></summary>
-        <div class="ans">По коммерческим целевым запросам — тем, по которым ищут вашу услугу или товар с намерением заказать. Список собираем и согласуем с вами на старте, исключаем информационные и нерелевантные запросы, которые не приносят заявки.</div>
-      </details>
-      <details>
-        <summary>Что, если позиции не выросли?<span class="ic" aria-hidden="true">+</span></summary>
-        <div class="ans">Мы ведём прозрачный трекинг по согласованному списку запросов — вы видите реальную динамику, а не обещания. Условия работы (объём, сроки, ответственность сторон) фиксируем заранее. Поскольку SEO зависит в том числе от Яндекса, мы не даём гарантий «100% топ», а работаем честно и показываем фактическую картину.</div>
-      </details>
-      <details>
-        <summary>Сколько это стоит?<span class="ic" aria-hidden="true">+</span></summary>
-        <div class="ans">Стоимость обсуждаем после разбора — она зависит от ниши, конкуренции, объёма семантики и состояния сайта. Сам разбор семантики делаем бесплатно, и уже после него называем понятный объём работ и цену.</div>
-      </details>
-      <details>
-        <summary>Яндекс или Google?<span class="ic" aria-hidden="true">+</span></summary>
-        <div class="ans">Базовая техническая и контентная оптимизация работает на обе системы. Основной фокус — Яндекс как главный источник коммерческого трафика в России; при этом позиции в Google тоже растут. Где делать акцент — решим по вашему рынку.</div>
-      </details>
-    </div>
+  <div class="faq reveal">
+    <details class="qa">
+      <summary>За сколько вы выводите в топ?</summary>
+      <p>Честно: зависит от конкуренции в нише и текущего состояния сайта. По низко- и среднеконкурентным запросам первые сдвиги обычно видны за несколько месяцев, по высококонкурентным — дольше. Точный прогноз дадим после разбора семантики и сайта.</p>
+    </details>
+    <details class="qa">
+      <summary>По каким запросам продвигаете?</summary>
+      <p>По коммерческим целевым запросам — тем, по которым ищут вашу услугу или товар с намерением заказать. Список собираем и согласуем с вами на старте, исключаем информационные и нерелевантные запросы, которые не приносят заявки.</p>
+    </details>
+    <details class="qa">
+      <summary>Что, если позиции не выросли?</summary>
+      <p>Мы ведём прозрачный трекинг по согласованному списку запросов — вы видите реальную динамику, а не обещания. Условия работы (объём, сроки, ответственность сторон) фиксируем заранее. Поскольку SEO зависит в том числе от Яндекса, мы не даём гарантий «100% топ», а работаем честно и показываем фактическую картину.</p>
+    </details>
+    <details class="qa">
+      <summary>Сколько это стоит?</summary>
+      <p>Стоимость обсуждаем после разбора — она зависит от ниши, конкуренции, объёма семантики и состояния сайта. Сам разбор семантики делаем бесплатно, и уже после него называем понятный объём работ и цену.</p>
+    </details>
+    <details class="qa">
+      <summary>Яндекс или Google?</summary>
+      <p>Базовая техническая и контентная оптимизация работает на обе системы. Основной фокус — Яндекс как главный источник коммерческого трафика в России; при этом позиции в Google тоже растут. Где делать акцент — решим по вашему рынку.</p>
+    </details>
   </div>
-</section>
+</div></section>
 
-<!-- ===== FINAL CTA + FORM ===== -->
-<section class="final" id="lead">
-  <div class="wrap final-grid">
-    <div>
-      <div class="eyebrow">Следующий шаг</div>
-      <h2>Разберём вашу <span class="hl">семантику</span> бесплатно</h2>
+<!-- ===== FORM + CONTACTS ===== -->
+<section class="alt" id="zayavka"><div class="wrap">
+  <div class="kick reveal"><span class="num">06</span> · Заявка</div>
+  <div class="lead-grid">
+    <div class="reveal">
+      <h2 class="h2">Разберём вашу <em>семантику</em> бесплатно</h2>
       <p class="lead">Оставьте контакт — соберём коммерческие запросы по вашей нише, покажем текущие позиции и реальный потенциал роста.</p>
-
       <div class="contacts">
-        <a href="tel:+79011479079"><span class="k">Тел</span>+7 901 147-90-79</a>
+        <a href="tel:+79011479079"><span class="k">Тел</span>+7 901 147‑90‑79</a>
         <a href="mailto:hello@nimbolabs.io"><span class="k">Почта</span>hello@nimbolabs.io</a>
       </div>
     </div>
 
-    <form id="leadForm" action="#" novalidate>
-      <div class="ft">Бесплатный разбор семантики</div>
-      <div class="fd">Ответим в течение рабочего дня. Без обязательств.</div>
-      <div class="field">
-        <label for="f-name">Как вас зовут</label>
-        <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Имя" required>
-      </div>
-      <div class="field">
-        <label for="f-contact">Телефон или e-mail</label>
-        <input id="f-contact" name="contact" type="text" autocomplete="tel" placeholder="+7 ··· или e-mail" required>
-      </div>
-      <div class="field">
-        <label for="f-url">Адрес сайта</label>
-        <input id="f-url" name="site" type="text" inputmode="url" placeholder="example.ru">
-      </div>
-      <button type="submit">Получить разбор семантики</button>
-      <p class="priv">Нажимая кнопку, вы соглашаетесь с обработкой данных согласно <a href="/privacy/">Политике конфиденциальности</a>.</p>
+    <form class="nform reveal" id="leadForm" action="#" novalidate>
+      <input name="name" placeholder="Ваше имя" autocomplete="name" required>
+      <input name="contact" placeholder="Телефон, e-mail или мессенджер" autocomplete="tel" required>
+      <input name="site" placeholder="Адрес сайта (example.ru)" inputmode="url">
+      <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term">
+      <button class="btn btn-a" type="submit">Получить разбор семантики</button>
+      <span class="microcopy">Нажимая, вы соглашаетесь с <a href="/privacy/" style="color:var(--soft)">политикой</a>. Без обязательств.</span>
     </form>
   </div>
-</section>
+</div></section>
 
 </main>
 
-<!-- ===== FOOTER HUB ===== -->
-<footer>
-  <div class="wrap foot-top">
-    <div class="foot-brand">
-      <a class="logo" href="https://nimbolabs.io/">Nimbo<span class="dot" aria-hidden="true"></span></a>
-      <p>Сайты и продвижение для малого бизнеса Москвы. Делаем так, чтобы вас находили и к вам обращались.</p>
-    </div>
-
-    <div class="foot-col">
-      <h4>Навигация</h4>
-      <a href="https://nimbolabs.io/">Главная Nimbo</a>
-      <a href="https://nimbolabs.io/seo/promotion/">SEO-продвижение</a>
-      <a href="#lead">Обсудить продвижение</a>
-      <a href="/privacy/">Политика конфиденциальности</a>
-    </div>
-
-    <div class="foot-col">
-      <h4>Ещё нужно?</h4>
-      <div class="cross">
-        <a href="https://nimbolabs.io/seo/promotion/">Комплексное SEO <span class="arr" aria-hidden="true">→</span></a>
-        <a href="https://nimbolabs.io/sites/landing/">Нужен сайт? <span class="arr" aria-hidden="true">→</span></a>
-      </div>
-    </div>
+<footer class="nfooter"><div class="wrap">
+  <div class="cols">
+    <div><div class="big">Nimbo</div><p style="color:var(--mut);margin-top:12px;max-width:34ch">Digital-агентство полного цикла. Сайты, боты, SEO и репутация — под одной крышей.</p></div>
+    <div><h4>Направления</h4><a href="/bots/ai-assistant/">AI-консультант</a><a href="/bots/booking/">Онлайн-запись</a><a href="/bots/sales/">Бот продаж</a><a href="/sites/landing/">Лендинг</a><a href="/sites/corporate/">Сайт компании</a><a href="/seo/promotion/">SEO</a><a href="/seo/top/">Топ Яндекса</a><a href="/reputation/">Репутация</a></div>
+    <div><h4>Связь</h4><a href="tel:+79011479079">+7 901 147‑90‑79</a><a href="mailto:hello@nimbolabs.io">hello@nimbolabs.io</a><a href="/">nimbolabs.io</a></div>
   </div>
-
-  <div class="wrap foot-bottom">
-    <span class="made">Сделано в Nimbo</span>
-    <span>Москва · <a href="tel:+79011479079">+7 901 147-90-79</a> · <a href="mailto:hello@nimbolabs.io">hello@nimbolabs.io</a></span>
-    <span><a href="/privacy/">Политика конфиденциальности</a></span>
-  </div>
-</footer>
+  <div class="nimbo-credit"><span>© 2026 Nimbo — digital-агентство полного цикла</span><span class="nc-links"><a href="/privacy/">Политика конфиденциальности</a></span></div>
+</div></footer>
+<div class="ncallbar"><a class="c1" href="#zayavka">Оставить заявку</a><a class="c2" href="tel:+79011479079">Позвонить</a></div>
 
 <script>
 (function(){
-  // UTM-ловушка: сохраняем метки и lid в скрытые поля + ym params
   function getParams(){
     var p={}; try{ new URLSearchParams(location.search).forEach(function(v,k){p[k]=v;}); }catch(e){}
     return p;
   }
   var params=getParams();
   var lid = params.lid || '';
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){var el=document.querySelector('[name='+k+']');if(el)el.value=params[k]||'';});
   try{
     if(window.ym){
       var pay={page:'seo/top'};
@@ -625,7 +401,6 @@ footer{background:var(--ink);color:#fff;border-top:var(--border-w) solid var(--i
       var contact=(form.contact && form.contact.value || '').trim();
       var site=(form.site && form.site.value || '').trim();
       try{ if(window.ym) ym(109998862,'reachGoal','lead_seo_top'); }catch(e){}
-      // mailto-fallback — заявка уходит на почту Nimbo
       var subj='Заявка на разбор семантики (SEO / Топ Яндекса)';
       var utm=[];
       ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){ if(params[k]) utm.push(k+'='+params[k]); });
@@ -638,5 +413,6 @@ footer{background:var(--ink);color:#fff;border-top:var(--border-w) solid var(--i
 </script>
 
 <script src="/assets/cookie.js" defer></script>
+<script>var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});</script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <title>Управление репутацией бренда — отзывы, выдача и негатив под контролем | Nimbo ORM/SERM</title>
 <meta name="description" content="Управление репутацией бренда от Nimbo: ORM и SERM. Поднимаем рейтинг и реальные отзывы, вытесняем негатив из топа Яндекса и Google, мониторим упоминания 24/7. Только легальные отзывы, без накруток. Бесплатный экспресс-аудит репутации. Москва.">
 <link rel="canonical" href="https://nimbolabs.io/reputation/">
-<meta name="theme-color" content="#0c1430">
+<meta name="theme-color" content="#05060a">
 <meta name="geo.region" content="RU-MOW">
 <meta name="geo.placename" content="Москва">
 
@@ -22,9 +22,7 @@
 <meta name="twitter:title" content="Управление репутацией бренда — Nimbo ORM/SERM">
 <meta name="twitter:description" content="Поднимаем рейтинг и реальные отзывы, вытесняем негатив из топа, мониторим 24/7. Только легальные отзывы, без накруток. Бесплатный экспресс-аудит репутации.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/nimbo.css">
 
 <!-- JSON-LD: Service -->
 <script type="application/ld+json">
@@ -94,318 +92,141 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/109998862" style="position:absolute; left:-9999px;" alt=""></div></noscript>
 
+<!-- мини-стиль ТОЛЬКО для уникальных блоков (карточка-отчёт, было→стало, калькулятор). Цвета — строго токены nimbo.css -->
 <style>
-:root{
-  --navy:#0c1430; --navy-2:#0a1028; --navy-3:#070b1d;
-  --panel:rgba(255,255,255,.045); --panel-2:rgba(255,255,255,.07);
-  --line:rgba(255,255,255,.10); --line-strong:rgba(255,255,255,.18);
-  --emerald:#34d399; --emerald-2:#10b981; --emerald-soft:rgba(52,211,153,.14);
-  --sky:#7dd3fc;
-  --text:#eef2fb; --muted:#aeb8d4; --faint:#7e89ad;
-  --radius:18px; --radius-sm:12px;
-  --maxw:1140px;
-  --shadow:0 24px 60px -28px rgba(0,0,0,.7);
-  --font:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  --display:"Manrope","Inter",system-ui,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,monospace;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0; font-family:var(--font); color:var(--text); line-height:1.6;
-  background:var(--navy);
-  background-image:
-    radial-gradient(900px 520px at 82% -8%, rgba(52,211,153,.16), transparent 60%),
-    radial-gradient(820px 600px at 8% 4%, rgba(56,113,255,.16), transparent 58%),
-    radial-gradient(700px 700px at 50% 118%, rgba(16,185,129,.10), transparent 60%),
-    linear-gradient(180deg,#0c1430 0%, #0a1028 55%, #070b1d 100%);
-  -webkit-font-smoothing:antialiased;
-}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
-section{position:relative}
-h1,h2,h3{font-family:var(--display);line-height:1.1;letter-spacing:-.02em;margin:0}
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--emerald);font-weight:600}
-
-/* header */
-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(14px);
-  background:rgba(10,16,40,.72);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.02em}
-.logo .mark{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--emerald),var(--emerald-2));color:#04130d;font-weight:800;font-size:15px;box-shadow:0 6px 18px -6px rgba(52,211,153,.6)}
-.nav-cta{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;
-  padding:10px 18px;border-radius:999px;background:var(--emerald);color:#04130d;
-  box-shadow:0 10px 24px -10px rgba(52,211,153,.7);transition:transform .15s, box-shadow .15s}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 14px 28px -10px rgba(52,211,153,.8)}
-
-/* breadcrumbs */
-.crumbs{font-size:13px;color:var(--faint);padding:14px 0 0}
-.crumbs a:hover{color:var(--emerald)}
-.crumbs span{color:var(--muted)}
-
-/* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:600;
-  padding:15px 26px;border-radius:14px;font-size:16px;cursor:pointer;border:1px solid transparent;
-  transition:transform .15s, box-shadow .15s, background .15s;text-align:center}
-.btn-primary{background:linear-gradient(135deg,var(--emerald),var(--emerald-2));color:#04130d;
-  box-shadow:0 16px 34px -14px rgba(52,211,153,.75)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 42px -14px rgba(52,211,153,.85)}
-.btn-ghost{background:var(--panel);border:1px solid var(--line-strong);color:var(--text)}
-.btn-ghost:hover{background:var(--panel-2);transform:translateY(-2px)}
-
-/* trust chip */
-.chip{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--muted);
-  background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 15px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--emerald);box-shadow:0 0 0 0 rgba(52,211,153,.55);
-  animation:pulse 2.4s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}70%{box-shadow:0 0 0 9px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
-
-/* HERO */
-.hero{padding:30px 0 64px}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
-.hero h1{font-size:clamp(34px,5.4vw,58px);font-weight:800;margin:18px 0 0}
-.hero h1 .up{color:var(--emerald);position:relative;white-space:nowrap}
-.hero .lead{font-size:clamp(16px,2vw,19px);color:var(--muted);margin:20px 0 0;max-width:560px}
-.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin:30px 0 18px}
-.hero-trust{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-
-/* hero visual: shield + rising rating */
-.shield-card{position:relative;background:linear-gradient(165deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
-  border:1px solid var(--line-strong);border-radius:24px;padding:26px;box-shadow:var(--shadow);overflow:hidden}
-.shield-card::before{content:"";position:absolute;inset:0;border-radius:24px;padding:1px;
-  background:linear-gradient(160deg,rgba(52,211,153,.55),transparent 40%);
+/* HERO визуал: карточка-отчёт */
+.shield-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;overflow:hidden}
+.shield-card::before{content:"";position:absolute;inset:0;border-radius:18px;padding:1px;
+  background:linear-gradient(160deg,rgba(122,162,255,.5),transparent 45%);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .sc-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
 .sc-shield{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
-  background:var(--emerald-soft);border:1px solid rgba(52,211,153,.4)}
-.sc-shield svg{width:18px;height:18px;stroke:var(--emerald)}
-.sc-badge{font-family:var(--mono);font-size:11px;color:var(--emerald);background:var(--emerald-soft);
-  border:1px solid rgba(52,211,153,.35);border-radius:999px;padding:4px 10px}
+  background:rgba(122,162,255,.12);border:1px solid var(--line)}
+.sc-shield svg{width:18px;height:18px;stroke:var(--a1)}
+.sc-badge{font-family:'Space Grotesk';font-size:11px;color:var(--a1);background:rgba(122,162,255,.12);
+  border:1px solid var(--line);border-radius:999px;padding:4px 10px}
 .rating-row{display:flex;align-items:baseline;gap:12px;margin:6px 0 14px}
-.rating-num{font-family:var(--display);font-weight:800;font-size:40px;letter-spacing:-.03em}
+.rating-num{font-family:'Space Grotesk';font-weight:700;font-size:40px;letter-spacing:-.03em}
 .stars{display:flex;gap:3px}
-.stars svg{width:18px;height:18px;fill:var(--emerald)}
-.delta{font-family:var(--mono);font-size:12.5px;color:var(--emerald);background:var(--emerald-soft);
+.stars svg{width:18px;height:18px;fill:var(--a3)}
+.delta{font-family:'Space Grotesk';font-size:12.5px;color:var(--ok);background:rgba(126,240,166,.1);
   border-radius:8px;padding:3px 8px;display:inline-flex;align-items:center;gap:4px}
 .chart{height:96px;display:flex;align-items:flex-end;gap:8px;margin-top:6px;padding-top:8px;border-top:1px solid var(--line)}
-.bar{flex:1;background:linear-gradient(180deg,var(--emerald),rgba(16,185,129,.35));border-radius:6px 6px 3px 3px;
-  min-height:8px;transition:height 1.1s cubic-bezier(.2,.8,.2,1)}
-.sc-foot{display:flex;justify-content:space-between;font-size:11.5px;color:var(--faint);font-family:var(--mono);margin-top:10px}
-.illu-tag{font-family:var(--mono);font-size:10.5px;color:var(--faint);text-align:center;margin-top:14px;letter-spacing:.04em}
+.bar{flex:1;background:var(--chrome);border-radius:6px 6px 3px 3px;min-height:8px;transition:height 1.1s cubic-bezier(.2,.8,.2,1)}
+.sc-foot{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mut);font-family:'Space Grotesk';margin-top:10px}
+.illu-tag{font-family:'Space Grotesk';font-size:10.5px;color:var(--mut);text-align:center;margin-top:14px;letter-spacing:.04em}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:34px}}
 
-/* section heads */
-.s{padding:60px 0}
-.s-head{max-width:680px;margin-bottom:34px}
-.s-head h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;margin-top:12px}
-.s-head p{color:var(--muted);font-size:16.5px;margin:14px 0 0}
-
-/* pains */
-.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.pain{display:flex;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+/* боль-карточка с красным маркером */
 .pain .x{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
-  background:rgba(248,113,113,.13);border:1px solid rgba(248,113,113,.3);color:#fca5a5;font-weight:700;font-size:15px}
-.pain b{display:block;font-weight:700;font-size:16px;margin-bottom:3px}
-.pain p{margin:0;color:var(--muted);font-size:14.5px}
+  background:rgba(255,144,144,.1);border:1px solid rgba(255,144,144,.3);color:var(--bad);font-weight:700;font-size:15px}
+.ncard.pain{display:flex;gap:14px;align-items:flex-start}
 
-/* services */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.svc{background:linear-gradient(165deg,var(--panel-2),var(--panel));border:1px solid var(--line);
-  border-radius:var(--radius);padding:24px;transition:transform .2s, border-color .2s, box-shadow .2s}
-.svc:hover{transform:translateY(-4px);border-color:rgba(52,211,153,.45);box-shadow:var(--shadow)}
-.svc-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px;
-  background:var(--emerald-soft);border:1px solid rgba(52,211,153,.3)}
-.svc-ic svg{width:22px;height:22px;stroke:var(--emerald);fill:none;stroke-width:1.8}
-.svc h3{font-size:18px;font-weight:700}
-.svc .tag{font-family:var(--mono);font-size:11px;color:var(--emerald);letter-spacing:.08em;text-transform:uppercase}
-.svc p{color:var(--muted);font-size:14.5px;margin:9px 0 0}
+/* площадки-чипы */
+.plat{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;color:var(--ink);font-weight:500;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:11px 17px}
+.plat .pd{width:7px;height:7px;border-radius:50%;background:var(--a1)}
+.plats-wrap{display:flex;flex-wrap:wrap;gap:11px;margin-top:34px}
 
-/* platforms */
-.chips{display:flex;flex-wrap:wrap;gap:11px}
-.plat{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;color:var(--text);font-weight:500;
-  background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 17px}
-.plat .pd{width:7px;height:7px;border-radius:50%;background:var(--emerald)}
+/* пакеты — чек-листы */
+.pk ul{list-style:none;padding:0;margin:14px 0 18px;display:grid;gap:9px;flex:1}
+.pk li{display:flex;gap:9px;font-size:14px;color:var(--ink)}
+.pk li svg{flex:none;width:17px;height:17px;stroke:var(--a1);fill:none;stroke-width:2.4;margin-top:3px}
+.pk .pk-sub{color:var(--soft);font-size:13.5px;margin:6px 0 0}
+.pk .price-note{font-family:'Space Grotesk';font-size:13.5px;color:var(--a1);margin-top:auto;padding-top:8px}
+.price.feat{border-color:var(--a1);background:rgba(122,162,255,.05)}
 
-/* steps */
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;counter-reset:st}
-.step{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;position:relative}
-.step .n{font-family:var(--mono);font-size:13px;color:var(--emerald);font-weight:600;
-  width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
-  background:var(--emerald-soft);border:1px solid rgba(52,211,153,.3);margin-bottom:14px}
-.step b{display:block;font-weight:700;font-size:15.5px;margin-bottom:6px}
-.step p{margin:0;color:var(--muted);font-size:13.5px}
-
-/* case */
-.case{background:linear-gradient(165deg,var(--panel-2),var(--panel));border:1px solid var(--line-strong);
-  border-radius:22px;padding:30px;box-shadow:var(--shadow)}
+/* блок было→стало */
+.case{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px}
 .case-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:22px}
-.case-head .illu-pill{font-family:var(--mono);font-size:11px;color:#fcd34d;background:rgba(251,191,36,.12);
-  border:1px solid rgba(251,191,36,.32);border-radius:999px;padding:5px 12px}
+.case-head .illu-pill{font-family:'Space Grotesk';font-size:11px;color:var(--a3);background:rgba(255,184,119,.1);
+  border:1px solid rgba(255,184,119,.3);border-radius:999px;padding:5px 12px}
 .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center}
-.ba-col{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center}
-.ba-col.after{border-color:rgba(52,211,153,.4);background:var(--emerald-soft)}
-.ba-col .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
-.ba-col .big{font-family:var(--display);font-weight:800;font-size:34px;margin:8px 0 4px;letter-spacing:-.02em}
-.ba-col.after .big{color:var(--emerald)}
-.ba-col small{color:var(--muted);font-size:13px}
-.ba-arrow{display:grid;place-items:center;color:var(--emerald)}
-.ba-arrow svg{width:30px;height:30px;stroke:var(--emerald);fill:none;stroke-width:2}
+.ba-col{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center}
+.ba-col.after{border-color:var(--a1);background:rgba(122,162,255,.06)}
+.ba-col .lbl{font-family:'Space Grotesk';font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.ba-col .big{font-family:'Space Grotesk';font-weight:700;font-size:34px;margin:8px 0 4px;letter-spacing:-.02em}
+.ba-col.after .big{color:transparent;background:var(--chrome);-webkit-background-clip:text;background-clip:text}
+.ba-col small{color:var(--soft);font-size:13px}
+.ba-arrow{display:grid;place-items:center}
+.ba-arrow svg{width:30px;height:30px;stroke:var(--a1);fill:none;stroke-width:2}
+@media(max-width:560px){.ba{grid-template-columns:1fr;gap:14px}.ba-arrow{transform:rotate(90deg)}}
 
-/* packages + calc */
-.pk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:28px}
-.pk{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column}
-.pk.feat{border-color:rgba(52,211,153,.5);background:linear-gradient(165deg,var(--emerald-soft),var(--panel))}
-.pk .pk-name{font-family:var(--display);font-weight:800;font-size:21px}
-.pk .pk-sub{color:var(--muted);font-size:13.5px;margin:6px 0 16px}
-.pk ul{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:9px}
-.pk li{display:flex;gap:9px;font-size:14px;color:var(--text)}
-.pk li svg{flex:none;width:17px;height:17px;stroke:var(--emerald);fill:none;stroke-width:2.4;margin-top:3px}
-.pk .price{font-family:var(--mono);font-size:13.5px;color:var(--emerald);margin-top:auto;padding-top:8px}
-
-.calc{background:linear-gradient(165deg,var(--panel-2),var(--panel));border:1px solid var(--line-strong);
-  border-radius:22px;padding:28px;box-shadow:var(--shadow)}
-.calc h3{font-size:21px;font-weight:800;margin-bottom:4px}
-.calc .csub{color:var(--muted);font-size:14px;margin-bottom:22px}
+/* КАЛЬКУЛЯТОР (открыт без формы) */
+.calc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px}
+.calc h3{font-family:'Space Grotesk';font-size:21px;font-weight:700;margin-bottom:4px}
+.calc .csub{color:var(--soft);font-size:14px;margin-bottom:22px}
 .calc-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:26px;align-items:start}
 .calc-field{margin-bottom:20px}
-.calc-field>label{display:block;font-size:13px;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-bottom:11px}
+.calc-field>label{display:block;font-size:13px;font-family:'Space Grotesk';letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-bottom:11px}
 .opts{display:flex;flex-wrap:wrap;gap:9px}
 .opt{position:relative;cursor:pointer}
 .opt input{position:absolute;opacity:0;width:0;height:0}
 .opt span{display:inline-flex;align-items:center;gap:7px;font-size:14px;padding:9px 15px;border-radius:11px;
-  background:var(--panel);border:1px solid var(--line);transition:all .15s;color:var(--text)}
-.opt input:checked+span{background:var(--emerald-soft);border-color:rgba(52,211,153,.6);color:var(--emerald)}
-.opt input:focus-visible+span{outline:2px solid var(--emerald);outline-offset:2px}
+  background:rgba(255,255,255,.04);border:1px solid var(--line);transition:all .15s;color:var(--ink)}
+.opt input:checked+span{background:rgba(122,162,255,.12);border-color:var(--a1);color:var(--a1)}
+.opt input:focus-visible+span{outline:2px solid var(--a1);outline-offset:2px}
 .scale-row{display:flex;gap:9px}
 .scale-row .opt{flex:1}
 .scale-row .opt span{justify-content:center;width:100%}
-.calc-out{background:var(--navy-3);border:1px solid var(--line);border-radius:16px;padding:24px;position:sticky;top:84px}
-.calc-out .ro-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
-.calc-out .ro-pkg{font-family:var(--display);font-weight:800;font-size:26px;color:var(--emerald);margin:8px 0 6px}
-.calc-out .ro-desc{color:var(--muted);font-size:14px;margin-bottom:18px}
-.calc-out .ro-meta{font-family:var(--mono);font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:14px;margin-bottom:18px}
+.calc-out{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;position:sticky;top:84px}
+.calc-out .ro-lbl{font-family:'Space Grotesk';font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.calc-out .ro-pkg{font-family:'Space Grotesk';font-weight:700;font-size:26px;color:transparent;background:var(--chrome);-webkit-background-clip:text;background-clip:text;margin:8px 0 6px}
+.calc-out .ro-desc{color:var(--soft);font-size:14px;margin-bottom:18px}
+.calc-out .ro-meta{font-family:'Space Grotesk';font-size:12px;color:var(--mut);border-top:1px solid var(--line);padding-top:14px;margin-bottom:18px}
 .calc-out .btn{width:100%}
+@media(max-width:900px){.calc-grid{grid-template-columns:1fr}.calc-out{position:static}}
 
-/* why */
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.why{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-.why .wi{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;margin-bottom:14px;
-  background:var(--emerald-soft);border:1px solid rgba(52,211,153,.3)}
-.why .wi svg{width:19px;height:19px;stroke:var(--emerald);fill:none;stroke-width:1.9}
-.why b{display:block;font-weight:700;font-size:16px;margin-bottom:5px}
-.why p{margin:0;color:var(--muted);font-size:14px}
-
-/* faq */
-.faq{max-width:780px;margin:0 auto}
-details{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
-details[open]{border-color:rgba(52,211,153,.4)}
-summary{list-style:none;cursor:pointer;padding:19px 22px;font-weight:600;font-size:16px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px}
-summary::-webkit-details-marker{display:none}
-summary .pm{font-family:var(--mono);color:var(--emerald);font-size:20px;transition:transform .2s;flex:none}
-details[open] summary .pm{transform:rotate(45deg)}
-.faq-a{padding:0 22px 20px;color:var(--muted);font-size:15px}
-
-/* final cta + form */
-.final{background:linear-gradient(165deg,var(--panel-2),var(--panel));border:1px solid var(--line-strong);
-  border-radius:24px;padding:40px;box-shadow:var(--shadow)}
-.final-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-.final h2{font-size:clamp(26px,3.4vw,36px);font-weight:800}
-.final p{color:var(--muted);font-size:16px;margin:14px 0 22px}
-.contacts{display:grid;gap:12px}
-.contacts a{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);
-  border-radius:13px;padding:14px 18px;font-weight:600;transition:border-color .15s,transform .15s}
-.contacts a:hover{border-color:rgba(52,211,153,.5);transform:translateX(3px)}
+/* контакты-плитки в форме */
+.contacts{display:grid;gap:12px;margin-top:8px}
+.contacts a{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);
+  border-radius:13px;padding:14px 18px;font-weight:600;transition:border-color .15s,transform .15s;color:var(--ink)}
+.contacts a:hover{border-color:var(--a1);transform:translateX(3px)}
 .contacts a .ci{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
-  background:var(--emerald-soft);border:1px solid rgba(52,211,153,.3);flex:none}
-.contacts a .ci svg{width:17px;height:17px;stroke:var(--emerald);fill:none;stroke-width:1.9}
-.contacts a small{display:block;color:var(--faint);font-weight:400;font-size:12px;font-family:var(--mono)}
-form{display:grid;gap:13px;background:var(--navy-3);border:1px solid var(--line);border-radius:18px;padding:24px}
-form label{font-size:13px;color:var(--muted);font-weight:500;margin-bottom:-6px}
-form input{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:11px;
-  padding:13px 15px;color:var(--text);font-size:15px;font-family:var(--font)}
-form input:focus{outline:2px solid var(--emerald);outline-offset:1px;border-color:transparent}
-form input::placeholder{color:var(--faint)}
-form .btn{margin-top:6px}
-.form-note{font-size:12px;color:var(--faint);text-align:center;margin-top:2px}
-.form-note a{color:var(--muted);text-decoration:underline}
+  background:rgba(122,162,255,.12);border:1px solid var(--line);flex:none}
+.contacts a .ci svg{width:17px;height:17px;stroke:var(--a1);fill:none;stroke-width:1.9}
+.contacts a small{display:block;color:var(--mut);font-weight:400;font-size:12px;font-family:'Space Grotesk'}
+.final-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+@media(max-width:900px){.final-grid{grid-template-columns:1fr;gap:28px}}
 
-/* footer */
-footer{border-top:1px solid var(--line);margin-top:72px;padding:44px 0 36px;font-size:14px}
-.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:30px}
-.foot-grid h4{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
-.foot-grid a{display:block;color:var(--muted);margin-bottom:9px;transition:color .15s}
-.foot-grid a:hover{color:var(--emerald)}
-.foot-about{color:var(--muted);font-size:14px;max-width:300px}
-.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
-  border-top:1px solid var(--line);padding-top:22px;color:var(--faint);font-size:13px}
-.foot-bottom a{color:var(--muted)}.foot-bottom a:hover{color:var(--emerald)}
-
-/* reveal */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-
-@media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr;gap:34px}
-  .svc-grid,.why-grid{grid-template-columns:1fr 1fr}
-  .steps{grid-template-columns:1fr 1fr}
-  .pk-grid{grid-template-columns:1fr}
-  .calc-grid{grid-template-columns:1fr}
-  .calc-out{position:static}
-  .final-grid{grid-template-columns:1fr;gap:28px}
-  .foot-grid{grid-template-columns:1fr 1fr}
-}
-@media (max-width:560px){
-  .pain-grid,.svc-grid,.why-grid,.steps{grid-template-columns:1fr}
-  .ba{grid-template-columns:1fr;gap:14px}
-  .ba-arrow{transform:rotate(90deg)}
-  .foot-grid{grid-template-columns:1fr}
-  .nav-cta span.full{display:none}
-}
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .reveal{opacity:1;transform:none}
-}
+/* svc-иконки на токенах */
+.svc-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;
+  background:rgba(122,162,255,.1);border:1px solid var(--line)}
+.svc-ic svg{width:22px;height:22px;stroke:var(--a1);fill:none;stroke-width:1.8}
+.svc-tag{font-family:'Space Grotesk';font-size:11px;color:var(--a1);letter-spacing:.08em;text-transform:uppercase}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap nav">
-    <a class="logo" href="https://nimbolabs.io/" aria-label="Nimbo — на главную">
-      <span class="mark">N</span> Nimbo
-    </a>
-    <a class="nav-cta" href="#audit">Бесплатный аудит<span class="full"> репутации</span></a>
-  </div>
-</header>
-
-<div class="wrap">
-  <nav class="crumbs" aria-label="Хлебные крошки">
-    <a href="https://nimbolabs.io/">Nimbo</a> → <span>Репутация</span>
-  </nav>
-</div>
+<header class="nheader"><div class="wrap"><nav>
+  <a class="nbrand" href="/"><span class="dot"></span>Nimbo</a>
+  <div class="ncrumbs"><a href="/">Главная</a><span class="sep">/</span><a href="/#napravleniya">Направления</a><span class="sep">/</span><span>Репутация</span></div>
+  <a class="nphone" href="tel:+79011479079">+7&nbsp;901&nbsp;147‑90‑79</a>
+  <a class="btn btn-a" href="#zayavka">Бесплатный экспресс-аудит</a>
+</nav></div></header>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div class="reveal in">
-      <span class="eyebrow">ORM · SERM · Мониторинг 24/7</span>
-      <h1>Управление репутацией бренда — отзывы, выдача и <span class="up">негатив под контролем</span></h1>
-      <p class="lead">ORM + SERM: поднимаем рейтинг и реальные отзывы, вытесняем негатив из топа Яндекса и Google, мониторим упоминания 24/7. Только легальные методы — без накруток.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#audit">Бесплатный экспресс-аудит репутации</a>
+<section class="nhero"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Репутация · ORM / SERM</div>
+      <h1>Управление репутацией бренда — отзывы, выдача и <em>негатив под контролем</em></h1>
+      <p class="sub">ORM + SERM: поднимаем рейтинг и реальные отзывы, вытесняем негатив из топа Яндекса и Google, мониторим упоминания 24/7. Только легальные методы — без накруток.</p>
+      <div class="cta">
+        <a class="btn btn-a" href="#zayavka">Бесплатный экспресс-аудит</a>
+        <a class="btn btn-g" href="tel:+79011479079">Позвонить</a>
       </div>
-      <div class="hero-trust">
-        <span class="chip"><span class="dot"></span> Легальные отзывы</span>
-        <span class="chip"><span class="dot"></span> Мониторинг 24/7</span>
-        <span class="chip"><span class="dot"></span> Отчёт с источником каждого упоминания</span>
+      <div class="chips">
+        <span class="chip">Легальные отзывы</span>
+        <span class="chip">Мониторинг 24/7</span>
+        <span class="chip">Отчёт с источником каждого упоминания</span>
       </div>
     </div>
 
-    <div class="reveal in">
+    <div class="reveal">
       <div class="shield-card" aria-hidden="true">
         <div class="sc-top">
           <div class="sc-brand">
@@ -440,351 +261,295 @@ footer{border-top:1px solid var(--line);margin-top:72px;padding:44px 0 36px;font
       <p class="illu-tag">Иллюстрация формата отчёта. Не данные конкретного клиента.</p>
     </div>
   </div>
-</section>
+</div></section>
 
 <!-- PAINS -->
-<section class="s">
-  <div class="wrap">
-    <div class="s-head reveal">
-      <span class="eyebrow">Сигналы тревоги</span>
-      <h2>Вы теряете клиентов, если…</h2>
-      <p>Люди читают отзывы и выдачу перед тем, как выбрать. Если первое, что они видят, — негатив, заявка уходит к конкуренту ещё до звонка.</p>
-    </div>
-    <div class="pain-grid reveal">
-      <div class="pain"><span class="x">!</span><div><b>Негатив в топе выдачи по бренду</b><p>По запросу с названием компании первыми всплывают жалобы, «отзывы-разводы» и форумы с претензиями.</p></div></div>
-      <div class="pain"><span class="x">!</span><div><b>Низкий рейтинг на картах и маркетплейсах</b><p>Яндекс Карты, 2ГИС, Wildberries, Ozon показывают 3.x★ — и карточку пролистывают мимо.</p></div></div>
-      <div class="pain"><span class="x">!</span><div><b>Мало отзывов или их нет совсем</b><p>Пустой профиль вызывает недоверие: клиенту не на что опереться при выборе.</p></div></div>
-      <div class="pain"><span class="x">!</span><div><b>Атака конкурентов или волна негатива</b><p>Внезапный всплеск однотипных плохих отзывов бьёт по рейтингу и продажам — и нужна быстрая реакция.</p></div></div>
-    </div>
+<section><div class="wrap">
+  <div class="reveal">
+    <div class="kick"><span class="num">01</span> · Сигналы тревоги</div>
+    <h2 class="h2">Вы теряете клиентов, <em>если…</em></h2>
+    <p class="lead">Люди читают отзывы и выдачу перед тем, как выбрать. Если первое, что они видят, — негатив, заявка уходит к конкуренту ещё до звонка.</p>
   </div>
-</section>
+  <div class="grid g2 reveal" style="margin-top:40px">
+    <div class="ncard pain"><span class="x">!</span><div><h3>Негатив в топе выдачи по бренду</h3><p>По запросу с названием компании первыми всплывают жалобы, «отзывы-разводы» и форумы с претензиями.</p></div></div>
+    <div class="ncard pain"><span class="x">!</span><div><h3>Низкий рейтинг на картах и маркетплейсах</h3><p>Яндекс Карты, 2ГИС, Wildberries, Ozon показывают 3.x★ — и карточку пролистывают мимо.</p></div></div>
+    <div class="ncard pain"><span class="x">!</span><div><h3>Мало отзывов или их нет совсем</h3><p>Пустой профиль вызывает недоверие: клиенту не на что опереться при выборе.</p></div></div>
+    <div class="ncard pain"><span class="x">!</span><div><h3>Атака конкурентов или волна негатива</h3><p>Внезапный всплеск однотипных плохих отзывов бьёт по рейтингу и продажам — и нужна быстрая реакция.</p></div></div>
+  </div>
+</div></section>
 
 <!-- SERVICES -->
-<section class="s">
-  <div class="wrap">
-    <div class="s-head reveal">
-      <span class="eyebrow">Что мы делаем</span>
-      <h2>Услуги управления репутацией</h2>
-      <p>Полный цикл ORM и SERM — от карточек на площадках до выдачи в поиске. Прозрачно, легально, с отчётом по каждому действию.</p>
+<section class="alt"><div class="wrap">
+  <div class="reveal">
+    <div class="kick"><span class="num">02</span> · Что мы делаем</div>
+    <h2 class="h2">Услуги управления <em>репутацией</em></h2>
+    <p class="lead">Полный цикл ORM и SERM — от карточек на площадках до выдачи в поиске. Прозрачно, легально, с отчётом по каждому действию.</p>
+  </div>
+  <div class="grid g3 reveal" style="margin-top:40px">
+    <div class="ncard">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17l-6.3 3.6 1.6-6.9L2 9.1l7-.6z"/></svg></div>
+      <span class="svc-tag">ORM</span>
+      <h3>Управление отзывами и рейтингом</h3>
+      <p>Растим средний балл и поток реальных отзывов на картах и маркетплейсах, корректно отрабатываем каждое обращение.</p>
     </div>
-    <div class="svc-grid reveal">
-      <div class="svc">
-        <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17l-6.3 3.6 1.6-6.9L2 9.1l7-.6z"/></svg></div>
-        <span class="tag">ORM</span>
-        <h3>Управление отзывами и рейтингом</h3>
-        <p>Растим средний балл и поток реальных отзывов на картах и маркетплейсах, корректно отрабатываем каждое обращение.</p>
-      </div>
-      <div class="svc">
-        <div class="svc-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-        <span class="tag">SERM</span>
-        <h3>Репутация в поиске</h3>
-        <p>Вытесняем негатив из топа Яндекса и Google по брендовым запросам, поднимая позитивный и нейтральный контент.</p>
-      </div>
-      <div class="svc">
-        <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-9"/><path d="M3 21h18"/></svg></div>
-        <span class="tag">Мониторинг</span>
-        <h3>Мониторинг упоминаний и аналитика</h3>
-        <p>Следим за упоминаниями бренда 24/7, ловим негатив на старте и показываем динамику в прозрачном отчёте.</p>
-      </div>
-      <div class="svc">
-        <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></div>
-        <span class="tag">Антинегатив</span>
-        <h3>Работа с негативом</h3>
-        <p>Отвечаем и подаём жалобы строго по правилам площадок, вытесняем негатив позитивом — без удаления правды обманом.</p>
-      </div>
-      <div class="svc">
-        <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M4 19V5a1 1 0 011-1h11l4 4v11a1 1 0 01-1 1H5a1 1 0 01-1-1z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></div>
-        <span class="tag">PR</span>
-        <h3>Наполнение площадок и PR</h3>
-        <p>Заполняем профили, готовим публикации и материалы, которые формируют положительное первое впечатление о бренде.</p>
-      </div>
-      <div class="svc">
-        <div class="svc-ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 7l2 2 4-4"/></svg></div>
-        <span class="tag">HR-бренд</span>
-        <h3>HR-бренд — отзывы сотрудников</h3>
-        <p>Работаем с репутацией работодателя: отзывы сотрудников, рейтинги на профильных площадках, защита от слива негатива.</p>
-      </div>
+    <div class="ncard">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+      <span class="svc-tag">SERM</span>
+      <h3>Репутация в поиске</h3>
+      <p>Вытесняем негатив из топа Яндекса и Google по брендовым запросам, поднимая позитивный и нейтральный контент.</p>
+    </div>
+    <div class="ncard">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-9"/><path d="M3 21h18"/></svg></div>
+      <span class="svc-tag">Мониторинг</span>
+      <h3>Мониторинг упоминаний и аналитика</h3>
+      <p>Следим за упоминаниями бренда 24/7, ловим негатив на старте и показываем динамику в прозрачном отчёте.</p>
+    </div>
+    <div class="ncard">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></div>
+      <span class="svc-tag">Антинегатив</span>
+      <h3>Работа с негативом</h3>
+      <p>Отвечаем и подаём жалобы строго по правилам площадок, вытесняем негатив позитивом — без удаления правды обманом.</p>
+    </div>
+    <div class="ncard">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M4 19V5a1 1 0 011-1h11l4 4v11a1 1 0 01-1 1H5a1 1 0 01-1-1z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></div>
+      <span class="svc-tag">PR</span>
+      <h3>Наполнение площадок и PR</h3>
+      <p>Заполняем профили, готовим публикации и материалы, которые формируют положительное первое впечатление о бренде.</p>
+    </div>
+    <div class="ncard">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 7l2 2 4-4"/></svg></div>
+      <span class="svc-tag">HR-бренд</span>
+      <h3>HR-бренд — отзывы сотрудников</h3>
+      <p>Работаем с репутацией работодателя: отзывы сотрудников, рейтинги на профильных площадках, защита от слива негатива.</p>
     </div>
   </div>
-</section>
+</div></section>
 
 <!-- PLATFORMS -->
-<section class="s">
-  <div class="wrap">
-    <div class="s-head reveal">
-      <span class="eyebrow">Где работаем</span>
-      <h2>Площадки</h2>
-      <p>Карты, отзовики, маркетплейсы и профильные сайты вашей ниши — там, где клиенты принимают решение.</p>
-    </div>
-    <div class="chips reveal">
-      <span class="plat"><span class="pd"></span> Яндекс Карты / Бизнес</span>
-      <span class="plat"><span class="pd"></span> 2ГИС</span>
-      <span class="plat"><span class="pd"></span> Google</span>
-      <span class="plat"><span class="pd"></span> Отзовик</span>
-      <span class="plat"><span class="pd"></span> Irecommend</span>
-      <span class="plat"><span class="pd"></span> Wildberries</span>
-      <span class="plat"><span class="pd"></span> Ozon</span>
-      <span class="plat"><span class="pd"></span> Яндекс Маркет</span>
-      <span class="plat"><span class="pd"></span> Профильные отраслевые площадки</span>
-    </div>
+<section><div class="wrap">
+  <div class="reveal">
+    <div class="kick"><span class="num">03</span> · Где работаем</div>
+    <h2 class="h2">Площадки</h2>
+    <p class="lead">Карты, отзовики, маркетплейсы и профильные сайты вашей ниши — там, где клиенты принимают решение.</p>
   </div>
-</section>
+  <div class="plats-wrap reveal">
+    <span class="plat"><span class="pd"></span> Яндекс Карты / Бизнес</span>
+    <span class="plat"><span class="pd"></span> 2ГИС</span>
+    <span class="plat"><span class="pd"></span> Google</span>
+    <span class="plat"><span class="pd"></span> Отзовик</span>
+    <span class="plat"><span class="pd"></span> Irecommend</span>
+    <span class="plat"><span class="pd"></span> Wildberries</span>
+    <span class="plat"><span class="pd"></span> Ozon</span>
+    <span class="plat"><span class="pd"></span> Яндекс Маркет</span>
+    <span class="plat"><span class="pd"></span> Профильные отраслевые площадки</span>
+  </div>
+</div></section>
 
 <!-- STEPS -->
-<section class="s">
-  <div class="wrap">
-    <div class="s-head reveal">
-      <span class="eyebrow">Процесс</span>
-      <h2>Как мы работаем</h2>
-      <p>Прозрачный путь от аудита до отчёта — вы видите каждый шаг и его результат.</p>
-    </div>
-    <div class="steps reveal">
-      <div class="step"><div class="n">01</div><b>Бесплатный экспресс-аудит</b><p>Смотрим рейтинги, выдачу по бренду и негатив. Показываем, где теряются клиенты.</p></div>
-      <div class="step"><div class="n">02</div><b>Стратегия и KPI</b><p>Согласуем цели, площадки и измеримые KPI, фиксируем их в договоре.</p></div>
-      <div class="step"><div class="n">03</div><b>Работа с площадками</b><p>Отзывы, рейтинг и выдача: ведём ORM и SERM легальными методами.</p></div>
-      <div class="step"><div class="n">04</div><b>Мониторинг 24/7</b><p>Отслеживаем упоминания и реагируем на новый негатив, пока он маленький.</p></div>
-      <div class="step"><div class="n">05</div><b>Прозрачный отчёт</b><p>Показываем динамику и источник каждого упоминания — без размытых формулировок.</p></div>
-    </div>
+<section class="alt"><div class="wrap">
+  <div class="reveal">
+    <div class="kick"><span class="num">04</span> · Процесс</div>
+    <h2 class="h2">Как мы <em>работаем</em></h2>
+    <p class="lead">Прозрачный путь от аудита до отчёта — вы видите каждый шаг и его результат.</p>
   </div>
-</section>
+  <div class="steps reveal">
+    <div class="step"><h3>Бесплатный экспресс-аудит</h3><p>Смотрим рейтинги, выдачу по бренду и негатив. Показываем, где теряются клиенты.</p></div>
+    <div class="step"><h3>Стратегия и KPI</h3><p>Согласуем цели, площадки и измеримые KPI, фиксируем их в договоре.</p></div>
+    <div class="step"><h3>Работа с площадками</h3><p>Отзывы, рейтинг и выдача: ведём ORM и SERM легальными методами.</p></div>
+    <div class="step"><h3>Мониторинг 24/7</h3><p>Отслеживаем упоминания и реагируем на новый негатив, пока он маленький.</p></div>
+    <div class="step"><h3>Прозрачный отчёт</h3><p>Показываем динамику и источник каждого упоминания — без размытых формулировок.</p></div>
+  </div>
+</div></section>
 
 <!-- CASE -->
-<section class="s">
-  <div class="wrap reveal">
-    <div class="case">
-      <div class="case-head">
-        <div>
-          <span class="eyebrow">Формат результата</span>
-          <h2 style="font-size:clamp(22px,3vw,30px);margin-top:8px">Как выглядит отчёт «было → стало»</h2>
-        </div>
-        <span class="illu-pill">Пример формата отчёта · иллюстрация</span>
+<section><div class="wrap reveal">
+  <div class="case">
+    <div class="case-head">
+      <div>
+        <div class="kick"><span class="num">05</span> · Формат результата</div>
+        <h2 class="h2" style="font-size:clamp(22px,3vw,34px)">Как выглядит отчёт «было&nbsp;→&nbsp;<em>стало</em>»</h2>
       </div>
-      <div class="ba">
-        <div class="ba-col before">
-          <div class="lbl">Было</div>
-          <div class="big">2.3 ★</div>
-          <small>низкий рейтинг, негатив в топ-10 выдачи по бренду</small>
-        </div>
-        <div class="ba-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
-        <div class="ba-col after">
-          <div class="lbl">Стало</div>
-          <div class="big">4.5 ★</div>
-          <small>рейтинг вырос, негатив вытеснен из топ-10 позитивом</small>
-        </div>
-      </div>
-      <p class="illu-tag" style="margin-top:20px">Это пример формата, как мы показываем динамику, а не данные конкретного клиента. Реальные цифры по вашему бренду — после бесплатного аудита.</p>
+      <span class="illu-pill">Пример формата отчёта · иллюстрация</span>
     </div>
+    <div class="ba">
+      <div class="ba-col before">
+        <div class="lbl">Было</div>
+        <div class="big">2.3 ★</div>
+        <small>низкий рейтинг, негатив в топ-10 выдачи по бренду</small>
+      </div>
+      <div class="ba-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+      <div class="ba-col after">
+        <div class="lbl">Стало</div>
+        <div class="big">4.5 ★</div>
+        <small>рейтинг вырос, негатив вытеснен из топ-10 позитивом</small>
+      </div>
+    </div>
+    <p class="illu-tag" style="margin-top:20px">Это пример формата, как мы показываем динамику, а не данные конкретного клиента. Реальные цифры по вашему бренду — после бесплатного аудита.</p>
   </div>
-</section>
+</div></section>
 
 <!-- PACKAGES + CALC -->
-<section class="s" id="packages">
-  <div class="wrap">
-    <div class="s-head reveal">
-      <span class="eyebrow">Пакеты и оценка</span>
-      <h2>Выберите формат работы</h2>
-      <p>Точную смету рассчитываем после бесплатного аудита. Калькулятор ниже сразу подскажет подходящий пакет — без заполнения формы.</p>
-    </div>
+<section class="alt" id="packages"><div class="wrap">
+  <div class="reveal">
+    <div class="kick"><span class="num">06</span> · Пакеты и оценка</div>
+    <h2 class="h2">Выберите формат <em>работы</em></h2>
+    <p class="lead">Точную смету рассчитываем после бесплатного аудита. Калькулятор ниже сразу подскажет подходящий пакет — без заполнения формы.</p>
+  </div>
 
-    <div class="pk-grid reveal">
-      <div class="pk">
-        <div class="pk-name">Защита</div>
-        <div class="pk-sub">Базовый контроль репутации</div>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Мониторинг упоминаний 24/7</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Управление отзывами на ключевых площадках</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Ответы на негатив по правилам площадок</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Ежемесячный прозрачный отчёт</li>
-        </ul>
-        <div class="price">Цена — после бесплатного аудита</div>
-      </div>
-      <div class="pk feat">
-        <div class="pk-name">Антикризис</div>
-        <div class="pk-sub">Быстрая реакция на волну негатива</div>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Всё из пакета «Защита»</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> SERM: вытеснение негатива из топа выдачи</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Ускоренная отработка атак и волн негатива</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Развитие реальных отзывов и рейтинга</li>
-        </ul>
-        <div class="price">Цена — после бесплатного аудита</div>
-      </div>
-      <div class="pk">
-        <div class="pk-name">Под ключ</div>
-        <div class="pk-sub">Полный цикл ORM + SERM + PR</div>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Всё из пакета «Антикризис»</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Наполнение площадок и PR-материалы</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> HR-бренд и отзывы сотрудников</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Выделенный менеджер и KPI в договоре</li>
-        </ul>
-        <div class="price">Цена — после бесплатного аудита</div>
-      </div>
+  <div class="price-grid reveal">
+    <div class="price">
+      <h3>Защита</h3>
+      <div class="pk-sub">Базовый контроль репутации</div>
+      <ul>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Мониторинг упоминаний 24/7</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Управление отзывами на ключевых площадках</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Ответы на негатив по правилам площадок</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Ежемесячный прозрачный отчёт</li>
+      </ul>
+      <div class="price-note">Цена — после бесплатного аудита</div>
     </div>
+    <div class="price feat">
+      <h3>Антикризис</h3>
+      <div class="pk-sub">Быстрая реакция на волну негатива</div>
+      <ul>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Всё из пакета «Защита»</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> SERM: вытеснение негатива из топа выдачи</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Ускоренная отработка атак и волн негатива</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Развитие реальных отзывов и рейтинга</li>
+      </ul>
+      <div class="price-note">Цена — после бесплатного аудита</div>
+    </div>
+    <div class="price">
+      <h3>Под ключ</h3>
+      <div class="pk-sub">Полный цикл ORM + SERM + PR</div>
+      <ul>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Всё из пакета «Антикризис»</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Наполнение площадок и PR-материалы</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> HR-бренд и отзывы сотрудников</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Выделенный менеджер и KPI в договоре</li>
+      </ul>
+      <div class="price-note">Цена — после бесплатного аудита</div>
+    </div>
+  </div>
 
-    <div class="calc reveal">
-      <h3>Оценка объёма работ за 20 секунд</h3>
-      <p class="csub">Отметьте площадки и масштаб — мы сразу покажем рекомендуемый пакет. Без заполнения формы.</p>
-      <div class="calc-grid">
-        <div>
-          <div class="calc-field">
-            <label>Площадки, где важна репутация</label>
-            <div class="opts" id="platOpts">
-              <label class="opt"><input type="checkbox" class="cplat" value="1"><span>Яндекс Карты</span></label>
-              <label class="opt"><input type="checkbox" class="cplat" value="1"><span>2ГИС</span></label>
-              <label class="opt"><input type="checkbox" class="cplat" value="1"><span>Google</span></label>
-              <label class="opt"><input type="checkbox" class="cplat" value="1"><span>Отзовики</span></label>
-              <label class="opt"><input type="checkbox" class="cplat" value="1"><span>Маркетплейсы</span></label>
-              <label class="opt"><input type="checkbox" class="cplat" value="1"><span>Поиск (выдача)</span></label>
-              <label class="opt"><input type="checkbox" class="cplat" value="1"><span>HR-площадки</span></label>
-            </div>
-          </div>
-          <div class="calc-field">
-            <label>Сейчас в выдаче / на площадках есть негатив?</label>
-            <div class="scale-row" id="negOpts" role="radiogroup">
-              <label class="opt"><input type="radio" name="neg" value="0" checked><span>Почти нет</span></label>
-              <label class="opt"><input type="radio" name="neg" value="1"><span>Есть точечный</span></label>
-              <label class="opt"><input type="radio" name="neg" value="2"><span>Волна / атака</span></label>
-            </div>
-          </div>
-          <div class="calc-field">
-            <label>Масштаб бизнеса</label>
-            <div class="scale-row" id="scaleOpts" role="radiogroup">
-              <label class="opt"><input type="radio" name="scale" value="0" checked><span>1 точка / бренд</span></label>
-              <label class="opt"><input type="radio" name="scale" value="1"><span>Сеть / несколько</span></label>
-              <label class="opt"><input type="radio" name="scale" value="2"><span>Федеральный</span></label>
-            </div>
+  <div class="calc reveal" style="margin-top:28px">
+    <h3>Оценка объёма работ за 20 секунд</h3>
+    <p class="csub">Отметьте площадки и масштаб — мы сразу покажем рекомендуемый пакет. Без заполнения формы.</p>
+    <div class="calc-grid">
+      <div>
+        <div class="calc-field">
+          <label>Площадки, где важна репутация</label>
+          <div class="opts" id="platOpts">
+            <label class="opt"><input type="checkbox" class="cplat" value="1"><span>Яндекс Карты</span></label>
+            <label class="opt"><input type="checkbox" class="cplat" value="1"><span>2ГИС</span></label>
+            <label class="opt"><input type="checkbox" class="cplat" value="1"><span>Google</span></label>
+            <label class="opt"><input type="checkbox" class="cplat" value="1"><span>Отзовики</span></label>
+            <label class="opt"><input type="checkbox" class="cplat" value="1"><span>Маркетплейсы</span></label>
+            <label class="opt"><input type="checkbox" class="cplat" value="1"><span>Поиск (выдача)</span></label>
+            <label class="opt"><input type="checkbox" class="cplat" value="1"><span>HR-площадки</span></label>
           </div>
         </div>
-        <div class="calc-out" aria-live="polite">
-          <div class="ro-lbl">Рекомендуем пакет</div>
-          <div class="ro-pkg" id="recPkg">Защита</div>
-          <div class="ro-desc" id="recDesc">Базовый контроль: мониторинг 24/7 и управление отзывами на ключевых площадках.</div>
-          <div class="ro-meta" id="recMeta">Площадок выбрано: 0 · негатив: почти нет</div>
-          <a class="btn btn-primary" href="#audit">Уточнить цену на аудите</a>
+        <div class="calc-field">
+          <label>Сейчас в выдаче / на площадках есть негатив?</label>
+          <div class="scale-row" id="negOpts" role="radiogroup">
+            <label class="opt"><input type="radio" name="neg" value="0" checked><span>Почти нет</span></label>
+            <label class="opt"><input type="radio" name="neg" value="1"><span>Есть точечный</span></label>
+            <label class="opt"><input type="radio" name="neg" value="2"><span>Волна / атака</span></label>
+          </div>
         </div>
+        <div class="calc-field">
+          <label>Масштаб бизнеса</label>
+          <div class="scale-row" id="scaleOpts" role="radiogroup">
+            <label class="opt"><input type="radio" name="scale" value="0" checked><span>1 точка / бренд</span></label>
+            <label class="opt"><input type="radio" name="scale" value="1"><span>Сеть / несколько</span></label>
+            <label class="opt"><input type="radio" name="scale" value="2"><span>Федеральный</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="ro-lbl">Рекомендуем пакет</div>
+        <div class="ro-pkg" id="recPkg">Защита</div>
+        <div class="ro-desc" id="recDesc">Базовый контроль: мониторинг 24/7 и управление отзывами на ключевых площадках.</div>
+        <div class="ro-meta" id="recMeta">Площадок выбрано: 0 · негатив: почти нет</div>
+        <a class="btn btn-a" href="#zayavka">Уточнить цену на аудите</a>
       </div>
     </div>
   </div>
-</section>
+</div></section>
 
 <!-- WHY -->
-<section class="s">
-  <div class="wrap">
-    <div class="s-head reveal">
-      <span class="eyebrow">Отстройка</span>
-      <h2>Почему Nimbo</h2>
-      <p>Мы берём не громкими цифрами, а ясностью, прозрачностью и честностью на каждом шаге.</p>
-    </div>
-    <div class="why-grid reveal">
-      <div class="why"><div class="wi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/></svg></div><b>Чистый понятный сайт</b><p>Никакого визуального шума — структура и оффер видны сразу, без поиска по перегруженной странице.</p></div>
-      <div class="why"><div class="wi"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17l-6.3 3.6 1.6-6.9L2 9.1l7-.6z"/></svg></div><b>Бесплатный аудит сразу</b><p>Показываем картину репутации и точки потерь до старта — а не после оплаты.</p></div>
-      <div class="why"><div class="wi"><svg viewBox="0 0 24 24"><path d="M4 19V5a1 1 0 011-1h11l4 4v11a1 1 0 01-1 1H5a1 1 0 01-1-1z"/><path d="M8 13h8M8 17h5"/></svg></div><b>Прозрачные отчёты с источниками</b><p>В отчёте видно источник каждого упоминания — никаких размытых «мы поработали».</p></div>
-      <div class="why"><div class="wi"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div><b>Честность: только легальные отзывы</b><p>Реальные отзывы из проверенных источников. Без накрутки ботами и фейков, за которые площадки банят.</p></div>
-      <div class="why"><div class="wi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><b>Мониторинг 24/7</b><p>Негатив ловим на старте, пока он маленький, — а не когда он уже в топе выдачи.</p></div>
-      <div class="why"><div class="wi"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-9"/><path d="M3 21h18"/></svg></div><b>KPI, которые видно</b><p>Цели фиксируем в договоре и сверяем по факту — рост рейтинга и чистая выдача по бренду.</p></div>
-    </div>
+<section><div class="wrap">
+  <div class="reveal">
+    <div class="kick"><span class="num">07</span> · Отстройка</div>
+    <h2 class="h2">Почему <em>Nimbo</em></h2>
+    <p class="lead">Мы берём не громкими цифрами, а ясностью, прозрачностью и честностью на каждом шаге.</p>
   </div>
-</section>
+  <div class="grid g3 reveal" style="margin-top:40px">
+    <div class="ncard"><div class="svc-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/></svg></div><h3>Чистый понятный сайт</h3><p>Никакого визуального шума — структура и оффер видны сразу, без поиска по перегруженной странице.</p></div>
+    <div class="ncard"><div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.9L12 17l-6.3 3.6 1.6-6.9L2 9.1l7-.6z"/></svg></div><h3>Бесплатный аудит сразу</h3><p>Показываем картину репутации и точки потерь до старта — а не после оплаты.</p></div>
+    <div class="ncard"><div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M4 19V5a1 1 0 011-1h11l4 4v11a1 1 0 01-1 1H5a1 1 0 01-1-1z"/><path d="M8 13h8M8 17h5"/></svg></div><h3>Прозрачные отчёты с источниками</h3><p>В отчёте видно источник каждого упоминания — никаких размытых «мы поработали».</p></div>
+    <div class="ncard"><div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Честность: только легальные отзывы</h3><p>Реальные отзывы из проверенных источников. Без накрутки ботами и фейков, за которые площадки банят.</p></div>
+    <div class="ncard"><div class="svc-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Мониторинг 24/7</h3><p>Негатив ловим на старте, пока он маленький, — а не когда он уже в топе выдачи.</p></div>
+    <div class="ncard"><div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-9"/><path d="M3 21h18"/></svg></div><h3>KPI, которые видно</h3><p>Цели фиксируем в договоре и сверяем по факту — рост рейтинга и чистая выдача по бренду.</p></div>
+  </div>
+</div></section>
 
 <!-- FAQ -->
-<section class="s">
-  <div class="wrap">
-    <div class="s-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
-      <span class="eyebrow">Вопросы</span>
-      <h2>Частые вопросы</h2>
-    </div>
-    <div class="faq reveal">
-      <details><summary>Законно ли убирать негатив?<span class="pm">+</span></summary><div class="faq-a">Да. Мы работаем только легальными методами: официальные ответы и жалобы строго по правилам площадок, вытеснение негатива позитивным реальным контентом в выдаче, развитие отзывов от настоящих клиентов. Мы не удаляем правдивые отзывы обманом и не используем накрутку ботами.</div></details>
-      <details><summary>За сколько будет результат?<span class="pm">+</span></summary><div class="faq-a">Честно: первые сдвиги обычно видны в течение 1–3 месяцев. Точные сроки зависят от площадок, объёма негатива и стартового состояния репутации — конкретику называем после бесплатного аудита.</div></details>
-      <details><summary>Какие вы даёте гарантии?<span class="pm">+</span></summary><div class="faq-a">Фиксируем KPI в договоре, работаем только с легальными реальными отзывами из проверенных источников, даём прозрачный отчёт с источником каждого упоминания и подписываем NDA. Мы не обещаем «100% топ» — это было бы нечестно по отношению к вам.</div></details>
-      <details><summary>На каких площадках вы работаете?<span class="pm">+</span></summary><div class="faq-a">Яндекс Карты и Яндекс Бизнес, 2ГИС, Google, Отзовик, Irecommend, маркетплейсы Wildberries, Ozon и Яндекс Маркет, а также профильные отраслевые площадки вашей ниши.</div></details>
-      <details><summary>Сколько это стоит?<span class="pm">+</span></summary><div class="faq-a">Стоимость зависит от количества площадок, объёма работ и состояния репутации. Мы рассчитываем смету после бесплатного экспресс-аудита, чтобы цена соответствовала реальной задаче, а не усреднённому прайсу.</div></details>
-    </div>
+<section class="alt"><div class="wrap">
+  <div class="reveal">
+    <div class="kick"><span class="num">08</span> · Вопросы</div>
+    <h2 class="h2">Частые <em>вопросы</em></h2>
   </div>
-</section>
+  <div class="faq reveal">
+    <details class="qa"><summary>Законно ли убирать негатив?</summary><p>Да. Мы работаем только легальными методами: официальные ответы и жалобы строго по правилам площадок, вытеснение негатива позитивным реальным контентом в выдаче, развитие отзывов от настоящих клиентов. Мы не удаляем правдивые отзывы обманом и не используем накрутку ботами.</p></details>
+    <details class="qa"><summary>За сколько будет результат?</summary><p>Честно: первые сдвиги обычно видны в течение 1–3 месяцев. Точные сроки зависят от площадок, объёма негатива и стартового состояния репутации — конкретику называем после бесплатного аудита.</p></details>
+    <details class="qa"><summary>Какие вы даёте гарантии?</summary><p>Фиксируем KPI в договоре, работаем только с легальными реальными отзывами из проверенных источников, даём прозрачный отчёт с источником каждого упоминания и подписываем NDA. Мы не обещаем «100% топ» — это было бы нечестно по отношению к вам.</p></details>
+    <details class="qa"><summary>На каких площадках вы работаете?</summary><p>Яндекс Карты и Яндекс Бизнес, 2ГИС, Google, Отзовик, Irecommend, маркетплейсы Wildberries, Ozon и Яндекс Маркет, а также профильные отраслевые площадки вашей ниши.</p></details>
+    <details class="qa"><summary>Сколько это стоит?</summary><p>Стоимость зависит от количества площадок, объёма работ и состояния репутации. Мы рассчитываем смету после бесплатного экспресс-аудита, чтобы цена соответствовала реальной задаче, а не усреднённому прайсу.</p></details>
+  </div>
+</div></section>
 
-<!-- FINAL CTA + FORM -->
-<section class="s" id="audit">
-  <div class="wrap reveal">
-    <div class="final">
-      <div class="final-grid">
-        <div>
-          <span class="eyebrow">Старт без оплаты</span>
-          <h2>Бесплатный экспресс-аудит репутации</h2>
-          <p>Покажем, что видят ваши клиенты в выдаче и на площадках, где теряются заявки и что можно исправить в первую очередь. Без обязательств.</p>
-          <div class="contacts">
-            <a href="tel:+79011479079">
-              <span class="ci"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span>
-              <span>+7 901 147-90-79<small>звонок и WhatsApp</small></span>
-            </a>
-            <a href="mailto:hello@nimbolabs.io">
-              <span class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
-              <span>hello@nimbolabs.io<small>почта для брифа и аудита</small></span>
-            </a>
-          </div>
-        </div>
-        <form id="leadForm" action="#" novalidate>
-          <input type="hidden" name="utm_source" id="f_src">
-          <input type="hidden" name="utm_medium" id="f_med">
-          <input type="hidden" name="utm_campaign" id="f_camp">
-          <input type="hidden" name="utm_term" id="f_term">
-          <input type="hidden" name="utm_content" id="f_cont">
-          <input type="hidden" name="lid" id="f_lid">
-          <label for="n_name">Как к вам обращаться</label>
-          <input id="n_name" name="name" type="text" placeholder="Имя" autocomplete="name" required>
-          <label for="n_contact">Телефон или e-mail для связи</label>
-          <input id="n_contact" name="contact" type="text" placeholder="+7 … или you@mail.ru" required>
-          <label for="n_brand">Сайт или название бренда</label>
-          <input id="n_brand" name="brand" type="text" placeholder="example.ru / Название компании">
-          <button class="btn btn-primary" type="submit">Получить бесплатный аудит</button>
-          <p class="form-note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy/">политикой конфиденциальности</a>.</p>
-        </form>
+<!-- ЗАЯВКА -->
+<section id="zayavka"><div class="wrap">
+  <div class="kick"><span class="num">09</span> · Заявка</div>
+  <h2 class="h2">Бесплатный экспресс-аудит <em>репутации</em></h2>
+  <p class="lead">Покажем, что видят ваши клиенты в выдаче и на площадках, где теряются заявки и что можно исправить в первую очередь. Без обязательств.</p>
+  <div class="final-grid" style="margin-top:30px">
+    <div>
+      <div class="contacts">
+        <a href="tel:+79011479079">
+          <span class="ci"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span>
+          <span>+7 901 147-90-79<small>звонок и WhatsApp</small></span>
+        </a>
+        <a href="mailto:hello@nimbolabs.io">
+          <span class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+          <span>hello@nimbolabs.io<small>почта для брифа и аудита</small></span>
+        </a>
       </div>
     </div>
+    <form class="nform" id="leadForm" action="#" novalidate>
+      <input name="name" placeholder="Ваше имя" autocomplete="name" required>
+      <input name="contact" placeholder="Телефон, e-mail или мессенджер" required>
+      <input name="brand" placeholder="Сайт или название бренда (необязательно)">
+      <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term"><input type="hidden" name="lid">
+      <button class="btn btn-a" type="submit">Получить бесплатный аудит</button>
+      <span class="microcopy">Нажимая, вы соглашаетесь с <a href="/privacy/" style="color:var(--soft)">политикой</a>. Без обязательств.</span>
+    </form>
   </div>
-</section>
+</div></section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <a class="logo" href="https://nimbolabs.io/" style="margin-bottom:14px"><span class="mark">N</span> Nimbo</a>
-        <p class="foot-about">Управление репутацией бренда: ORM, SERM и мониторинг упоминаний 24/7. Чисто, прозрачно, только легальные отзывы. Москва.</p>
-      </div>
-      <div>
-        <h4>Ещё в Nimbo</h4>
-        <a href="https://nimbolabs.io/seo/promotion/">Нужно SEO? → Продвижение</a>
-        <a href="https://nimbolabs.io/sites/corporate/">Нужен сайт? → Корпоративный</a>
-        <a href="https://nimbolabs.io/">Все услуги Nimbo</a>
-      </div>
-      <div>
-        <h4>Контакты</h4>
-        <a href="tel:+79011479079">+7 901 147-90-79</a>
-        <a href="mailto:hello@nimbolabs.io">hello@nimbolabs.io</a>
-        <a href="/privacy/">Политика конфиденциальности</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© <span id="yr">2026</span> Nimbo · Москва</span>
-      <span><a href="https://nimbolabs.io/?utm_source=landing&utm_medium=footer&utm_campaign=reputation">Сделано в Nimbo</a></span>
-    </div>
+<footer class="nfooter"><div class="wrap">
+  <div class="cols">
+    <div><div class="big">Nimbo</div><p style="color:var(--mut);margin-top:12px;max-width:34ch">Digital-агентство полного цикла. Сайты, боты, SEO и репутация — под одной крышей.</p></div>
+    <div><h4>Направления</h4><a href="/bots/ai-assistant/">AI-консультант</a><a href="/bots/booking/">Онлайн-запись</a><a href="/bots/sales/">Бот продаж</a><a href="/sites/landing/">Лендинг</a><a href="/sites/corporate/">Сайт компании</a><a href="/seo/promotion/">SEO</a><a href="/seo/top/">Топ Яндекса</a><a href="/reputation/">Репутация</a></div>
+    <div><h4>Связь</h4><a href="tel:+79011479079">+7 901 147‑90‑79</a><a href="mailto:hello@nimbolabs.io">hello@nimbolabs.io</a><a href="/">nimbolabs.io</a></div>
   </div>
-</footer>
+  <div class="nimbo-credit"><span>© 2026 Nimbo — digital-агентство полного цикла</span><span class="nc-links"><a href="/privacy/">Политика конфиденциальности</a><a href="https://nimbolabs.io/?utm_source=landing&utm_medium=footer&utm_campaign=reputation">Сделано в Nimbo</a></span></div>
+</div></footer>
+<div class="ncallbar"><a class="c1" href="#zayavka">Оставить заявку</a><a class="c2" href="tel:+79011479079">Позвонить</a></div>
 
 <script>
-/* year */
-document.getElementById('yr').textContent=new Date().getFullYear();
-
-/* reveal on scroll */
-(function(){
-  var els=document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -40px'});
-  els.forEach(function(e){if(!e.classList.contains('in'))io.observe(e);});
-})();
-
 /* hero chart animate once visible */
 (function(){
   var c=document.getElementById('heroChart');if(!c)return;
@@ -796,14 +561,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
 })();
 
 /* UTM / lid trap */
-(function(){
-  try{
-    var p=new URLSearchParams(location.search);
-    var map={utm_source:'f_src',utm_medium:'f_med',utm_campaign:'f_camp',utm_term:'f_term',utm_content:'f_cont',lid:'f_lid'};
-    Object.keys(map).forEach(function(k){var el=document.getElementById(map[k]);if(el&&p.get(k))el.value=p.get(k);});
-    if(window.ym && p.get('lid')){ ym(109998862,'params',{lid:p.get('lid')}); }
-  }catch(e){}
-})();
+(function(){var p=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){var el=document.querySelector('[name='+k+']');if(el)el.value=p.get(k)||'';});var lid=document.querySelector('[name=lid]');if(lid)lid.value=p.get('lid')||'';try{if(p.get('lid'))ym(109998862,'params',{lid:p.get('lid')});}catch(e){}})();
 
 /* calculator — recommend a package, no form gate */
 (function(){
@@ -837,7 +595,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
   recalc();
 })();
 
-/* form submit: goal + mailto fallback */
+/* form submit: goal lead_reputation + mailto fallback */
 (function(){
   var f=document.getElementById('leadForm');if(!f)return;
   f.addEventListener('submit',function(e){
@@ -852,12 +610,14 @@ document.getElementById('yr').textContent=new Date().getFullYear();
       +'%0D%0AКонтакт: '+encodeURIComponent(contact)
       +'%0D%0AСайт/бренд: '+encodeURIComponent(brand)
       +(utm?('%0D%0AUTM: '+encodeURIComponent(utm)):'')
-      +(f.lid.value?('%0D%0Alid: '+encodeURIComponent(f.lid.value)):'');
+      +(f.lid.value?('%0D%0Alid: '+encodeURIComponent(f.lid.value)):'')
+      +'%0D%0AСтраница: '+encodeURIComponent(location.href);
     window.location.href='mailto:hello@nimbolabs.io?subject='+encodeURIComponent('Аудит репутации — '+(brand||name||'заявка'))+'&body='+body;
   });
 })();
 </script>
 
 <script src="/assets/cookie.js" defer></script>
+<script>var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});</script>
 </body>
 </html>

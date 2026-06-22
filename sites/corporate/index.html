@@ -6,7 +6,7 @@
 <title>Сайт компании под ключ — солидно и на мировом уровне | Nimbo</title>
 <meta name="description" content="Корпоративный сайт компании под ключ: дизайн мирового уровня, SEO из коробки, наполнение контентом и запуск. Бесплатная смета. Москва — Nimbo.">
 <link rel="canonical" href="https://nimbolabs.io/sites/corporate/">
-<meta name="theme-color" content="#0d0f1a">
+<meta name="theme-color" content="#05060a">
 <meta name="geo.region" content="RU-MOW">
 <meta name="geo.placename" content="Москва">
 
@@ -21,10 +21,7 @@
 <meta name="twitter:title" content="Сайт компании под ключ — Nimbo">
 <meta name="twitter:description" content="Дизайн мирового уровня, SEO из коробки, наполнение под ключ. Бесплатная смета.">
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/nimbo.css">
 
 <!-- Yandex.Metrika -->
 <script type="text/javascript">
@@ -55,481 +52,195 @@ ym(109998862,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 </script>
 
 <style>
-:root{
-  --ink:#0d0f1a; --ink-2:#11142250; --panel:#141826; --panel-2:#181d2e;
-  --line:#262c3f; --line-gold:rgba(200,164,92,.28);
-  --gold:#c8a45c; --gold-hi:#e3c178; --gold-soft:rgba(200,164,92,.10);
-  --txt:#eef0f6; --txt-2:#aab0c4; --txt-3:#7f8699;
-  --maxw:1140px; --r:18px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{
-  margin:0;background:var(--ink);color:var(--txt);
-  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-body::before{
-  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
-  background:
-    radial-gradient(1100px 620px at 78% -8%, rgba(200,164,92,.13), transparent 60%),
-    radial-gradient(900px 560px at 8% 12%, rgba(46,58,96,.34), transparent 62%),
-    linear-gradient(180deg,#0b0d16 0%,#0d0f1a 38%,#0a0c14 100%);
-}
-body::after{
-  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
-  background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
-  background-size:64px 64px;mask-image:radial-gradient(120% 80% at 50% 0%,#000,transparent 75%);
-}
-h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;line-height:1.12;letter-spacing:-.01em;margin:0}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
-.gold{color:var(--gold-hi)}
-.serif-em{font-style:italic;color:var(--gold-hi)}
-
-/* hairline gold divider */
-.hr{height:1px;border:0;margin:0;background:linear-gradient(90deg,transparent,var(--line-gold) 18%,var(--line-gold) 82%,transparent)}
-
-/* ---------- header ---------- */
-header{position:sticky;top:0;z-index:50;transition:background .3s,border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
-header.scrolled{background:rgba(11,13,22,.82);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:66px}
-.logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:23px;font-weight:700;letter-spacing:.01em}
-.logo .dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--gold-hi),var(--gold));box-shadow:0 0 14px rgba(200,164,92,.7)}
-.nav-cta{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;font-weight:600;font-size:15px;color:#15110a;background:linear-gradient(135deg,var(--gold-hi),var(--gold));box-shadow:0 8px 24px rgba(200,164,92,.22)}
-.nav-cta:hover{filter:brightness(1.06)}
-
-/* breadcrumbs */
-.crumbs{font-size:13px;color:var(--txt-3);padding:14px 0 0}
-.crumbs a:hover{color:var(--gold-hi)}
-.crumbs span{color:var(--txt-2)}
-
-/* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border-radius:999px;font-weight:600;font-size:16px;cursor:pointer;border:1px solid transparent;transition:transform .18s,filter .18s,box-shadow .18s}
-.btn-primary{color:#15110a;background:linear-gradient(135deg,var(--gold-hi),var(--gold));box-shadow:0 14px 40px rgba(200,164,92,.26)}
-.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05)}
-.btn-ghost{color:var(--txt);border:1px solid var(--line);background:rgba(255,255,255,.02)}
-.btn-ghost:hover{border-color:var(--line-gold);color:var(--gold-hi)}
-@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
-
-/* chip */
-.chip{display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:999px;font-size:13.5px;font-weight:500;letter-spacing:.02em;color:var(--gold-hi);background:var(--gold-soft);border:1px solid var(--line-gold)}
-.chip .spark{width:6px;height:6px;border-radius:50%;background:var(--gold-hi);box-shadow:0 0 10px var(--gold-hi)}
-
-/* ---------- hero ---------- */
-.hero{padding:30px 0 78px;position:relative}
-.hero h1{font-size:clamp(2.3rem,6.1vw,4.05rem);margin:18px 0 0;max-width:14ch}
-.hero .lead{font-size:clamp(1.04rem,2.3vw,1.26rem);color:var(--txt-2);max-width:50ch;margin:22px 0 0}
-.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
-.trust-row{display:flex;flex-wrap:wrap;gap:22px 30px;margin-top:40px;padding-top:26px;border-top:1px solid var(--line)}
-.trust-row .ti{display:flex;flex-direction:column;gap:3px}
-.trust-row .ti b{font-family:'Playfair Display',serif;font-size:1.55rem;color:var(--gold-hi);font-weight:600}
-.trust-row .ti span{font-size:13px;color:var(--txt-3)}
-
-/* hero ornament card */
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}
-.frame{position:relative;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,var(--panel),var(--panel-2));padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
-.frame::before{content:"";position:absolute;inset:0;border-radius:var(--r);padding:1px;background:linear-gradient(135deg,var(--line-gold),transparent 45%,transparent 70%,var(--line-gold));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.browser-bar{display:flex;align-items:center;gap:7px;padding-bottom:16px;border-bottom:1px solid var(--line)}
-.browser-bar i{width:11px;height:11px;border-radius:50%;background:#2a3145;display:inline-block}
-.browser-bar .url{margin-left:10px;font-size:12px;color:var(--txt-3);font-family:ui-monospace,monospace}
-.mock h3{font-size:1.35rem;margin:18px 0 6px}
-.mock .msub{font-size:13.5px;color:var(--txt-3)}
-.mock-rows{margin-top:18px;display:grid;gap:11px}
-.mock-rows .mr{height:11px;border-radius:6px;background:linear-gradient(90deg,rgba(200,164,92,.22),rgba(200,164,92,.05));}
-.mock-rows .mr.s{width:62%}
-.mock-cta{margin-top:20px;display:inline-flex;padding:11px 20px;border-radius:10px;font-size:13.5px;font-weight:600;color:#15110a;background:linear-gradient(135deg,var(--gold-hi),var(--gold))}
-.mock-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:18px}
-.mock-cards div{height:54px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
-.mock-cards div:first-child{border-color:var(--line-gold);background:var(--gold-soft)}
-.mock-note{margin-top:14px;font-size:11.5px;color:var(--txt-3);text-align:center}
-
-/* ---------- sections ---------- */
-section{padding:78px 0}
-.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-.sec-h{font-size:clamp(1.7rem,4vw,2.6rem);max-width:18ch}
-.sec-sub{color:var(--txt-2);max-width:54ch;margin-top:16px}
-
-/* pain -> solution */
-.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
-.pain{position:relative;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,var(--panel),var(--panel-2));padding:26px;transition:border-color .25s,transform .25s}
-.pain:hover{border-color:var(--line-gold);transform:translateY(-3px)}
-.pain .pi{font-family:'Playfair Display',serif;font-size:1.15rem;color:#f3d9a0;display:flex;gap:10px;align-items:flex-start}
-.pain .pi svg{flex:0 0 auto;margin-top:2px}
-.pain .arrow{margin:16px 0;height:1px;background:linear-gradient(90deg,var(--line-gold),transparent)}
-.pain .sol{font-size:14.5px;color:var(--txt-2)}
-.pain .sol b{color:var(--txt);font-weight:600}
-
-/* process */
-.steps{margin-top:44px;display:grid;gap:0}
-.step{display:grid;grid-template-columns:78px 1fr;gap:22px;padding:24px 0;border-top:1px solid var(--line);align-items:start}
-.step:last-child{border-bottom:1px solid var(--line)}
-.step .num{font-family:'Playfair Display',serif;font-size:2.1rem;color:var(--gold);line-height:1;font-weight:600}
-.step h3{font-size:1.22rem;margin-bottom:7px}
-.step p{color:var(--txt-2);font-size:15px;margin:0;max-width:60ch}
-
-/* what's included */
-.incl{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
-.icard{border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,var(--panel),var(--panel-2));padding:22px;transition:border-color .25s,transform .25s}
-.icard:hover{border-color:var(--line-gold);transform:translateY(-3px)}
-.icard .ic{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:var(--gold-soft);border:1px solid var(--line-gold);color:var(--gold-hi);margin-bottom:14px}
-.icard h3{font-size:1.08rem;margin-bottom:6px}
-.icard p{font-size:14px;color:var(--txt-2);margin:0}
-.incl-note{margin-top:20px;font-size:13px;color:var(--txt-3);font-style:italic}
-
-/* get + risk reversal */
-.get-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;margin-top:42px;align-items:center}
-.get-list{display:grid;gap:14px;margin:0;padding:0;list-style:none}
-.get-list li{display:flex;gap:13px;align-items:flex-start;font-size:16px;color:var(--txt)}
-.get-list li svg{flex:0 0 auto;margin-top:3px;color:var(--gold-hi)}
-.risk{border:1px solid var(--line-gold);border-radius:var(--r);background:linear-gradient(180deg,rgba(200,164,92,.07),rgba(200,164,92,.02));padding:30px}
-.risk .eyebrow{margin-bottom:10px}
-.risk h3{font-size:1.5rem;margin-bottom:12px}
-.risk p{color:var(--txt-2);font-size:15px;margin:0 0 22px}
-
-/* faq */
-.faq{margin-top:40px;border-top:1px solid var(--line)}
-details{border-bottom:1px solid var(--line)}
-summary{cursor:pointer;list-style:none;padding:22px 4px;display:flex;justify-content:space-between;gap:20px;align-items:center;font-family:'Playfair Display',serif;font-size:1.18rem;color:var(--txt)}
-summary::-webkit-details-marker{display:none}
-summary .pm{flex:0 0 auto;width:26px;height:26px;border:1px solid var(--line-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-hi);transition:transform .25s}
-details[open] summary .pm{transform:rotate(45deg)}
-details .ans{padding:0 4px 22px;color:var(--txt-2);font-size:15px;max-width:70ch}
-
-/* final cta + form */
-.final{position:relative}
-.final-card{border:1px solid var(--line-gold);border-radius:24px;background:linear-gradient(180deg,var(--panel),#10131f);padding:clamp(28px,5vw,52px);box-shadow:0 40px 100px rgba(0,0,0,.5)}
-.final-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:start}
-.final h2{font-size:clamp(1.8rem,4vw,2.7rem);max-width:16ch}
-.final p.lead{color:var(--txt-2);margin-top:16px;max-width:46ch}
-.contacts{display:grid;gap:13px;margin-top:28px}
-.contacts a{display:flex;align-items:center;gap:13px;font-size:16px;font-weight:500;color:var(--txt)}
-.contacts a svg{color:var(--gold-hi)}
-.contacts a:hover{color:var(--gold-hi)}
-form{display:grid;gap:14px}
-label{font-size:13px;color:var(--txt-3);font-weight:500}
-input{width:100%;padding:15px 17px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--txt);font-size:16px;font-family:inherit;transition:border-color .2s}
-input::placeholder{color:var(--txt-3)}
-input:focus{outline:none;border-color:var(--gold)}
-form .note{font-size:12px;color:var(--txt-3);margin:2px 0 0}
-form .note a{color:var(--gold-hi);text-decoration:underline}
-.btn-submit{width:100%;margin-top:4px}
-
-/* footer */
-footer{padding:60px 0 44px;border-top:1px solid var(--line);margin-top:30px}
-.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
-.foot-grid h4{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt-3);font-family:'Inter',sans-serif;font-weight:600;margin:0 0 14px}
-.foot-grid a{display:block;color:var(--txt-2);font-size:14.5px;padding:5px 0}
-.foot-grid a:hover{color:var(--gold-hi)}
-.foot-brand p{color:var(--txt-3);font-size:14px;max-width:34ch;margin:14px 0 0}
-.cross{display:inline-flex;align-items:center;gap:7px;color:var(--gold-hi)!important}
-.foot-bottom{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;font-size:13px;color:var(--txt-3)}
-.foot-bottom a{color:var(--txt-3)}
-.foot-bottom a:hover{color:var(--gold-hi)}
-
-/* reveal animation */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
-
-/* responsive */
-@media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr;gap:38px}
-  .frame{order:-1}
-  .pains,.incl{grid-template-columns:1fr}
-  .get-grid,.final-grid{grid-template-columns:1fr;gap:28px}
-  .foot-grid{grid-template-columns:1fr 1fr}
-  .mock-cards{grid-template-columns:1fr 1fr 1fr}
-}
-@media (max-width:560px){
-  .nav-cta span.full{display:none}
-  .foot-grid{grid-template-columns:1fr}
-  .step{grid-template-columns:54px 1fr;gap:14px}
-  .step .num{font-size:1.6rem}
-}
-.skip{position:absolute;left:-999px}
-.skip:focus{left:16px;top:12px;z-index:99;background:var(--gold);color:#15110a;padding:10px 16px;border-radius:8px}
+/* Уникальный блок: мокап корпоративного сайта в hero — только токены nimbo.css */
+.corp-hero{display:grid;grid-template-columns:1.12fr .88fr;gap:54px;align-items:center}
+.corp-mock{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.corp-bar{display:flex;align-items:center;gap:7px;padding-bottom:15px;border-bottom:1px solid var(--line2)}
+.corp-bar i{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.12);display:inline-block}
+.corp-bar .url{margin-left:10px;font-size:12px;color:var(--mut);font-family:ui-monospace,monospace}
+.corp-mock .mt{font-family:'Space Grotesk';font-size:21px;font-weight:700;margin:16px 0 5px;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.corp-mock .ms{font-size:13px;color:var(--mut)}
+.corp-rows{margin-top:16px;display:grid;gap:10px}
+.corp-rows .r{height:11px;border-radius:6px;background:linear-gradient(90deg,rgba(122,162,255,.22),rgba(122,162,255,.04))}
+.corp-rows .r.s{width:62%}
+.corp-pill{margin-top:18px;display:inline-flex;padding:10px 19px;border-radius:10px;font-size:13px;font-weight:700;color:#05060a;background:var(--chrome)}
+.corp-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:18px}
+.corp-cards div{height:52px;border-radius:10px;border:1px solid var(--line2);background:rgba(255,255,255,.02)}
+.corp-cards div:first-child{border-color:var(--a1);background:rgba(122,162,255,.06)}
+.corp-note{margin-top:13px;font-size:11.5px;color:var(--mut);text-align:center}
+.get-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;margin-top:40px;align-items:start}
+.get-list{display:grid;gap:13px;list-style:none;padding:0;margin:0}
+.get-list li{display:flex;gap:12px;align-items:flex-start;font-size:16px;color:var(--ink)}
+.get-list li::before{content:"✓";color:transparent;background:var(--chrome);-webkit-background-clip:text;background-clip:text;font-weight:700;flex:0 0 auto;font-size:18px;line-height:1.4}
+.risk{background:var(--card);border:1px solid var(--a3);border-radius:18px;padding:30px;align-self:start}
+.risk h3{font-size:24px;margin:10px 0 12px;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.risk p{color:var(--soft);font-size:15px;margin:0 0 22px}
+.contacts{display:grid;gap:11px;margin-top:22px}
+.contacts a{font-size:16px;font-weight:600;color:var(--soft)}
+.contacts a:hover{color:var(--ink)}
+.lcta{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:start}
+@media(max-width:900px){.corp-hero{grid-template-columns:1fr;gap:38px}.corp-mock{order:-1}.get-grid,.lcta{grid-template-columns:1fr;gap:28px}}
 </style>
 </head>
 <body>
-<a href="#zayavka" class="skip">К форме заявки</a>
 
-<header id="hdr">
-  <div class="wrap nav">
-    <a class="logo" href="https://nimbolabs.io/" aria-label="Nimbo — на главную">
-      <span class="dot"></span>Nimbo
-    </a>
-    <a class="nav-cta" href="#zayavka">Обсудить проект<span class="full"> →</span></a>
-  </div>
-</header>
-
-<div class="wrap">
-  <nav class="crumbs" aria-label="Хлебные крошки">
-    <a href="https://nimbolabs.io/">Nimbo</a> → <a href="https://nimbolabs.io/sites/">Сайты</a> → <span>Сайт компании</span>
-  </nav>
-</div>
+<header class="nheader"><div class="wrap"><nav>
+  <a class="nbrand" href="/"><span class="dot"></span>Nimbo</a>
+  <div class="ncrumbs"><a href="/">Главная</a><span class="sep">/</span><a href="/#napravleniya">Направления</a><span class="sep">/</span><span>Сайт компании</span></div>
+  <a class="nphone" href="tel:+79011479079">+7&nbsp;901&nbsp;147‑90‑79</a>
+  <a class="btn btn-a" href="#zayavka">Обсудить проект</a>
+</nav></div></header>
 
 <!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <span class="chip"><span class="spark"></span>мировой уровень · под ключ</span>
-      <h1>Солидный сайт компании под ключ — <span class="serif-em">быстро</span> и на мировом уровне</h1>
-      <p class="lead">Корпоративный сайт, которым не стыдно поделиться: дизайн мирового уровня, SEO из коробки, наполнение под ключ.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#zayavka">Обсудить проект →</a>
-        <a class="btn btn-ghost" href="#vkhodit">Что входит в сайт</a>
+<section class="nhero"><div class="wrap">
+  <div class="corp-hero">
+    <div>
+      <div class="eyebrow">Сайты · Сайт компании под ключ</div>
+      <h1>Солидный сайт компании под ключ — <em>быстро</em> и на мировом уровне</h1>
+      <p class="sub">Корпоративный сайт, которым не стыдно поделиться: дизайн мирового уровня, SEO из коробки, наполнение под ключ.</p>
+      <div class="cta">
+        <a class="btn btn-a" href="#zayavka">Обсудить проект</a>
+        <a class="btn btn-g" href="tel:+79011479079">Позвонить</a>
       </div>
-      <div class="trust-row">
-        <div class="ti"><b>Под ключ</b><span>структура, контент и запуск</span></div>
-        <div class="ti"><b>SEO</b><span>из коробки на старте</span></div>
-        <div class="ti"><b>Mobile-first</b><span>аккуратно на любом экране</span></div>
+      <div class="chips">
+        <span class="chip">Под ключ: структура, контент и запуск</span>
+        <span class="chip">SEO из коробки на старте</span>
+        <span class="chip">Mobile-first на любом экране</span>
       </div>
     </div>
-
-    <div class="frame rv" aria-hidden="true">
-      <div class="browser-bar"><i></i><i></i><i></i><span class="url">company.ru</span></div>
-      <div class="mock">
-        <h3 class="gold">Ваша компания</h3>
-        <div class="msub">Корпоративный сайт — солидно и по делу</div>
-        <div class="mock-rows">
-          <div class="mr"></div><div class="mr"></div><div class="mr s"></div>
-        </div>
-        <span class="mock-cta">Оставить заявку</span>
-        <div class="mock-cards"><div></div><div></div><div></div></div>
-        <div class="mock-note">Иллюстрация комплектации — не реальный сайт</div>
-      </div>
+    <div class="corp-mock reveal" aria-hidden="true">
+      <div class="corp-bar"><i></i><i></i><i></i><span class="url">company.ru</span></div>
+      <div class="mt">Ваша компания</div>
+      <div class="ms">Корпоративный сайт — солидно и по делу</div>
+      <div class="corp-rows"><div class="r"></div><div class="r"></div><div class="r s"></div></div>
+      <span class="corp-pill">Оставить заявку</span>
+      <div class="corp-cards"><div></div><div></div><div></div></div>
+      <div class="corp-note">Иллюстрация комплектации — не реальный сайт</div>
     </div>
   </div>
-</section>
-
-<div class="wrap"><hr class="hr"></div>
+</div></section>
 
 <!-- ===== PAIN -> SOLUTION ===== -->
-<section>
-  <div class="wrap">
-    <div class="eyebrow rv">Знакомо?</div>
-    <h2 class="sec-h rv">Сайт должен работать на репутацию, а не против неё</h2>
-    <div class="pains">
-      <div class="pain rv">
-        <div class="pi">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a45c" stroke-width="1.6"><path d="M12 9v4m0 4h.01M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.7 3.86a2 2 0 0 0-3.42 0Z"/></svg>
-          Сайта нет — или он устарел
-        </div>
-        <div class="arrow"></div>
-        <p class="sol">Соберём современный корпоративный сайт <b>с нуля под ключ</b> — структура, тексты, дизайн и запуск без вашего погружения в технику.</p>
-      </div>
-      <div class="pain rv">
-        <div class="pi">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a45c" stroke-width="1.6"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24M10.73 5.08A11 11 0 0 1 12 5c7 0 10 7 10 7a13 13 0 0 1-1.67 2.68M6.61 6.61A13 13 0 0 0 2 12s3 7 10 7a11 11 0 0 0 5.39-1.39M2 2l20 20"/></svg>
-          «Стыдно показать клиенту»
-        </div>
-        <div class="arrow"></div>
-        <p class="sol">Дизайн <b>мирового уровня</b>: солидно, дорого, надёжно. Сайтом не стыдно поделиться с партнёром, клиентом или инвестором.</p>
-      </div>
-      <div class="pain rv">
-        <div class="pi">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a45c" stroke-width="1.6"><path d="M3 3v18h18M7 14l4-4 4 4 5-6"/></svg>
-          Сайт есть, а заявок нет
-        </div>
-        <div class="arrow"></div>
-        <p class="sol">Понятная структура, чёткие смыслы и заметные точки контакта <b>ведут посетителя к заявке</b>, а SEO-база помогает вас находить.</p>
-      </div>
+<section><div class="wrap">
+  <div class="kick reveal"><span class="num">01</span> · Знакомо?</div>
+  <h2 class="h2 reveal">Сайт должен работать на <em>репутацию</em>, а не против неё</h2>
+  <div class="grid g3 reveal" style="margin-top:40px">
+    <div class="ncard">
+      <div class="ix">01</div>
+      <h3>Сайта нет — или он устарел</h3>
+      <p>Соберём современный корпоративный сайт с нуля под ключ — структура, тексты, дизайн и запуск без вашего погружения в технику.</p>
+    </div>
+    <div class="ncard">
+      <div class="ix">02</div>
+      <h3>«Стыдно показать клиенту»</h3>
+      <p>Дизайн мирового уровня: солидно, дорого, надёжно. Сайтом не стыдно поделиться с партнёром, клиентом или инвестором.</p>
+    </div>
+    <div class="ncard">
+      <div class="ix">03</div>
+      <h3>Сайт есть, а заявок нет</h3>
+      <p>Понятная структура, чёткие смыслы и заметные точки контакта ведут посетителя к заявке, а SEO-база помогает вас находить.</p>
     </div>
   </div>
-</section>
-
-<div class="wrap"><hr class="hr"></div>
+</div></section>
 
 <!-- ===== PROCESS ===== -->
-<section>
-  <div class="wrap">
-    <div class="eyebrow rv">Как работает</div>
-    <h2 class="sec-h rv">Прозрачный путь от брифа до запуска</h2>
-    <div class="steps">
-      <div class="step rv"><div class="num">01</div><div><h3>Бриф</h3><p>Короткий разговор о компании, задачах и аудитории. Фиксируем, что важно показать и какого результата ждёте.</p></div></div>
-      <div class="step rv"><div class="num">02</div><div><h3>Структура и контент</h3><p>Прорабатываем разделы и логику сайта, готовим тексты и блоки под ключ — вам не нужно писать сайт самим.</p></div></div>
-      <div class="step rv"><div class="num">03</div><div><h3>Дизайн</h3><p>Создаём оформление мирового уровня: солидное, аккуратное, под характер вашей компании.</p></div></div>
-      <div class="step rv"><div class="num">04</div><div><h3>Разработка + SEO-база</h3><p>Верстаем быстрый адаптивный сайт и закладываем базовую SEO-настройку из коробки.</p></div></div>
-      <div class="step rv"><div class="num">05</div><div><h3>Запуск + поддержка</h3><p>Публикуем сайт, передаём управление и остаёмся на связи для правок и сопровождения.</p></div></div>
-    </div>
+<section class="alt"><div class="wrap">
+  <div class="kick reveal"><span class="num">02</span> · Как работает</div>
+  <h2 class="h2 reveal">Прозрачный путь от брифа до <em>запуска</em></h2>
+  <div class="steps reveal">
+    <div class="step"><h3>Бриф</h3><p>Короткий разговор о компании, задачах и аудитории. Фиксируем, что важно показать и какого результата ждёте.</p></div>
+    <div class="step"><h3>Структура и контент</h3><p>Прорабатываем разделы и логику сайта, готовим тексты и блоки под ключ — вам не нужно писать сайт самим.</p></div>
+    <div class="step"><h3>Дизайн</h3><p>Создаём оформление мирового уровня: солидное, аккуратное, под характер вашей компании.</p></div>
+    <div class="step"><h3>Разработка + SEO-база</h3><p>Верстаем быстрый адаптивный сайт и закладываем базовую SEO-настройку из коробки.</p></div>
+    <div class="step"><h3>Запуск + поддержка</h3><p>Публикуем сайт, передаём управление и остаёмся на связи для правок и сопровождения.</p></div>
   </div>
-</section>
-
-<div class="wrap"><hr class="hr"></div>
+</div></section>
 
 <!-- ===== WHAT'S INCLUDED ===== -->
-<section id="vkhodit">
-  <div class="wrap">
-    <div class="eyebrow rv">Что входит в сайт</div>
-    <h2 class="sec-h rv">Комплектация корпоративного сайта под ключ</h2>
-    <p class="sec-sub rv">Состав подбираем под вашу компанию. Ниже — типовые страницы и блоки, из которых собирается солидный сайт.</p>
-    <div class="incl">
-      <div class="icard rv">
-        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9h18M9 21V9M3 5h18v16H3z"/></svg></div>
-        <h3>Главная страница</h3><p>Первый экран, который сразу задаёт уровень: кто вы, чем сильны и что предлагаете.</p>
-      </div>
-      <div class="icard rv">
-        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h3>О компании</h3><p>История, ценности и команда — то, что формирует доверие у клиентов и партнёров.</p>
-      </div>
-      <div class="icard rv">
-        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 7h-9M14 17H5M17 4v6M7 14v6M3 7h4M21 17h-4"/></svg></div>
-        <h3>Услуги / продукты</h3><p>Понятное описание направлений с акцентами на выгоду и сильные стороны.</p>
-      </div>
-      <div class="icard rv">
-        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/></svg></div>
-        <h3>Преимущества и доверие</h3><p>Блоки фактов, кейсов, цифр и логотипов — почему стоит выбрать именно вас.</p>
-      </div>
-      <div class="icard rv">
-        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div>
-        <h3>Контакты и форма</h3><p>Заметные контакты, форма заявки и карта — чтобы клиенту было легко с вами связаться.</p>
-      </div>
-      <div class="icard rv">
-        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m21 21-4.35-4.35M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/></svg></div>
-        <h3>SEO-база из коробки</h3><p>Мета-теги, структура заголовков, скорость и адаптив — основа, чтобы вас находили.</p>
-      </div>
-    </div>
-    <p class="incl-note rv">Иллюстрация комплектации. Точный состав страниц и блоков фиксируем под вашу компанию на этапе брифа.</p>
+<section id="vkhodit"><div class="wrap">
+  <div class="kick reveal"><span class="num">03</span> · Что входит в сайт</div>
+  <h2 class="h2 reveal">Комплектация корпоративного сайта <em>под ключ</em></h2>
+  <p class="lead reveal">Состав подбираем под вашу компанию. Ниже — типовые страницы и блоки, из которых собирается солидный сайт.</p>
+  <div class="grid g3 reveal" style="margin-top:40px">
+    <div class="ncard"><div class="ix">01</div><h3>Главная страница</h3><p>Первый экран, который сразу задаёт уровень: кто вы, чем сильны и что предлагаете.</p></div>
+    <div class="ncard"><div class="ix">02</div><h3>О компании</h3><p>История, ценности и команда — то, что формирует доверие у клиентов и партнёров.</p></div>
+    <div class="ncard"><div class="ix">03</div><h3>Услуги / продукты</h3><p>Понятное описание направлений с акцентами на выгоду и сильные стороны.</p></div>
+    <div class="ncard"><div class="ix">04</div><h3>Преимущества и доверие</h3><p>Блоки фактов, кейсов, цифр и логотипов — почему стоит выбрать именно вас.</p></div>
+    <div class="ncard"><div class="ix">05</div><h3>Контакты и форма</h3><p>Заметные контакты, форма заявки и карта — чтобы клиенту было легко с вами связаться.</p></div>
+    <div class="ncard"><div class="ix">06</div><h3>SEO-база из коробки</h3><p>Мета-теги, структура заголовков, скорость и адаптив — основа, чтобы вас находили.</p></div>
   </div>
-</section>
-
-<div class="wrap"><hr class="hr"></div>
+  <p class="microcopy reveal" style="margin-top:20px">Иллюстрация комплектации. Точный состав страниц и блоков фиксируем под вашу компанию на этапе брифа.</p>
+</div></section>
 
 <!-- ===== WHAT YOU GET + RISK REVERSAL ===== -->
-<section>
-  <div class="wrap">
-    <div class="eyebrow rv">Что получаете</div>
-    <h2 class="sec-h rv">Готовый сайт, которым можно гордиться</h2>
-    <div class="get-grid">
-      <ul class="get-list rv">
-        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>Корпоративный сайт под ключ — с наполнением, без вашего погружения в технику.</li>
-        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>Дизайн мирового уровня — солидный и аккуратный, под характер компании.</li>
-        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>Базовая SEO-настройка из коробки и быстрая загрузка.</li>
-        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>Аккуратное отображение на телефоне, планшете и десктопе.</li>
-        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>Поддержка и правки после запуска — остаёмся на связи.</li>
-      </ul>
-      <div class="risk rv">
-        <div class="eyebrow">Без риска для вас</div>
-        <h3 class="gold">Смета — бесплатно</h3>
-        <p>Расскажите о задаче — посчитаем объём и сроки и пришлём прозрачную смету под вашу компанию. Это ни к чему не обязывает.</p>
-        <a class="btn btn-primary" href="#zayavka">Получить бесплатную смету →</a>
-      </div>
+<section class="alt"><div class="wrap">
+  <div class="kick reveal"><span class="num">04</span> · Что получаете</div>
+  <h2 class="h2 reveal">Готовый сайт, которым можно <em>гордиться</em></h2>
+  <div class="get-grid">
+    <ul class="get-list reveal">
+      <li>Корпоративный сайт под ключ — с наполнением, без вашего погружения в технику.</li>
+      <li>Дизайн мирового уровня — солидный и аккуратный, под характер компании.</li>
+      <li>Базовая SEO-настройка из коробки и быстрая загрузка.</li>
+      <li>Аккуратное отображение на телефоне, планшете и десктопе.</li>
+      <li>Поддержка и правки после запуска — остаёмся на связи.</li>
+    </ul>
+    <div class="risk reveal">
+      <div class="kick" style="margin-bottom:0"><span class="num">★</span> · Без риска для вас</div>
+      <h3>Смета — бесплатно</h3>
+      <p>Расскажите о задаче — посчитаем объём и сроки и пришлём прозрачную смету под вашу компанию. Это ни к чему не обязывает.</p>
+      <a class="btn btn-a" href="#zayavka">Получить бесплатную смету</a>
     </div>
   </div>
-</section>
-
-<div class="wrap"><hr class="hr"></div>
+</div></section>
 
 <!-- ===== FAQ ===== -->
-<section>
-  <div class="wrap">
-    <div class="eyebrow rv">Вопросы и ответы</div>
-    <h2 class="sec-h rv">Частые вопросы</h2>
-    <div class="faq rv">
-      <details><summary>Сколько занимает разработка?<span class="pm">+</span></summary><div class="ans">Зависит от объёма страниц и контента. После брифа фиксируем структуру и сроки заранее, до старта работ, и держим их.</div></details>
-      <details><summary>Что входит в сайт?<span class="pm">+</span></summary><div class="ans">Структура и тексты, дизайн мирового уровня, вёрстка и разработка, базовая SEO-настройка, адаптив под мобильные, запуск и инструкция по управлению. Точный состав фиксируем под вашу компанию.</div></details>
-      <details><summary>Наполняете ли вы сайт контентом?<span class="pm">+</span></summary><div class="ans">Да. «Под ключ» означает, что мы помогаем собрать структуру, тексты и блоки — вам не нужно писать сайт самим. Материалы компании используем как основу.</div></details>
-      <details><summary>Есть ли поддержка после запуска?<span class="pm">+</span></summary><div class="ans">Да. После запуска остаёмся на связи: правки, обновления и сопровождение. Условия обсуждаем под вашу задачу.</div></details>
-      <details><summary>Сайт будет корректно работать на телефонах?<span class="pm">+</span></summary><div class="ans">Да. Делаем mobile-first: сайт одинаково аккуратно выглядит и быстро открывается на смартфоне, планшете и десктопе.</div></details>
-    </div>
+<section><div class="wrap">
+  <div class="kick reveal"><span class="num">05</span> · Вопросы и ответы</div>
+  <h2 class="h2 reveal">Частые <em>вопросы</em></h2>
+  <div class="faq reveal">
+    <details class="qa"><summary>Сколько занимает разработка?</summary><p>Зависит от объёма страниц и контента. После брифа фиксируем структуру и сроки заранее, до старта работ, и держим их.</p></details>
+    <details class="qa"><summary>Что входит в сайт?</summary><p>Структура и тексты, дизайн мирового уровня, вёрстка и разработка, базовая SEO-настройка, адаптив под мобильные, запуск и инструкция по управлению. Точный состав фиксируем под вашу компанию.</p></details>
+    <details class="qa"><summary>Наполняете ли вы сайт контентом?</summary><p>Да. «Под ключ» означает, что мы помогаем собрать структуру, тексты и блоки — вам не нужно писать сайт самим. Материалы компании используем как основу.</p></details>
+    <details class="qa"><summary>Есть ли поддержка после запуска?</summary><p>Да. После запуска остаёмся на связи: правки, обновления и сопровождение. Условия обсуждаем под вашу задачу.</p></details>
+    <details class="qa"><summary>Сайт будет корректно работать на телефонах?</summary><p>Да. Делаем mobile-first: сайт одинаково аккуратно выглядит и быстро открывается на смартфоне, планшете и десктопе.</p></details>
   </div>
-</section>
+</div></section>
 
 <!-- ===== FINAL CTA + FORM ===== -->
-<section class="final" id="zayavka">
-  <div class="wrap">
-    <div class="final-card rv">
-      <div class="final-grid">
-        <div>
-          <div class="eyebrow">Обсудить проект</div>
-          <h2>Обсудим ваш корпоративный сайт?</h2>
-          <p class="lead">Оставьте имя и контакт — вернёмся, зададим пару вопросов и пришлём бесплатную смету под вашу компанию.</p>
-          <div class="contacts">
-            <a href="tel:+79011479079"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.09 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>+7 901 147-90-79</a>
-            <a href="mailto:hello@nimbolabs.io"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="m22 7-10 6L2 7"/></svg>hello@nimbolabs.io</a>
-          </div>
-        </div>
-        <div>
-          <form id="leadForm" action="#" novalidate>
-            <div>
-              <label for="name">Ваше имя</label>
-              <input id="name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="name" required>
-            </div>
-            <div>
-              <label for="contact">Телефон или email</label>
-              <input id="contact" name="contact" type="text" placeholder="+7 ___ ___-__-__ или e-mail" autocomplete="tel" required>
-            </div>
-            <button class="btn btn-primary btn-submit" type="submit">Обсудить проект →</button>
-            <p class="note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy/">политикой конфиденциальности</a>.</p>
-          </form>
-        </div>
+<section class="alt" id="zayavka"><div class="wrap">
+  <div class="kick reveal"><span class="num">06</span> · Заявка</div>
+  <div class="lcta">
+    <div class="reveal">
+      <h2 class="h2">Обсудим ваш корпоративный <em>сайт</em>?</h2>
+      <p class="lead">Оставьте имя и контакт — вернёмся, зададим пару вопросов и пришлём бесплатную смету под вашу компанию.</p>
+      <div class="contacts">
+        <a href="tel:+79011479079">+7 901 147‑90‑79</a>
+        <a href="mailto:hello@nimbolabs.io">hello@nimbolabs.io</a>
       </div>
     </div>
+    <form class="nform reveal" id="leadForm" action="#" novalidate>
+      <input name="name" placeholder="Ваше имя" autocomplete="name" required>
+      <input name="contact" placeholder="Телефон, e-mail или мессенджер" autocomplete="tel" required>
+      <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term">
+      <button class="btn btn-a" type="submit">Обсудить проект</button>
+      <span class="microcopy">Нажимая, вы соглашаетесь с <a href="/privacy/" style="color:var(--soft)">политикой</a>. Без обязательств.</span>
+    </form>
   </div>
-</section>
+</div></section>
 
-<!-- ===== FOOTER HUB ===== -->
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <a class="logo" href="https://nimbolabs.io/"><span class="dot"></span>Nimbo</a>
-        <p>Сайты, лендинги и боты под ключ — мирового уровня. Москва.</p>
-      </div>
-      <div>
-        <h4>Хаб</h4>
-        <a href="https://nimbolabs.io/">Главная Nimbo</a>
-        <a href="https://nimbolabs.io/sites/">Сайты</a>
-        <a href="/sites/corporate/">Сайт компании</a>
-      </div>
-      <div>
-        <h4>Ещё может пригодиться</h4>
-        <a class="cross" href="/seo/promotion/">Продвинуть сайт? → SEO →</a>
-        <a class="cross" href="/sites/landing/">Лендинг под рекламу? →</a>
-        <a href="/privacy/">Политика конфиденциальности</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>Сделано в Nimbo · Москва · © 2026</span>
-      <span><a href="tel:+79011479079">+7 901 147-90-79</a> · <a href="mailto:hello@nimbolabs.io">hello@nimbolabs.io</a></span>
-    </div>
+<footer class="nfooter"><div class="wrap">
+  <div class="cols">
+    <div><div class="big">Nimbo</div><p style="color:var(--mut);margin-top:12px;max-width:34ch">Digital-агентство полного цикла. Сайты, боты, SEO и репутация — под одной крышей.</p></div>
+    <div><h4>Направления</h4><a href="/bots/ai-assistant/">AI-консультант</a><a href="/bots/booking/">Онлайн-запись</a><a href="/bots/sales/">Бот продаж</a><a href="/sites/landing/">Лендинг</a><a href="/sites/corporate/">Сайт компании</a><a href="/seo/promotion/">SEO</a><a href="/seo/top/">Топ Яндекса</a><a href="/reputation/">Репутация</a></div>
+    <div><h4>Связь</h4><a href="tel:+79011479079">+7 901 147‑90‑79</a><a href="mailto:hello@nimbolabs.io">hello@nimbolabs.io</a><a href="/">nimbolabs.io</a></div>
   </div>
-</footer>
+  <div class="nimbo-credit"><span>© 2026 Nimbo — digital-агентство полного цикла</span><span class="nc-links"><a href="/privacy/">Политика конфиденциальности</a></span></div>
+</div></footer>
+<div class="ncallbar"><a class="c1" href="#zayavka">Оставить заявку</a><a class="c2" href="tel:+79011479079">Позвонить</a></div>
+
+<script>(function(){var p=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){var el=document.querySelector('[name='+k+']');if(el)el.value=p.get(k)||'';});try{if(p.get('lid'))ym(109998862,'params',{lid:p.get('lid')});}catch(e){}})();</script>
 
 <script>
-// header scroll state
-(function(){
-  var h=document.getElementById('hdr');
-  var onScroll=function(){ if(window.scrollY>12) h.classList.add('scrolled'); else h.classList.remove('scrolled'); };
-  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
-})();
-
-// scroll reveal
-(function(){
-  var els=document.querySelectorAll('.rv');
-  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-    els.forEach(function(e){e.classList.add('in');}); return;
-  }
-  var io=new IntersectionObserver(function(en){
-    en.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target);} });
-  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
-  els.forEach(function(e){io.observe(e);});
-})();
-
-// UTM trap -> Metrika params + lid
-(function(){
-  try{
-    var p=new URLSearchParams(location.search), params={}, has=false;
-    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','lid'].forEach(function(k){
-      var v=p.get(k); if(v){ params[k]=v; has=true; }
-    });
-    if(has && typeof ym==='function'){ ym(109998862,'params',params); }
-  }catch(e){}
-})();
-
 // form submit -> goal + mailto fallback
 (function(){
   var f=document.getElementById('leadForm');
@@ -549,5 +260,6 @@ footer{padding:60px 0 44px;border-top:1px solid var(--line);margin-top:30px}
 </script>
 
 <script src="/assets/cookie.js" defer></script>
+<script>var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});</script>
 </body>
 </html>
