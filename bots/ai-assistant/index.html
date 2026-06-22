@@ -236,10 +236,11 @@
     <h2 class="h2">Запустим ИИ-консультанта под <em>вашу нишу</em></h2>
     <p class="lead">Оставьте имя и контакт — соберём бесплатное демо и обсудим проект. Без обязательств.</p>
   </div>
-  <form class="nform reveal" action="#" onsubmit="try{ym(109998862,'reachGoal','lead_bots_ai')}catch(e){};var n=this.querySelector('[name=name]').value,c=this.querySelector('[name=contact]').value;location.href='mailto:hello@nimbolabs.io?subject=Заявка%20AI-консультант&body='+encodeURIComponent('Имя: '+n+'%0AКонтакт: '+c+'%0AСтраница: '+location.href);return false;">
+  <form class="nform reveal" data-lead-slug="bots_ai" action="#" novalidate>
     <input name="name" placeholder="Ваше имя" required>
     <input name="contact" placeholder="Телефон, e-mail или мессенджер" required>
-    <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term">
+    <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term"><input type="hidden" name="lid">
+    <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:0;height:0;opacity:0">
     <button class="btn btn-a" type="submit">Обсудить проект</button>
     <span class="microcopy">Нажимая, вы соглашаетесь с <a href="/privacy/" style="color:var(--soft)">политикой</a>. Без обязательств.</span>
   </form>
@@ -277,5 +278,6 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/109998862" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+<script defer src="/assets/lead-submit.js"></script>
 </body>
 </html>

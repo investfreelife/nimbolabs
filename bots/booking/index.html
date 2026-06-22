@@ -345,10 +345,11 @@
     <h2 class="h2">Покажем бота записи <em>на вашем примере</em></h2>
     <p class="lead">Оставьте заявку — соберём бесплатную демо-сборку под вашу нишу и обсудим проект. Никакой предоплаты за демо.</p>
   </div>
-  <form class="nform reveal" action="#" onsubmit="try{ym(109998862,'reachGoal','lead_bots_booking')}catch(e){};var n=this.querySelector('[name=name]').value,c=this.querySelector('[name=contact]').value;location.href='mailto:hello@nimbolabs.io?subject=Заявка%20Онлайн-запись&body='+encodeURIComponent('Имя: '+n+'%0AКонтакт: '+c+'%0AСтраница: '+location.href);return false;">
+  <form class="nform reveal" data-lead-slug="bots_booking" action="#" novalidate>
     <input name="name" placeholder="Ваше имя" required>
     <input name="contact" placeholder="Телефон, e-mail или мессенджер" required>
-    <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term">
+    <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term"><input type="hidden" name="lid">
+    <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:0;height:0;opacity:0">
     <button class="btn btn-a" type="submit">Обсудить проект</button>
     <span class="microcopy">Нажимая, вы соглашаетесь с <a href="/privacy/" style="color:var(--soft)">политикой</a>. Без обязательств.</span>
   </form>
@@ -420,5 +421,6 @@
 
 <script src="/assets/cookie.js" defer></script>
 <script>var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});</script>
+<script defer src="/assets/lead-submit.js"></script>
 </body>
 </html>

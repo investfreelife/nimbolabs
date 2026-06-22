@@ -218,7 +218,8 @@ ym(109998862,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
         <a href="mailto:hello@nimbolabs.io">hello@nimbolabs.io</a>
       </div>
     </div>
-    <form class="nform reveal" id="leadForm" action="#" novalidate>
+    <form class="nform reveal" id="leadForm" data-lead-slug="sites_corporate" action="#" novalidate>
+      <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:0;height:0;opacity:0">
       <input name="name" placeholder="Ваше имя" autocomplete="name" required>
       <input name="contact" placeholder="Телефон, e-mail или мессенджер" autocomplete="tel" required>
       <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term">
@@ -240,24 +241,7 @@ ym(109998862,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 
 <script>(function(){var p=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){var el=document.querySelector('[name='+k+']');if(el)el.value=p.get(k)||'';});try{if(p.get('lid'))ym(109998862,'params',{lid:p.get('lid')});}catch(e){}})();</script>
 
-<script>
-// form submit -> goal + mailto fallback
-(function(){
-  var f=document.getElementById('leadForm');
-  if(!f) return;
-  f.addEventListener('submit',function(ev){
-    ev.preventDefault();
-    var name=(f.name.value||'').trim(), contact=(f.contact.value||'').trim();
-    if(!name||!contact){ if(!name){f.name.focus();}else{f.contact.focus();} return; }
-    try{ if(typeof ym==='function'){ ym(109998862,'reachGoal','lead_sites_corporate'); } }catch(e){}
-    var sub=encodeURIComponent('Заявка с сайта: сайт компании под ключ');
-    var body=encodeURIComponent('Имя: '+name+'\nКонтакт: '+contact+'\n\nИсточник: '+location.href);
-    var btn=f.querySelector('button[type=submit]');
-    if(btn){ btn.textContent='Спасибо! Открываем письмо…'; btn.disabled=true; }
-    setTimeout(function(){ location.href='mailto:hello@nimbolabs.io?subject='+sub+'&body='+body; },350);
-  });
-})();
-</script>
+<script defer src="/assets/lead-submit.js"></script>
 
 <script src="/assets/cookie.js" defer></script>
 <script>var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});</script>

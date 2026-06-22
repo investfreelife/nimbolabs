@@ -262,7 +262,8 @@
   <div class="kick"><span class="num">06</span> · Заявка</div>
   <h2 class="h2">Обсудим ваш <em>бот продаж</em>?</h2>
   <p class="lead">Оставьте контакт — вернёмся с бесплатным разбором воронки и сметой. Без обязательств.</p>
-  <form class="nform" id="leadForm" action="#" novalidate>
+  <form class="nform" id="leadForm" data-lead-slug="bots_sales" action="#" novalidate>
+      <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:0;height:0;opacity:0">
     <input name="name" placeholder="Ваше имя" autocomplete="name" required>
     <input name="contact" placeholder="Телефон, e-mail или мессенджер" autocomplete="tel" required>
     <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term">
@@ -281,24 +282,7 @@
 </div></footer>
 <div class="ncallbar"><a class="c1" href="#zayavka">Оставить заявку</a><a class="c2" href="tel:+79011479079">Позвонить</a></div>
 
-<script>
-  // UTM-ловушка: прокидываем в Метрику params + в скрытые поля формы
-  (function(){
-    var p=new URLSearchParams(location.search);
-    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){var el=document.querySelector('[name='+k+']');if(el)el.value=p.get(k)||'';});
-    try{if(p.get('lid'))ym(109998862,'params',{lid:p.get('lid')});}catch(e){}
-  })();
-
-  // Форма: цель Метрики lead_bots_sales + mailto-fallback
-  document.getElementById('leadForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    var name=(this.name.value||'').trim(), contact=(this.contact.value||'').trim();
-    if(!name || !contact){ return; }
-    try{ if(typeof ym==='function') ym(109998862,'reachGoal','lead_bots_sales'); }catch(e2){}
-    var body='Имя: '+name+'%0AКонтакт: '+contact+'%0AСтраница: '+location.href;
-    window.location.href='mailto:hello@nimbolabs.io?subject='+encodeURIComponent('Заявка Бот продаж')+'&body='+body;
-  });
-</script>
+<script defer src="/assets/lead-submit.js"></script>
 
 <script src="/assets/cookie.js" defer></script>
 <script>var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});</script>

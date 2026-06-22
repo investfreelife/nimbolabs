@@ -367,11 +367,12 @@ ym(109998862,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
   <div class="in">
     <h2>Расскажите<br>о вашей <em>идее</em></h2>
     <p>Опишите задачу — вернёмся с концепцией и сметой. Делаем быстро, на мировом уровне, без воды.</p>
-    <form id="hubForm" action="#" novalidate style="display:grid;gap:12px;max-width:460px;margin-top:22px">
+    <form id="hubForm" data-lead-slug="hub" action="#" novalidate style="display:grid;gap:12px;max-width:460px;margin-top:22px">
       <input name="name" placeholder="Ваше имя" required style="background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--ink);font:15px Inter,sans-serif;outline:none">
       <input name="contact" placeholder="Телефон, Telegram или e-mail" required style="background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--ink);font:15px Inter,sans-serif;outline:none">
       <input name="task" placeholder="Коротко опишите задачу (необязательно)" style="background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--ink);font:15px Inter,sans-serif;outline:none">
       <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term"><input type="hidden" name="lid">
+      <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:0;height:0;opacity:0">
       <button class="btn btn-p" type="submit" data-cursor>Получить бесплатную смету →</button>
       <span style="color:var(--mut);font-size:12.5px">Бесплатная смета/аудит — до конца месяца. Без обязательств. <a href="/privacy/" style="color:var(--soft)">Политика</a></span>
     </form>
@@ -381,7 +382,7 @@ ym(109998862,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
     </div>
   </div>
 </div></section>
-<script>(function(){var f=document.getElementById('hubForm');if(!f)return;var p=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_content','utm_term','lid'].forEach(function(k){var el=f.querySelector('[name='+k+']');if(el)el.value=p.get(k)||'';});f.addEventListener('submit',function(e){e.preventDefault();try{ym(109998862,'reachGoal','lead_hub');}catch(err){}var n=f.name.value.trim(),c=f.contact.value.trim(),t=f.task.value.trim();var body='Заявка с главной Nimbo%0D%0AИмя: '+encodeURIComponent(n)+'%0D%0AКонтакт: '+encodeURIComponent(c)+'%0D%0AЗадача: '+encodeURIComponent(t)+'%0D%0AСтраница: '+encodeURIComponent(location.href);location.href='mailto:hello@nimbolabs.io?subject='+encodeURIComponent('Заявка — '+(n||'Nimbo'))+'&body='+body;});})();</script>
+<script defer src="/assets/lead-submit.js"></script>
 
 <footer><div class="wrap">
   <div class="foot">

@@ -409,7 +409,8 @@
     </div>
 
     <div class="reveal">
-      <form class="nform" id="leadForm" action="#" novalidate>
+      <form class="nform" id="leadForm" data-lead-slug="seo_promotion" action="#" novalidate>
+      <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:0;height:0;opacity:0">
         <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Ваше имя" required>
         <input id="f-contact" name="contact" type="text" autocomplete="tel" placeholder="Телефон, e-mail или мессенджер" required>
         <input id="f-site" name="site" type="text" inputmode="url" placeholder="Ссылка на сайт — example.ru" required>
@@ -433,49 +434,7 @@
 </div></footer>
 <div class="ncallbar"><a class="c1" href="#zayavka">Оставить заявку</a><a class="c2" href="tel:+79011479079">Позвонить</a></div>
 
-<script>
-(function(){
-  /* UTM trap → скрытые поля + ym params lid */
-  var p=new URLSearchParams(location.search);
-  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){var el=document.querySelector('[name='+k+']');if(el)el.value=p.get(k)||'';});
-  try{if(p.get('lid'))ym(109998862,'params',{lid:p.get('lid')});}catch(e){}
-
-  /* animate data-viz when report enters view */
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  function fillCharts(){
-    document.querySelectorAll('#barChart .bar').forEach(function(b){ b.style.height=b.getAttribute('data-h'); });
-    document.querySelectorAll('.track > i').forEach(function(i){ i.style.width=i.getAttribute('data-w'); });
-  }
-  var report=document.querySelector('.report');
-  if(report){
-    if(reduce || !('IntersectionObserver' in window)){ fillCharts(); }
-    else{
-      var rio=new IntersectionObserver(function(es){
-        es.forEach(function(en){ if(en.isIntersecting){ fillCharts(); rio.disconnect(); } });
-      },{threshold:.3});
-      rio.observe(report);
-    }
-  }
-
-  /* form submit → goal + mailto fallback */
-  var form=document.getElementById('leadForm');
-  if(form){
-    form.addEventListener('submit',function(ev){
-      ev.preventDefault();
-      var name=(form.querySelector('[name=name]').value||'').trim();
-      var contact=(form.querySelector('[name=contact]').value||'').trim();
-      var site=(form.querySelector('[name=site]')&&form.querySelector('[name=site]').value||'').trim();
-      if(!name||!contact){ if(!name){form.querySelector('#f-name').focus();}else{form.querySelector('#f-contact').focus();} return; }
-      try{ if(window.ym) ym(109998862,'reachGoal','lead_seo_promotion'); }catch(e){}
-      var subject='Заявка на бесплатный SEO-аудит — '+name;
-      var body='Имя: '+name+'%0D%0AКонтакт: '+contact+'%0D%0AСайт: '+(site||'—')+'%0D%0AСтраница: '+location.href;
-      form.style.display='none';
-      var ok=document.getElementById('formOk'); if(ok){ ok.style.display='block'; }
-      try{ window.location.href='mailto:hello@nimbolabs.io?subject='+encodeURIComponent(subject)+'&body='+body; }catch(e){}
-    });
-  }
-})();
-</script>
+<script defer src="/assets/lead-submit.js"></script>
 
 <script src="/assets/cookie.js" defer></script>
 <script>var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});</script>

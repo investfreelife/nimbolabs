@@ -530,7 +530,8 @@
         </a>
       </div>
     </div>
-    <form class="nform" id="leadForm" action="#" novalidate>
+    <form class="nform" id="leadForm" data-lead-slug="reputation" action="#" novalidate>
+      <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:0;height:0;opacity:0">
       <input name="name" placeholder="Ваше имя" autocomplete="name" required>
       <input name="contact" placeholder="Телефон, e-mail или мессенджер" required>
       <input name="brand" placeholder="Сайт или название бренда (необязательно)">
@@ -600,31 +601,12 @@
   recalc();
 })();
 
-/* form submit: goal lead_reputation + mailto fallback */
-(function(){
-  var f=document.getElementById('leadForm');if(!f)return;
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    try{ if(window.ym) ym(109998862,'reachGoal','lead_reputation'); }catch(err){}
-    var name=(f.name.value||'').trim();
-    var contact=(f.contact.value||'').trim();
-    var brand=(f.brand.value||'').trim();
-    var utm=[f.utm_source.value,f.utm_medium.value,f.utm_campaign.value].filter(Boolean).join(' / ');
-    var body='Заявка на бесплатный аудит репутации'
-      +'%0D%0AИмя: '+encodeURIComponent(name)
-      +'%0D%0AКонтакт: '+encodeURIComponent(contact)
-      +'%0D%0AСайт/бренд: '+encodeURIComponent(brand)
-      +(f.package&&f.package.value?('%0D%0AПакет: '+encodeURIComponent(f.package.value)):'')
-      +(utm?('%0D%0AUTM: '+encodeURIComponent(utm)):'')
-      +(f.lid.value?('%0D%0Alid: '+encodeURIComponent(f.lid.value)):'')
-      +'%0D%0AСтраница: '+encodeURIComponent(location.href);
-    window.location.href='mailto:hello@nimbolabs.io?subject='+encodeURIComponent('Аудит репутации — '+(brand||name||'заявка'))+'&body='+body;
-  });
-})();
+/* form submit обрабатывается общим /assets/lead-submit.js (см. data-lead-slug на форме) */
 </script>
 
 <script>function selectPkg(name){var f=document.getElementById("leadForm");if(f&&f.package)f.package.value=name;var chip=document.getElementById("pkgChip");if(chip){chip.textContent="Выбран пакет: «"+name+"»";chip.style.display="block";}document.querySelectorAll(".price").forEach(function(c){c.classList.toggle("is-sel",c.getAttribute("data-pkg")===name);});var z=document.getElementById("zayavka");if(z)z.scrollIntoView({behavior:"smooth"});}</script>
 <script src="/assets/cookie.js" defer></script>
 <script>var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});</script>
+<script defer src="/assets/lead-submit.js"></script>
 </body>
 </html>
