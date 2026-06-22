@@ -178,6 +178,7 @@ svg[viewBox="0 0 24 24"]{width:22px;height:22px;flex:none;fill:none;stroke:curre
 .nfab a{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;box-shadow:0 14px 34px -12px rgba(0,0,0,.6);transition:transform .2s}
 .nfab a:hover{transform:translateY(-3px)}
 .nfab .call{background:var(--chrome);color:#05060a}
+.nfab .tg{background:#2AABEE;color:#fff}
 .nfab .write{background:var(--card);color:var(--ink);border:1px solid var(--line)}
 .nfab svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:680px){.nfab{display:none}}

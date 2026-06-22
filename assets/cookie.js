@@ -33,15 +33,38 @@
 /* ===== Nimbo UX: плавающий контакт + блок реальных работ (общий для всех) ===== */
 (function(){
   function ready(fn){if(document.readyState!=='loading')fn();else document.addEventListener('DOMContentLoaded',fn);}
+  // метка источника лида по странице (для бота-роутера Nimbo)
+  function nimboSlug(){var p=location.pathname;
+    if(/\/bots\/ai-assistant/.test(p))return 'bots_ai';
+    if(/\/bots\/booking/.test(p))return 'bots_booking';
+    if(/\/bots\/sales/.test(p))return 'bots_sales';
+    if(/\/sites\/landing/.test(p))return 'sites_landing';
+    if(/\/sites\/corporate/.test(p))return 'sites_corp';
+    if(/\/seo\/promotion/.test(p))return 'seo_promo';
+    if(/\/seo\/top/.test(p))return 'seo_top';
+    if(/\/reputation/.test(p))return 'reputation';
+    return 'hub';}
+  var TG='https://t.me/stolica_dostavka_bot?start=nimbo_'+nimboSlug();
   ready(function(){
-    // 1) Плавающая кнопка контакта на всех страницах
+    // 1) Плавающая кнопка контакта на всех страницах (звонок + Telegram + почта)
     if(!document.querySelector('.nfab')){
       var fab=document.createElement('div');fab.className='nfab';
       fab.innerHTML='<a class="call" href="tel:+79011479079" aria-label="Позвонить">'
         +'<svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></a>'
+        +'<a class="tg" href="'+TG+'" target="_blank" rel="noopener" aria-label="Telegram" onclick="try{ym(109998862,\'reachGoal\',\'cta_telegram\')}catch(e){}">'
+        +'<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21.9 4.3l-3.3 15.6c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9-8.1c.4-.3-.1-.5-.6-.2L6.6 13.2l-4.8-1.5c-1-.3-1-1 .2-1.5l18.7-7.2c.9-.3 1.6.2 1.2 1.3z"/></svg></a>'
         +'<a class="write" href="mailto:hello@nimbolabs.io" aria-label="Написать">'
         +'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>';
       document.body.appendChild(fab);
+    }
+    // 1b) Кнопка «Обсудить в Telegram» рядом с формой заявки
+    var lf=document.getElementById('leadForm')||document.getElementById('hubForm');
+    if(lf && !document.querySelector('.tg-cta')){
+      var a=document.createElement('a');a.className='btn tg-cta';a.href=TG;a.target='_blank';a.rel='noopener';
+      a.style.cssText='background:#2AABEE;color:#fff;margin-top:10px';
+      a.setAttribute('onclick',"try{ym(109998862,'reachGoal','cta_telegram')}catch(e){}");
+      a.textContent='Обсудить в Telegram';
+      lf.appendChild(a);
     }
     // 2) Блок «Наши работы» (реальные сайты) — только на лендингах (есть .nheader), перед футером
     var foot=document.querySelector('.nfooter');
