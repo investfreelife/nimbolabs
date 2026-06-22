@@ -397,7 +397,7 @@
   </div>
 
   <div class="price-grid reveal">
-    <div class="price">
+    <div class="price" data-pkg="Защита">
       <h3>Защита</h3>
       <div class="pk-sub">Базовый контроль репутации</div>
       <ul>
@@ -407,8 +407,9 @@
         <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Ежемесячный прозрачный отчёт</li>
       </ul>
       <div class="price-note">Цена — после бесплатного аудита</div>
+      <a class="btn btn-g" href="#zayavka" onclick="selectPkg('Защита')" style="margin-top:16px">Выбрать «Защита»</a>
     </div>
-    <div class="price feat">
+    <div class="price feat" data-pkg="Антикризис">
       <h3>Антикризис</h3>
       <div class="pk-sub">Быстрая реакция на волну негатива</div>
       <ul>
@@ -418,8 +419,9 @@
         <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Развитие реальных отзывов и рейтинга</li>
       </ul>
       <div class="price-note">Цена — после бесплатного аудита</div>
+      <a class="btn btn-a" href="#zayavka" onclick="selectPkg('Антикризис')" style="margin-top:16px">Выбрать «Антикризис»</a>
     </div>
-    <div class="price">
+    <div class="price" data-pkg="Под ключ">
       <h3>Под ключ</h3>
       <div class="pk-sub">Полный цикл ORM + SERM + PR</div>
       <ul>
@@ -429,6 +431,7 @@
         <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg> Выделенный менеджер и KPI в договоре</li>
       </ul>
       <div class="price-note">Цена — после бесплатного аудита</div>
+      <a class="btn btn-g" href="#zayavka" onclick="selectPkg('Под ключ')" style="margin-top:16px">Выбрать «Под ключ»</a>
     </div>
   </div>
 
@@ -471,7 +474,7 @@
         <div class="ro-pkg" id="recPkg">Защита</div>
         <div class="ro-desc" id="recDesc">Базовый контроль: мониторинг 24/7 и управление отзывами на ключевых площадках.</div>
         <div class="ro-meta" id="recMeta">Площадок выбрано: 0 · негатив: почти нет</div>
-        <a class="btn btn-a" href="#zayavka">Уточнить цену на аудите</a>
+        <a class="btn btn-a" href="#zayavka" onclick="selectPkg(document.getElementById('recPkg').textContent)">Обсудить рекомендованный пакет</a>
       </div>
     </div>
   </div>
@@ -531,7 +534,8 @@
       <input name="name" placeholder="Ваше имя" autocomplete="name" required>
       <input name="contact" placeholder="Телефон, e-mail или мессенджер" required>
       <input name="brand" placeholder="Сайт или название бренда (необязательно)">
-      <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term"><input type="hidden" name="lid">
+      <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term"><input type="hidden" name="lid"><input type="hidden" name="package">
+      <div id="pkgChip" class="microcopy" style="display:none;color:var(--a1);font-weight:600;margin-bottom:2px"></div>
       <button class="btn btn-a" type="submit">Получить бесплатный аудит</button>
       <span class="microcopy">Нажимая, вы соглашаетесь с <a href="/privacy/" style="color:var(--soft)">политикой</a>. Без обязательств.</span>
     </form>
@@ -587,6 +591,7 @@
       desc='Базовый контроль: мониторинг 24/7 и управление отзывами на ключевых площадках.';
     }
     pkgEl.textContent=pkg;descEl.textContent=desc;
+    document.querySelectorAll(".price").forEach(function(c){c.classList.toggle("is-rec",c.getAttribute("data-pkg")===pkg);});
     metaEl.textContent='Площадок выбрано: '+c+' · негатив: '+negLabels[neg];
   }
   plats.forEach(function(p){p.addEventListener('change',recalc);});
@@ -609,6 +614,7 @@
       +'%0D%0AИмя: '+encodeURIComponent(name)
       +'%0D%0AКонтакт: '+encodeURIComponent(contact)
       +'%0D%0AСайт/бренд: '+encodeURIComponent(brand)
+      +(f.package&&f.package.value?('%0D%0AПакет: '+encodeURIComponent(f.package.value)):'')
       +(utm?('%0D%0AUTM: '+encodeURIComponent(utm)):'')
       +(f.lid.value?('%0D%0Alid: '+encodeURIComponent(f.lid.value)):'')
       +'%0D%0AСтраница: '+encodeURIComponent(location.href);
@@ -617,6 +623,7 @@
 })();
 </script>
 
+<script>function selectPkg(name){var f=document.getElementById("leadForm");if(f&&f.package)f.package.value=name;var chip=document.getElementById("pkgChip");if(chip){chip.textContent="Выбран пакет: «"+name+"»";chip.style.display="block";}document.querySelectorAll(".price").forEach(function(c){c.classList.toggle("is-sel",c.getAttribute("data-pkg")===name);});var z=document.getElementById("zayavka");if(z)z.scrollIntoView({behavior:"smooth"});}</script>
 <script src="/assets/cookie.js" defer></script>
 <script>var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});</script>
 </body>
