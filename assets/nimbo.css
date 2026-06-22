@@ -131,6 +131,26 @@ h3{font-family:'Space Grotesk';font-weight:600;letter-spacing:-.01em}
 .ncallbar .c1{background:var(--chrome);color:#05060a}.ncallbar .c2{background:var(--panel);color:var(--ink)}
 @media(max-width:680px){.ncallbar{display:flex}.nfooter{padding-bottom:84px}}
 
+/* ---------- ICONS (общие для всех лендингов) ---------- */
+svg{display:inline-block;vertical-align:middle}
+/* УНИВЕРСАЛЬНО: любая инлайн-иконка 24x24 — контур, не чёрная заливка */
+svg[viewBox="0 0 24 24"]{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;color:var(--a1)}
+/* доп. контейнеры иконок от разных сборок */
+.nico,.dico,.ci,.feat-ic{display:inline-grid;place-items:center;color:var(--a1)}
+/* контейнер иконки услуги/преимущества */
+.svc-ic,.feat-ic,.ico,.icon-box{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:rgba(122,162,255,.1);color:var(--a1);margin-bottom:14px;flex:none}
+.svc-ic svg,.feat-ic svg,.ico svg,.icon-box svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* чек-листы в карточках цен/фич */
+.price ul,.checks,.feat ul{list-style:none;margin:0}
+.price li,.checks li{display:flex;gap:10px;align-items:flex-start;color:var(--soft);font-size:14.5px;padding:6px 0;line-height:1.45}
+.price li>svg,.checks li>svg{width:18px;height:18px;flex:none;margin-top:2px;color:var(--a1);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* мелкие иконки в чипах/строках */
+.chip svg,.sc-shield svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sc-shield svg{color:var(--ok)}
+.ba-arrow svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;color:var(--a1)}
+/* звёзды-рейтинг — заливка (тёплый акцент) */
+.stars svg{width:18px;height:18px;fill:var(--a3);stroke:none}
+
 /* ---------- REVEAL ---------- */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
 .reveal.in{opacity:1;transform:none}
