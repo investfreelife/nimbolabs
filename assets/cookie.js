@@ -45,6 +45,26 @@
     if(/\/reputation/.test(p))return 'reputation';
     return 'hub';}
   var TG='https://t.me/stolica_dostavka_bot?start=nimbo_'+nimboSlug();
+  // самодостаточные стили FAB (на страницах без nimbo.css, напр. хаб, иначе SVG растягивается на весь экран)
+  function injCss(){
+    if(document.getElementById('nimbo-fab-css')) return;
+    // если подключён nimbo.css — он уже стилизует .nfab, второй раз не нужно
+    var links=document.querySelectorAll('link[rel=stylesheet]');
+    for(var i=0;i<links.length;i++){ if(/nimbo\.css/.test(links[i].href)) return; }
+    var st=document.createElement('style');st.id='nimbo-fab-css';
+    st.textContent='.nfab{position:fixed;right:18px;bottom:18px;z-index:150;display:flex;flex-direction:column;gap:10px}'
+      +'.nfab a{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;box-shadow:0 14px 34px -12px rgba(0,0,0,.6);transition:transform .2s;text-decoration:none}'
+      +'.nfab a:hover{transform:translateY(-3px)}'
+      +'.nfab .call{background:#e9edf6;color:#05060a}'
+      +'.nfab .tg{background:#2AABEE;color:#fff}'
+      +'.nfab .write{background:#171a24;color:#e7e9ee;border:1px solid rgba(255,255,255,.16)}'
+      +'.nfab svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}'
+      +'.nfab .tg svg{fill:currentColor;stroke:none}'
+      +'.tg-cta{display:inline-flex;align-items:center;justify-content:center}'
+      +'@media(max-width:680px){.nfab{display:none}}';
+    (document.head||document.documentElement).appendChild(st);
+  }
+  injCss();
   ready(function(){
     // 1) Плавающая кнопка контакта на всех страницах (звонок + Telegram + почта)
     if(!document.querySelector('.nfab')){
