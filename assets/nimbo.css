@@ -35,7 +35,8 @@ a{color:inherit;text-decoration:none}
 .ncrumbs a:hover{color:var(--ink)}.ncrumbs .sep{opacity:.5}
 .nphone{font-weight:700;font-size:14.5px;white-space:nowrap;color:var(--soft)}
 .nphone:hover{color:var(--ink)}
-@media(max-width:760px){.ncrumbs,.nphone{display:none}}
+@media(max-width:760px){.ncrumbs{display:none}}
+@media(max-width:560px){.nheader nav>.btn{display:none}.nphone{margin-left:auto;color:var(--ink)}}
 
 /* ---------- BUTTONS ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:600;font-size:15px;padding:14px 26px;border-radius:100px;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s,border-color .25s;border:1px solid transparent;cursor:pointer;white-space:nowrap;line-height:1}
